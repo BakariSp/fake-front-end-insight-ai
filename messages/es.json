@@ -1,0 +1,280 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "export": "Exportar",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "view": "Ver",
+    "submit": "Enviar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "close": "Cerrar",
+    "confirm": "Confirmar",
+    "all": "Todos"
+  },
+  "nav": {
+    "dashboard": "Panel",
+    "classes": "Clases",
+    "assignments": "Tareas",
+    "grades": "Calificaciones",
+    "calendar": "Calendario",
+    "resources": "Recursos",
+    "messages": "Mensajes",
+    "settings": "Configuración",
+    "help": "Ayuda y Soporte",
+    "logout": "Cerrar Sesión"
+  },
+  "dashboard": {
+    "title": "Panel",
+    "welcome": "Bienvenido de nuevo",
+    "overview": "Vista General",
+    "myClasses": "Mis Clases",
+    "upcomingAssignments": "Tareas Próximas",
+    "recentActivity": "Actividad Reciente",
+    "statistics": {
+      "totalCourses": "Cursos Totales",
+      "completedAssignments": "Tareas Completadas",
+      "averageGrade": "Calificación Promedio",
+      "studyHours": "Horas de Estudio"
+    }
+  },
+  "classes": {
+    "title": "Clases",
+    "myClasses": "Mis Clases",
+    "allClasses": "Todas las Clases",
+    "enrolled": "Inscrito",
+    "archived": "Archivado",
+    "overview": "Vista General",
+    "materials": "Materiales",
+    "assignments": "Tareas",
+    "grades": "Calificaciones",
+    "members": "Miembros",
+    "teacher": "Profesor",
+    "students": "Estudiantes",
+    "student": "Estudiante"
+  },
+  "assignments": {
+    "title": "Tareas",
+    "upcoming": "Próximas",
+    "inProgress": "En Progreso",
+    "completed": "Completadas",
+    "overdue": "Vencidas",
+    "dueDate": "Fecha de Entrega",
+    "submittedDate": "Fecha de Envío",
+    "status": "Estado",
+    "grade": "Calificación",
+    "points": "Puntos",
+    "description": "Descripción",
+    "attachments": "Archivos Adjuntos",
+    "submission": "Entrega",
+    "submitAssignment": "Enviar Tarea",
+    "viewSubmission": "Ver Entrega",
+    "turnIn": "Entregar",
+    "unsubmit": "Cancelar Entrega",
+    "statusTypes": {
+      "notStarted": "No Iniciado",
+      "inProgress": "En Progreso",
+      "submitted": "Enviado",
+      "graded": "Calificado",
+      "late": "Tarde"
+    }
+  },
+  "grades": {
+    "title": "Calificaciones",
+    "overallGrade": "Calificación General",
+    "currentGrade": "Calificación Actual",
+    "assignment": "Tarea",
+    "score": "Puntuación",
+    "weight": "Peso",
+    "category": "Categoría",
+    "feedback": "Retroalimentación"
+  },
+  "materials": {
+    "title": "Materiales",
+    "type": "Tipo",
+    "uploadDate": "Fecha de Carga",
+    "size": "Tamaño",
+    "download": "Descargar",
+    "preview": "Vista Previa",
+    "types": {
+      "pdf": "PDF",
+      "video": "Video",
+      "document": "Documento",
+      "presentation": "Presentación",
+      "link": "Enlace",
+      "image": "Imagen"
+    }
+  },
+  "members": {
+    "title": "Miembros",
+    "role": "Rol",
+    "email": "Correo Electrónico",
+    "joined": "Se Unió",
+    "lastActive": "Última Actividad",
+    "roles": {
+      "teacher": "Profesor",
+      "student": "Estudiante",
+      "ta": "Asistente de Enseñanza"
+    }
+  },
+  "settings": {
+    "title": "Configuración",
+    "profile": "Perfil",
+    "notifications": "Notificaciones",
+    "privacy": "Privacidad",
+    "language": "Idioma",
+    "theme": "Tema",
+    "account": "Cuenta"
+  },
+  "language": {
+    "select": "Seleccionar Idioma",
+    "english": "English (Inglés)",
+    "chinese": "中文 (Chino)",
+    "spanish": "Español",
+    "french": "Français (Francés)"
+  },
+  "resourceLibrary": {
+    "title": "Biblioteca de Recursos",
+    "tabs": {
+      "classResources": "Recursos de Clase",
+      "aiSuggested": "Sugeridos por IA",
+      "myFavorites": "Mis Favoritos"
+    },
+    "search": "Buscar recursos por título, descripción o etiquetas...",
+    "filters": {
+      "allSubjects": "Todas las Materias",
+      "allTypes": "Todos los Tipos"
+    },
+    "aiRecommended": "Recomendado para Ti por IA",
+    "preview": "Vista Previa",
+    "download": "Descargar",
+    "addToFavorites": "Añadir a Favoritos",
+    "removeFromFavorites": "Quitar de Favoritos",
+    "emptyState": {
+      "noResources": "No se encontraron recursos",
+      "tryAdjusting": "Intenta ajustar tus filtros o búsqueda",
+      "noAI": "No hay recomendaciones de IA disponibles",
+      "completeMore": "Completa más tareas para obtener recomendaciones personalizadas",
+      "noFavorites": "Aún no tienes recursos favoritos",
+      "startAdding": "Comienza a añadir recursos a tus favoritos para acceder rápidamente"
+    },
+    "stats": {
+      "totalResources": "Recursos Totales",
+      "videoTutorials": "Tutoriales en Video",
+      "aiRecommendations": "Recomendaciones IA",
+      "totalDownloads": "Descargas Totales"
+    }
+  },
+  "settings": {
+    "title": "Configuración Personal",
+    "subtitle": "Gestiona tu cuenta, notificaciones, privacidad y preferencias de aprendizaje",
+    "saveChanges": "Guardar Cambios",
+    "cancel": "Cancelar",
+    "sections": {
+      "accountInfo": "Información de Cuenta",
+      "accountInfoDesc": "Tu información personal y académica",
+      "notifications": "Preferencias de Notificaciones",
+      "notificationsDesc": "Elige cómo quieres recibir notificaciones",
+      "privacy": "Privacidad y Seguridad",
+      "privacyDesc": "Controla tus preferencias de privacidad y compartición de datos",
+      "learning": "Preferencias de Aprendizaje",
+      "learningDesc": "Personaliza tu experiencia de aprendizaje",
+      "display": "Idioma y Visualización",
+      "displayDesc": "Personaliza las preferencias de tu interfaz",
+      "account": "Gestión de Cuenta",
+      "accountDesc": "Gestiona los datos de tu cuenta y acceso"
+    },
+    "account": {
+      "studentId": "ID de Estudiante",
+      "email": "Correo Electrónico",
+      "phone": "Teléfono",
+      "enrolledClasses": "Clases Inscritas",
+      "editProfile": "Editar Perfil",
+      "notSet": "No establecido"
+    },
+    "notifications": {
+      "system": "Notificaciones del Sistema",
+      "systemDesc": "Alertas generales y actualizaciones del sistema",
+      "email": "Notificaciones por Correo",
+      "emailDesc": "Recibir notificaciones por correo electrónico",
+      "push": "Notificaciones Push",
+      "pushDesc": "Recibir notificaciones push en tu dispositivo",
+      "assignments": "Actualizaciones de Tareas",
+      "assignmentsDesc": "Nuevas tareas y recordatorios de fechas de entrega",
+      "grades": "Actualizaciones de Calificaciones",
+      "gradesDesc": "Cuando se califican las tareas",
+      "announcements": "Anuncios Escolares",
+      "announcementsDesc": "Anuncios importantes de la escuela y clase",
+      "messages": "Mensajes de Profesores",
+      "messagesDesc": "Mensajes de tus profesores",
+      "aiRecommendations": "Recomendaciones de IA",
+      "aiRecommendationsDesc": "Sugerencias de estudio diarias y consejos de aprendizaje"
+    },
+    "privacy": {
+      "showAchievements": "Mostrar Logros a Compañeros",
+      "showAchievementsDesc": "Permitir que los compañeros vean tus logros de aprendizaje",
+      "showGrades": "Mostrar Calificaciones a Compañeros",
+      "showGradesDesc": "Permitir que los compañeros vean tus calificaciones",
+      "teacherProgress": "Monitoreo de Progreso del Profesor",
+      "teacherProgressDesc": "Permitir que los profesores vean el progreso de aprendizaje detallado",
+      "parentAccess": "Acceso de Padres",
+      "parentAccessDesc": "Permitir que los padres accedan a tu información académica",
+      "dataSharing": "Compartir Datos para Investigación",
+      "dataSharingDesc": "Compartir datos anonimizados para investigación educativa"
+    },
+    "learning": {
+      "dailyReminder": "Recordatorio Diario de Aprendizaje",
+      "dailyReminderDesc": "Recibir recordatorios diarios de estudio y motivación",
+      "aiTutor": "Tutor de IA",
+      "aiTutorDesc": "Habilitar asistencia de aprendizaje con IA",
+      "studyGoal": "Meta de Estudio Diaria",
+      "studyGoalDesc": "Tiempo objetivo de estudio por día (minutos)",
+      "preferredTime": "Horario de Estudio Preferido",
+      "preferredTimeDesc": "¿Cuándo estudias más efectivamente?",
+      "times": {
+        "morning": "Mañana (6AM - 12PM)",
+        "afternoon": "Tarde (12PM - 6PM)",
+        "evening": "Noche (6PM - 10PM)",
+        "night": "Madrugada (10PM - 6AM)"
+      }
+    },
+    "display": {
+      "language": "Idioma",
+      "languageDesc": "Elige tu idioma preferido",
+      "theme": "Tema",
+      "themeDesc": "Elige tu tema de color",
+      "fontSize": "Tamaño de Fuente",
+      "fontSizeDesc": "Ajusta el tamaño del texto para mejor legibilidad",
+      "themes": {
+        "light": "Claro",
+        "dark": "Oscuro",
+        "auto": "Automático (Sistema)"
+      },
+      "fontSizes": {
+        "small": "Pequeño",
+        "medium": "Mediano",
+        "large": "Grande"
+      }
+    },
+    "accountManagement": {
+      "changePassword": "Cambiar Contraseña",
+      "changePasswordDesc": "Actualiza la contraseña de tu cuenta",
+      "downloadData": "Descargar Mis Datos",
+      "downloadDataDesc": "Descarga una copia de tus datos personales",
+      "deleteAccount": "Eliminar Cuenta",
+      "deleteAccountDesc": "Eliminar permanentemente tu cuenta y todos los datos"
+    }
+  },
+  "errors": {
+    "notFound": "Página no encontrada",
+    "unauthorized": "Acceso no autorizado",
+    "serverError": "Error del servidor",
+    "tryAgain": "Por favor, inténtelo de nuevo más tarde"
+  }
+}
+

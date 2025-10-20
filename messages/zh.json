@@ -1,0 +1,403 @@
+{
+  "common": {
+    "loading": "加载中...",
+    "search": "搜索",
+    "filter": "筛选",
+    "export": "导出",
+    "save": "保存",
+    "cancel": "取消",
+    "delete": "删除",
+    "edit": "编辑",
+    "view": "查看",
+    "submit": "提交",
+    "back": "返回",
+    "next": "下一步",
+    "previous": "上一步",
+    "close": "关闭",
+    "confirm": "确认",
+    "all": "全部"
+  },
+  "nav": {
+    "dashboard": "仪表盘",
+    "classes": "课程",
+    "assignments": "作业",
+    "grades": "成绩",
+    "calendar": "日历",
+    "resources": "资源",
+    "messages": "消息",
+    "settings": "设置",
+    "help": "帮助与支持",
+    "logout": "退出登录"
+  },
+  "dashboard": {
+    "title": "仪表盘",
+    "welcome": "欢迎回来",
+    "overview": "概览",
+    "myClasses": "我的课程",
+    "upcomingAssignments": "即将到期的作业",
+    "recentActivity": "最近活动",
+    "statistics": {
+      "totalCourses": "总课程数",
+      "completedAssignments": "已完成作业",
+      "averageGrade": "平均成绩",
+      "studyHours": "学习时长"
+    }
+  },
+  "classes": {
+    "title": "课程",
+    "myClasses": "我的课程",
+    "allClasses": "所有课程",
+    "enrolled": "已注册",
+    "archived": "已归档",
+    "overview": "概览",
+    "materials": "资料",
+    "assignments": "作业",
+    "grades": "成绩",
+    "members": "成员",
+    "teacher": "教师",
+    "students": "学生",
+    "student": "学生"
+  },
+  "assignments": {
+    "title": "作业",
+    "upcoming": "即将到期",
+    "inProgress": "进行中",
+    "completed": "已完成",
+    "overdue": "已逾期",
+    "dueDate": "截止日期",
+    "submittedDate": "提交日期",
+    "status": "状态",
+    "grade": "成绩",
+    "points": "分数",
+    "description": "描述",
+    "attachments": "附件",
+    "submission": "提交内容",
+    "submitAssignment": "提交作业",
+    "viewSubmission": "查看提交",
+    "turnIn": "上交",
+    "unsubmit": "取消提交",
+    "statusTypes": {
+      "notStarted": "未开始",
+      "inProgress": "进行中",
+      "submitted": "已提交",
+      "graded": "已评分",
+      "late": "迟交"
+    }
+  },
+  "grades": {
+    "title": "成绩",
+    "overallGrade": "总成绩",
+    "currentGrade": "当前成绩",
+    "assignment": "作业",
+    "score": "得分",
+    "weight": "权重",
+    "category": "类别",
+    "feedback": "反馈"
+  },
+  "materials": {
+    "title": "资料",
+    "type": "类型",
+    "uploadDate": "上传日期",
+    "size": "大小",
+    "download": "下载",
+    "preview": "预览",
+    "types": {
+      "pdf": "PDF文档",
+      "video": "视频",
+      "document": "文档",
+      "presentation": "演示文稿",
+      "link": "链接",
+      "image": "图片"
+    }
+  },
+  "members": {
+    "title": "成员",
+    "role": "角色",
+    "email": "邮箱",
+    "joined": "加入时间",
+    "lastActive": "最后活跃",
+    "roles": {
+      "teacher": "教师",
+      "student": "学生",
+      "ta": "助教"
+    }
+  },
+  "settings": {
+    "title": "设置",
+    "profile": "个人资料",
+    "notifications": "通知",
+    "privacy": "隐私",
+    "language": "语言",
+    "theme": "主题",
+    "account": "账户"
+  },
+  "language": {
+    "select": "选择语言",
+    "english": "English (英语)",
+    "chinese": "中文",
+    "spanish": "Español (西班牙语)",
+    "french": "Français (法语)"
+  },
+  "resourceLibrary": {
+    "title": "资源库",
+    "tabs": {
+      "classResources": "班级资源",
+      "aiSuggested": "AI 推荐",
+      "myFavorites": "我的收藏"
+    },
+    "search": "按标题、描述或标签搜索资源...",
+    "filters": {
+      "allSubjects": "全部科目",
+      "allTypes": "全部类型"
+    },
+    "aiRecommended": "为你推荐",
+    "preview": "预览",
+    "download": "下载",
+    "addToFavorites": "添加到收藏",
+    "removeFromFavorites": "取消收藏",
+    "emptyState": {
+      "noResources": "未找到资源",
+      "tryAdjusting": "尝试调整筛选条件或搜索关键词",
+      "noAI": "暂无 AI 推荐",
+      "completeMore": "完成更多作业以获取个性化推荐",
+      "noFavorites": "暂无收藏资源",
+      "startAdding": "开始收藏资源以便快速访问"
+    },
+    "stats": {
+      "totalResources": "总资源数",
+      "videoTutorials": "视频教程",
+      "aiRecommendations": "AI 推荐",
+      "totalDownloads": "总下载量"
+    }
+  },
+  "settings": {
+    "title": "个人设置",
+    "subtitle": "管理账户、通知、隐私和学习偏好",
+    "saveChanges": "保存更改",
+    "cancel": "取消",
+    "sections": {
+      "accountInfo": "账户信息",
+      "accountInfoDesc": "您的个人和学业信息",
+      "notifications": "通知偏好",
+      "notificationsDesc": "选择接收通知的方式",
+      "privacy": "隐私与安全",
+      "privacyDesc": "控制隐私和数据共享偏好",
+      "learning": "学习偏好",
+      "learningDesc": "自定义学习体验",
+      "display": "语言与显示",
+      "displayDesc": "自定义界面偏好",
+      "account": "账户管理",
+      "accountDesc": "管理账户数据和访问权限"
+    },
+    "account": {
+      "studentId": "学号",
+      "email": "邮箱",
+      "phone": "电话",
+      "enrolledClasses": "已注册课程",
+      "editProfile": "编辑资料",
+      "notSet": "未设置"
+    },
+    "notifications": {
+      "system": "系统通知",
+      "systemDesc": "常规系统提醒和更新",
+      "email": "邮件通知",
+      "emailDesc": "通过邮件接收通知",
+      "push": "推送通知",
+      "pushDesc": "在设备上接收推送通知",
+      "assignments": "作业更新",
+      "assignmentsDesc": "新作业和截止日期提醒",
+      "grades": "成绩更新",
+      "gradesDesc": "作业评分完成时",
+      "announcements": "学校公告",
+      "announcementsDesc": "重要学校和班级公告",
+      "messages": "教师消息",
+      "messagesDesc": "来自教师的消息",
+      "aiRecommendations": "AI 推荐",
+      "aiRecommendationsDesc": "每日学习建议和学习技巧"
+    },
+    "privacy": {
+      "showAchievements": "向同学展示成就",
+      "showAchievementsDesc": "让同学看到您的学习成就",
+      "showGrades": "向同学展示成绩",
+      "showGradesDesc": "允许同学查看您的成绩",
+      "teacherProgress": "教师进度监控",
+      "teacherProgressDesc": "允许教师查看详细学习进度",
+      "parentAccess": "家长访问权限",
+      "parentAccessDesc": "允许家长访问您的学业信息",
+      "dataSharing": "研究数据共享",
+      "dataSharingDesc": "共享匿名数据用于教育研究"
+    },
+    "learning": {
+      "dailyReminder": "每日学习提醒",
+      "dailyReminderDesc": "接收每日学习提醒和激励",
+      "aiTutor": "AI 助教",
+      "aiTutorDesc": "启用 AI 学习辅助",
+      "studyGoal": "每日学习目标",
+      "studyGoalDesc": "每天目标学习时间（分钟）",
+      "preferredTime": "偏好学习时间",
+      "preferredTimeDesc": "您最有效的学习时间是？",
+      "times": {
+        "morning": "上午 (6AM - 12PM)",
+        "afternoon": "下午 (12PM - 6PM)",
+        "evening": "傍晚 (6PM - 10PM)",
+        "night": "夜间 (10PM - 6AM)"
+      }
+    },
+    "display": {
+      "language": "语言",
+      "languageDesc": "选择您的首选语言",
+      "theme": "主题",
+      "themeDesc": "选择颜色主题",
+      "fontSize": "字体大小",
+      "fontSizeDesc": "调整文本大小以提高可读性",
+      "themes": {
+        "light": "浅色",
+        "dark": "深色",
+        "auto": "自动（系统）"
+      },
+      "fontSizes": {
+        "small": "小",
+        "medium": "中",
+        "large": "大"
+      }
+    },
+    "accountManagement": {
+      "changePassword": "更改密码",
+      "changePasswordDesc": "更新账户密码",
+      "downloadData": "下载我的数据",
+      "downloadDataDesc": "下载个人数据副本",
+      "deleteAccount": "删除账户",
+      "deleteAccountDesc": "永久删除账户和所有数据"
+    }
+  },
+  "errors": {
+    "notFound": "页面未找到",
+    "unauthorized": "未授权访问",
+    "serverError": "服务器错误",
+    "tryAgain": "请稍后重试"
+  },
+  "communication": {
+    "title": "通讯中心",
+    "breadcrumb": "教室协作",
+    "tabs": {
+      "schoolAnnouncements": "学校通知",
+      "teacherMessages": "教师消息",
+      "contacts": "通讯录"
+    },
+    "schoolAnnouncements": {
+      "title": "学校通知",
+      "description": "查看学校和班级级别的重要通知",
+      "markAsRead": "标记为已读",
+      "confirmReceipt": "确认收到",
+      "viewDetails": "查看详情",
+      "attachments": "附件",
+      "status": {
+        "unread": "未读",
+        "read": "已读",
+        "confirmed": "已确认"
+      },
+      "type": {
+        "school": "学校",
+        "class": "班级"
+      },
+      "target": "发布对象",
+      "publishDate": "发布时间",
+      "noAnnouncements": "暂无通知"
+    },
+    "teacherMessages": {
+      "title": "教师消息",
+      "description": "查看教师发送的消息和提醒",
+      "from": "来自",
+      "reply": "回复",
+      "reactions": {
+        "understood": "已了解",
+        "question": "有问题",
+        "completed": "已完成"
+      },
+      "messageType": {
+        "notification": "通知",
+        "reminder": "提醒",
+        "activity": "活动"
+      },
+      "relatedAssignment": "相关作业",
+      "noMessages": "暂无消息"
+    },
+    "teacherGroups": {
+      "title": "教师组",
+      "myGroups": "我的教师组",
+      "description": "查看并管理您所属的教师组文件夹",
+      "groupLeader": "组长",
+      "role": {
+        "leader": "组长",
+        "member": "组员"
+      },
+      "members": "位成员",
+      "createGroup": "创建教师组",
+      "uploadResources": "上传资料",
+      "createDocument": "新建文件夹",
+      "permissions": {
+        "canCreateDocuments": "组内老师可以创建文件夹",
+        "cannotCreateDocuments": "按钮还未做完"
+      },
+      "documents": {
+        "title": "文档",
+        "creator": "创建者",
+        "createdDate": "创建日期",
+        "lastUpdate": "更新",
+        "memberCount": "人"
+      },
+      "noGroups": "您还未加入任何教师组",
+      "semester": {
+        "spring": "上学期",
+        "fall": "下学期"
+      }
+    },
+    "contacts": {
+      "title": "通讯录",
+      "search": "搜索教师、家长或学生...",
+      "tabs": {
+        "teachers": "教师目录",
+        "parents": "家长目录",
+        "studentParents": "学生-家长绑定信息"
+      },
+      "teacher": {
+        "phone": "电话",
+        "email": "邮箱",
+        "department": "部门",
+        "subject": "科目",
+        "classes": "课程",
+        "sendMessage": "发送私信"
+      },
+      "parent": {
+        "relatedStudent": "关联学生",
+        "sendNotification": "发送通知"
+      },
+      "filters": {
+        "department": "部门",
+        "subject": "学科",
+        "allDepartments": "全部部门",
+        "allSubjects": "全部学科"
+      },
+      "studentParents": {
+        "title": "按学生分组展示家长",
+        "class": "班级",
+        "parentName": "家长姓名",
+        "contact": "联系方式",
+        "relatedStudent": "关联学生",
+        "actions": "操作"
+      },
+      "noContacts": "暂无联系人"
+    },
+    "directMessages": {
+      "title": "私信",
+      "sendMessage": "发送消息",
+      "messageHistory": "消息历史",
+      "typeMessage": "输入消息...",
+      "send": "发送",
+      "attachFile": "附件",
+      "referenceAssignment": "引用作业",
+      "noMessages": "暂无消息"
+    }
+  }
+}
+

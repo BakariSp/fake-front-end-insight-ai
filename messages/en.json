@@ -1,0 +1,403 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "search": "Search",
+    "filter": "Filter",
+    "export": "Export",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "submit": "Submit",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close",
+    "confirm": "Confirm",
+    "all": "All"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "classes": "Classes",
+    "assignments": "Assignments",
+    "grades": "Grades",
+    "calendar": "Calendar",
+    "resources": "Resources",
+    "messages": "Messages",
+    "settings": "Settings",
+    "help": "Help & Support",
+    "logout": "Logout"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome back",
+    "overview": "Overview",
+    "myClasses": "My Classes",
+    "upcomingAssignments": "Upcoming Assignments",
+    "recentActivity": "Recent Activity",
+    "statistics": {
+      "totalCourses": "Total Courses",
+      "completedAssignments": "Completed Assignments",
+      "averageGrade": "Average Grade",
+      "studyHours": "Study Hours"
+    }
+  },
+  "classes": {
+    "title": "Classes",
+    "myClasses": "My Classes",
+    "allClasses": "All Classes",
+    "enrolled": "Enrolled",
+    "archived": "Archived",
+    "overview": "Overview",
+    "materials": "Materials",
+    "assignments": "Assignments",
+    "grades": "Grades",
+    "members": "Members",
+    "teacher": "Teacher",
+    "students": "Students",
+    "student": "Student"
+  },
+  "assignments": {
+    "title": "Assignments",
+    "upcoming": "Upcoming",
+    "inProgress": "In Progress",
+    "completed": "Completed",
+    "overdue": "Overdue",
+    "dueDate": "Due Date",
+    "submittedDate": "Submitted Date",
+    "status": "Status",
+    "grade": "Grade",
+    "points": "Points",
+    "description": "Description",
+    "attachments": "Attachments",
+    "submission": "Submission",
+    "submitAssignment": "Submit Assignment",
+    "viewSubmission": "View Submission",
+    "turnIn": "Turn In",
+    "unsubmit": "Unsubmit",
+    "statusTypes": {
+      "notStarted": "Not Started",
+      "inProgress": "In Progress",
+      "submitted": "Submitted",
+      "graded": "Graded",
+      "late": "Late"
+    }
+  },
+  "grades": {
+    "title": "Grades",
+    "overallGrade": "Overall Grade",
+    "currentGrade": "Current Grade",
+    "assignment": "Assignment",
+    "score": "Score",
+    "weight": "Weight",
+    "category": "Category",
+    "feedback": "Feedback"
+  },
+  "materials": {
+    "title": "Materials",
+    "type": "Type",
+    "uploadDate": "Upload Date",
+    "size": "Size",
+    "download": "Download",
+    "preview": "Preview",
+    "types": {
+      "pdf": "PDF",
+      "video": "Video",
+      "document": "Document",
+      "presentation": "Presentation",
+      "link": "Link",
+      "image": "Image"
+    }
+  },
+  "members": {
+    "title": "Members",
+    "role": "Role",
+    "email": "Email",
+    "joined": "Joined",
+    "lastActive": "Last Active",
+    "roles": {
+      "teacher": "Teacher",
+      "student": "Student",
+      "ta": "Teaching Assistant"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "profile": "Profile",
+    "notifications": "Notifications",
+    "privacy": "Privacy",
+    "language": "Language",
+    "theme": "Theme",
+    "account": "Account"
+  },
+  "language": {
+    "select": "Select Language",
+    "english": "English",
+    "chinese": "中文 (Chinese)",
+    "spanish": "Español (Spanish)",
+    "french": "Français (French)"
+  },
+  "errors": {
+    "notFound": "Page not found",
+    "unauthorized": "Unauthorized access",
+    "serverError": "Server error occurred",
+    "tryAgain": "Please try again later"
+  },
+  "resourceLibrary": {
+    "title": "Resource Library",
+    "tabs": {
+      "classResources": "Class Resources",
+      "aiSuggested": "AI Suggested",
+      "myFavorites": "My Favorites"
+    },
+    "search": "Search resources by title, description, or tags...",
+    "filters": {
+      "allSubjects": "All Subjects",
+      "allTypes": "All Types"
+    },
+    "aiRecommended": "AI Recommended for You",
+    "preview": "Preview",
+    "download": "Download",
+    "addToFavorites": "Add to Favorites",
+    "removeFromFavorites": "Remove from Favorites",
+    "emptyState": {
+      "noResources": "No resources found",
+      "tryAdjusting": "Try adjusting your filters or search query",
+      "noAI": "No AI recommendations available",
+      "completeMore": "Complete more assignments to get personalized recommendations",
+      "noFavorites": "No favorite resources yet",
+      "startAdding": "Start adding resources to your favorites to access them quickly"
+    },
+    "stats": {
+      "totalResources": "Total Resources",
+      "videoTutorials": "Video Tutorials",
+      "aiRecommendations": "AI Recommendations",
+      "totalDownloads": "Total Downloads"
+    }
+  },
+  "settings": {
+    "title": "Personal Settings",
+    "subtitle": "Manage your account, notifications, privacy, and learning preferences",
+    "saveChanges": "Save Changes",
+    "cancel": "Cancel",
+    "sections": {
+      "accountInfo": "Account Information",
+      "accountInfoDesc": "Your personal and academic information",
+      "notifications": "Notification Preferences",
+      "notificationsDesc": "Choose how you want to receive notifications",
+      "privacy": "Privacy & Security",
+      "privacyDesc": "Control your privacy and data sharing preferences",
+      "learning": "Learning Preferences",
+      "learningDesc": "Customize your learning experience",
+      "display": "Language & Display",
+      "displayDesc": "Customize your interface preferences",
+      "account": "Account Management",
+      "accountDesc": "Manage your account data and access"
+    },
+    "account": {
+      "studentId": "Student ID",
+      "email": "Email",
+      "phone": "Phone",
+      "enrolledClasses": "Enrolled Classes",
+      "editProfile": "Edit Profile",
+      "notSet": "Not set"
+    },
+    "notifications": {
+      "system": "System Notifications",
+      "systemDesc": "General system alerts and updates",
+      "email": "Email Notifications",
+      "emailDesc": "Receive notifications via email",
+      "push": "Push Notifications",
+      "pushDesc": "Receive push notifications on your device",
+      "assignments": "Assignment Updates",
+      "assignmentsDesc": "New assignments and due date reminders",
+      "grades": "Grade Updates",
+      "gradesDesc": "When assignments are graded",
+      "announcements": "School Announcements",
+      "announcementsDesc": "Important school and class announcements",
+      "messages": "Teacher Messages",
+      "messagesDesc": "Messages from your teachers",
+      "aiRecommendations": "AI Recommendations",
+      "aiRecommendationsDesc": "Daily study suggestions and learning tips"
+    },
+    "privacy": {
+      "showAchievements": "Show Achievements to Classmates",
+      "showAchievementsDesc": "Let classmates see your learning achievements",
+      "showGrades": "Show Grades to Classmates",
+      "showGradesDesc": "Allow classmates to view your grades",
+      "teacherProgress": "Teacher Progress Monitoring",
+      "teacherProgressDesc": "Allow teachers to view detailed learning progress",
+      "parentAccess": "Parent Access",
+      "parentAccessDesc": "Allow parents to access your academic information",
+      "dataSharing": "Data Sharing for Research",
+      "dataSharingDesc": "Share anonymized data for educational research"
+    },
+    "learning": {
+      "dailyReminder": "Daily Learning Reminder",
+      "dailyReminderDesc": "Receive daily study reminders and motivation",
+      "aiTutor": "AI Tutor",
+      "aiTutorDesc": "Enable AI-powered learning assistance",
+      "studyGoal": "Daily Study Goal",
+      "studyGoalDesc": "Target study time per day (minutes)",
+      "preferredTime": "Preferred Study Time",
+      "preferredTimeDesc": "When do you study most effectively?",
+      "times": {
+        "morning": "Morning (6AM - 12PM)",
+        "afternoon": "Afternoon (12PM - 6PM)",
+        "evening": "Evening (6PM - 10PM)",
+        "night": "Night (10PM - 6AM)"
+      }
+    },
+    "display": {
+      "language": "Language",
+      "languageDesc": "Choose your preferred language",
+      "theme": "Theme",
+      "themeDesc": "Choose your color theme",
+      "fontSize": "Font Size",
+      "fontSizeDesc": "Adjust text size for better readability",
+      "themes": {
+        "light": "Light",
+        "dark": "Dark",
+        "auto": "Auto (System)"
+      },
+      "fontSizes": {
+        "small": "Small",
+        "medium": "Medium",
+        "large": "Large"
+      }
+    },
+    "accountManagement": {
+      "changePassword": "Change Password",
+      "changePasswordDesc": "Update your account password",
+      "downloadData": "Download My Data",
+      "downloadDataDesc": "Download a copy of your personal data",
+      "deleteAccount": "Delete Account",
+      "deleteAccountDesc": "Permanently delete your account and all data"
+    }
+  },
+  "communication": {
+    "title": "Communication Center",
+    "breadcrumb": "Classroom Collaboration",
+    "tabs": {
+      "schoolAnnouncements": "School Announcements",
+      "teacherMessages": "Teacher Messages",
+      "contacts": "Contacts"
+    },
+    "schoolAnnouncements": {
+      "title": "School Announcements",
+      "description": "View important announcements from school and class",
+      "markAsRead": "Mark as Read",
+      "confirmReceipt": "Confirm Receipt",
+      "viewDetails": "View Details",
+      "attachments": "Attachments",
+      "status": {
+        "unread": "Unread",
+        "read": "Read",
+        "confirmed": "Confirmed"
+      },
+      "type": {
+        "school": "School",
+        "class": "Class"
+      },
+      "target": "Target",
+      "publishDate": "Published",
+      "noAnnouncements": "No announcements"
+    },
+    "teacherMessages": {
+      "title": "Teacher Messages",
+      "description": "View messages and reminders from teachers",
+      "from": "From",
+      "reply": "Reply",
+      "reactions": {
+        "understood": "Understood",
+        "question": "Question",
+        "completed": "Completed"
+      },
+      "messageType": {
+        "notification": "Notification",
+        "reminder": "Reminder",
+        "activity": "Activity"
+      },
+      "relatedAssignment": "Related Assignment",
+      "noMessages": "No messages"
+    },
+    "teacherGroups": {
+      "title": "Teacher Groups",
+      "myGroups": "My Teacher Groups",
+      "description": "View and manage teacher group folders you belong to",
+      "groupLeader": "Group Leader",
+      "role": {
+        "leader": "Leader",
+        "member": "Member"
+      },
+      "members": " members",
+      "createGroup": "Create Teacher Group",
+      "uploadResources": "Upload Resources",
+      "createDocument": "New Document",
+      "permissions": {
+        "canCreateDocuments": "Group teachers can create documents",
+        "cannotCreateDocuments": "Button not yet implemented"
+      },
+      "documents": {
+        "title": "Documents",
+        "creator": "Creator",
+        "createdDate": "Created",
+        "lastUpdate": "Updated",
+        "memberCount": " people"
+      },
+      "noGroups": "You haven't joined any teacher groups yet",
+      "semester": {
+        "spring": "Spring Semester",
+        "fall": "Fall Semester"
+      }
+    },
+    "contacts": {
+      "title": "Contacts",
+      "search": "Search teachers, parents or students...",
+      "tabs": {
+        "teachers": "Teacher Directory",
+        "parents": "Parent Directory",
+        "studentParents": "Student-Parent Info"
+      },
+      "teacher": {
+        "phone": "Phone",
+        "email": "Email",
+        "department": "Department",
+        "subject": "Subject",
+        "classes": "Classes",
+        "sendMessage": "Send Message"
+      },
+      "parent": {
+        "relatedStudent": "Related Student",
+        "sendNotification": "Send Notification"
+      },
+      "filters": {
+        "department": "Department",
+        "subject": "Subject",
+        "allDepartments": "All Departments",
+        "allSubjects": "All Subjects"
+      },
+      "studentParents": {
+        "title": "Parents by Student",
+        "class": "Class",
+        "parentName": "Parent Name",
+        "contact": "Contact",
+        "relatedStudent": "Related Student",
+        "actions": "Actions"
+      },
+      "noContacts": "No contacts"
+    },
+    "directMessages": {
+      "title": "Direct Messages",
+      "sendMessage": "Send Message",
+      "messageHistory": "Message History",
+      "typeMessage": "Type a message...",
+      "send": "Send",
+      "attachFile": "Attach File",
+      "referenceAssignment": "Reference Assignment",
+      "noMessages": "No messages"
+    }
+  }
+}
+

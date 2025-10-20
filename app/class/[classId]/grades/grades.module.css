@@ -1,0 +1,302 @@
+/* Grades Page Styles */
+
+.pageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+.headerContent {
+  flex: 1;
+}
+
+.headerTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+}
+
+.headerDescription {
+  color: var(--gray-600);
+  font-size: 0.95rem;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.chartCard {
+  display: flex;
+  flex-direction: column;
+  min-height: 450px;
+}
+
+.cardHeader {
+  margin-bottom: 1.5rem;
+  flex-shrink: 0;
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin: 0;
+}
+
+.chartFooter {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--gray-200);
+  flex-shrink: 0;
+}
+
+.chartStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.chartStat {
+  display: flex;
+  flex-direction: column;
+}
+
+.chartStatLabel {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.chartStatValue {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.chartStatValue.success {
+  color: var(--success-green);
+}
+
+.chartStatValue.primary {
+  color: var(--gray-900);
+}
+
+.subjectCard {
+  display: flex;
+  flex-direction: column;
+}
+
+.subjectList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.subjectItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.subjectHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.subjectName {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+.subjectScore {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+}
+
+.progressBar {
+  height: 8px;
+  background: var(--gray-100);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-blue) 0%, #60a5fa 100%);
+  border-radius: 999px;
+  transition: width 0.6s ease;
+}
+
+.subjectCount {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+}
+
+.insightsCard {
+  margin-bottom: 2rem;
+}
+
+.insightsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.insightItem {
+  padding: 1.25rem;
+  border-radius: 10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.insightItem.success {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border: 1px solid #86efac;
+}
+
+.insightItem.warning {
+  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+  border: 1px solid #fdba74;
+}
+
+.insightItem.info {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border: 1px solid #93c5fd;
+}
+
+.insightIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+}
+
+.insightIcon.success {
+  background: var(--success-green);
+}
+
+.insightIcon.warning {
+  background: var(--warning-orange);
+}
+
+.insightIcon.info {
+  background: var(--primary-blue);
+}
+
+.insightContent {
+  flex: 1;
+}
+
+.insightTitle {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.insightTitle.success {
+  color: #14532d;
+}
+
+.insightTitle.warning {
+  color: #7c2d12;
+}
+
+.insightTitle.info {
+  color: #1e3a8a;
+}
+
+.insightText {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.insightText.success {
+  color: #166534;
+}
+
+.insightText.warning {
+  color: #9a3412;
+}
+
+.insightText.info {
+  color: #1e40af;
+}
+
+.gradesSection {
+  margin-top: 2rem;
+}
+
+.gradesSectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .chartStats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .pageHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .headerTitle {
+    font-size: 1.75rem;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .insightsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .chartStats {
+    grid-template-columns: 1fr;
+  }
+}
+

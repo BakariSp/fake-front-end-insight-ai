@@ -1,0 +1,256 @@
+/* Tabs Component Styles */
+
+.tabsContainer {
+  width: 100%;
+}
+
+.tabsHeader {
+  display: flex;
+  gap: 8px;
+  padding: 0 4px 0 4px;
+  border-bottom: 2px solid var(--gray-200);
+  position: relative;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.tabsHeader::-webkit-scrollbar {
+  height: 4px;
+}
+
+.tabsHeader::-webkit-scrollbar-track {
+  background: var(--gray-100);
+  border-radius: 2px;
+}
+
+.tabsHeader::-webkit-scrollbar-thumb {
+  background: var(--gray-300);
+  border-radius: 2px;
+}
+
+.tabsHeader::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-400);
+}
+
+.tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray-600);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  border-radius: 8px 8px 0 0;
+  margin-bottom: -2px;
+  border-bottom: 2px solid transparent;
+}
+
+.tab:hover {
+  color: var(--primary-blue);
+  background: var(--gray-50);
+}
+
+.tab::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--primary-blue);
+  transform: scaleX(0);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 2px 2px 0 0;
+}
+
+.tab:hover::before {
+  transform: scaleX(0.5);
+}
+
+.tabActive {
+  color: var(--primary-blue);
+  background: linear-gradient(180deg, rgba(59, 130, 246, 0.08) 0%, rgba(59, 130, 246, 0.02) 100%);
+  font-weight: 600;
+}
+
+.tabActive::before {
+  transform: scaleX(1);
+}
+
+.tabIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.tab:hover .tabIcon {
+  transform: scale(1.1);
+}
+
+.tabActive .tabIcon {
+  transform: scale(1.05);
+}
+
+.tabLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tabCount {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 8px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 12px;
+  background: var(--gray-200);
+  color: var(--gray-700);
+  transition: all 0.3s ease;
+}
+
+.tab:hover .tabCount {
+  background: var(--primary-blue-light);
+  color: var(--primary-blue);
+  transform: scale(1.05);
+}
+
+.tabActive .tabCount {
+  background: var(--primary-blue);
+  color: white;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+/* Content Area */
+.tabsContent {
+  padding-top: 24px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .tab {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+
+  .tabCount {
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    font-size: 11px;
+  }
+
+  .tabsContent {
+    padding-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tabsHeader {
+    gap: 4px;
+    padding: 0 2px;
+  }
+
+  .tab {
+    padding: 8px 12px;
+    font-size: 12px;
+    gap: 6px;
+  }
+
+  .tabCount {
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    font-size: 10px;
+  }
+
+  .tabIcon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .tabIcon svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Alternative pill style */
+.tabsContainer.pillStyle .tabsHeader {
+  border-bottom: none;
+  background: var(--gray-100);
+  padding: 4px;
+  border-radius: 12px;
+  gap: 4px;
+}
+
+.tabsContainer.pillStyle .tab {
+  border-radius: 8px;
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.tabsContainer.pillStyle .tab::before {
+  display: none;
+}
+
+.tabsContainer.pillStyle .tabActive {
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+/* Card style */
+.tabsContainer.cardStyle .tabsHeader {
+  border-bottom: none;
+  gap: 12px;
+  padding: 0;
+}
+
+.tabsContainer.cardStyle .tab {
+  border: 2px solid var(--gray-200);
+  border-radius: 10px;
+  padding: 14px 20px;
+  margin-bottom: 0;
+  background: white;
+}
+
+.tabsContainer.cardStyle .tab::before {
+  display: none;
+}
+
+.tabsContainer.cardStyle .tab:hover {
+  border-color: var(--primary-blue);
+  background: var(--primary-blue-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+}
+
+.tabsContainer.cardStyle .tabActive {
+  border-color: var(--primary-blue);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+}
+

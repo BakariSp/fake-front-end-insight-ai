@@ -1,0 +1,620 @@
+.container {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.backButton {
+  margin-bottom: 1rem;
+}
+
+.titleSection {
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.icon {
+  font-size: 2rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #6B7280;
+  margin: 0;
+}
+
+/* Statistics Grid */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.statCard {
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.statIcon {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  flex-shrink: 0;
+}
+
+.statContent {
+  flex: 1;
+}
+
+.statValue {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.25rem;
+}
+
+.statLabel {
+  font-size: 0.875rem;
+  color: #6B7280;
+}
+
+/* Tabs */
+.tabsContainer {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #E5E7EB;
+}
+
+.tabButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border: none;
+  background: none;
+  border-bottom: 3px solid transparent;
+  font-size: 0.938rem;
+  font-weight: 500;
+  color: #6B7280;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: -2px;
+}
+
+.tabButton:hover {
+  color: #111827;
+  background: #F9FAFB;
+}
+
+.tabButton.active {
+  color: #4F46E5;
+  border-bottom-color: #4F46E5;
+  background: #F5F3FF;
+}
+
+.tabIcon {
+  font-size: 1.125rem;
+}
+
+/* Filter Section */
+.filterSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.filterLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #4B5563;
+}
+
+.subjectFilters {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.subjectButton {
+  padding: 0.5rem 1rem;
+  border: 2px solid #E5E7EB;
+  background: white;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6B7280;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.subjectButton:hover {
+  border-color: #4F46E5;
+  color: #4F46E5;
+}
+
+.subjectButton.active {
+  border-color: #4F46E5;
+  background: #4F46E5;
+  color: white;
+}
+
+/* Mistakes List */
+.mistakesList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.mistakeCard {
+  padding: 1.5rem;
+  transition: all 0.2s;
+}
+
+.mistakeCard:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.mistakeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #F3F4F6;
+}
+
+.mistakeSubject {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.subjectBadge {
+  padding: 0.375rem 0.875rem;
+  background: #EEF2FF;
+  color: #4F46E5;
+  border-radius: 6px;
+  font-size: 0.813rem;
+  font-weight: 600;
+}
+
+.topicBadge {
+  padding: 0.375rem 0.875rem;
+  background: #F3F4F6;
+  color: #4B5563;
+  border-radius: 6px;
+  font-size: 0.813rem;
+  font-weight: 500;
+}
+
+.mistakeStatus {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.masteredBadge {
+  padding: 0.375rem 0.875rem;
+  background: #DCFCE7;
+  color: #166534;
+  border-radius: 6px;
+  font-size: 0.813rem;
+  font-weight: 600;
+}
+
+.needsReviewBadge {
+  padding: 0.375rem 0.875rem;
+  background: #FEF3C7;
+  color: #92400E;
+  border-radius: 6px;
+  font-size: 0.813rem;
+  font-weight: 600;
+}
+
+.mistakeContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.questionSection {
+  padding: 1rem;
+  background: #F9FAFB;
+  border-radius: 8px;
+}
+
+.questionSection strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #111827;
+  font-size: 0.875rem;
+}
+
+.questionSection p {
+  margin: 0;
+  color: #374151;
+  font-size: 0.938rem;
+  line-height: 1.6;
+}
+
+.answersSection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.answerBox {
+  padding: 1rem;
+  border: 2px solid;
+  border-radius: 8px;
+  background: white;
+}
+
+.answerBox strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.answerBox p {
+  margin: 0;
+  font-size: 0.938rem;
+  line-height: 1.6;
+}
+
+.explanationSection {
+  padding: 1rem;
+  background: #FFFBEB;
+  border-left: 4px solid #F59E0B;
+  border-radius: 4px;
+}
+
+.explanationSection strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #92400E;
+  font-size: 0.875rem;
+}
+
+.explanationSection p {
+  margin: 0;
+  color: #78350F;
+  font-size: 0.938rem;
+  line-height: 1.6;
+}
+
+.mistakeFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 2px solid #F3F4F6;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.mistakeInfo {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.difficultyBadge {
+  padding: 0.25rem 0.75rem;
+  color: white;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.attemptsBadge,
+.dateBadge {
+  padding: 0.25rem 0.75rem;
+  background: #F3F4F6;
+  color: #6B7280;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.mistakeActions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* Patterns View */
+.patternsView {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+}
+
+.patternsCard {
+  padding: 1.5rem;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1.5rem;
+}
+
+.patternsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.patternItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.patternInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.patternIcon {
+  font-size: 1.5rem;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F9FAFB;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.patternText {
+  flex: 1;
+}
+
+.patternCategory {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.125rem;
+}
+
+.patternCategoryZh {
+  font-size: 0.875rem;
+  color: #6B7280;
+}
+
+.patternStats {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.patternCount {
+  font-size: 0.875rem;
+  color: #6B7280;
+  min-width: 100px;
+}
+
+.patternBar {
+  flex: 1;
+  height: 12px;
+  background: #F3F4F6;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.patternBarFill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.5s ease;
+}
+
+.patternPercentage {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #111827;
+  min-width: 50px;
+  text-align: right;
+}
+
+/* Insights Card */
+.insightsCard {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
+  height: fit-content;
+}
+
+.insightsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.insight {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+}
+
+.insightIcon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.insightContent {
+  flex: 1;
+  font-size: 0.875rem;
+  color: #374151;
+  line-height: 1.6;
+}
+
+.insightContent strong {
+  color: #1E40AF;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+/* Practice View */
+.practiceView {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.practiceCard {
+  padding: 2rem;
+}
+
+.practiceDescription {
+  font-size: 0.938rem;
+  color: #6B7280;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.practicePlan {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.planDay {
+  padding: 1.5rem;
+  background: #F9FAFB;
+  border-radius: 8px;
+  border: 2px solid #E5E7EB;
+}
+
+.planDayHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.planDayIcon {
+  font-size: 1.5rem;
+}
+
+.planDayTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.planTasks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-left: 2.25rem;
+}
+
+.planTask {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.938rem;
+  color: #374151;
+}
+
+.taskCheckbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #4F46E5;
+}
+
+.planActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .patternsView {
+    grid-template-columns: 1fr;
+  }
+
+  .answersSection {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mistakeFooter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .mistakeActions {
+    width: 100%;
+  }
+
+  .mistakeActions button {
+    flex: 1;
+  }
+
+  .tabsContainer {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tabButton {
+    white-space: nowrap;
+  }
+
+  .patternStats {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .patternBar {
+    width: 100%;
+  }
+}
+

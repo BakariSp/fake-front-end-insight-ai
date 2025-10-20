@@ -1,0 +1,454 @@
+.header {
+  margin-bottom: 24px;
+}
+
+.headerTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 4px;
+}
+
+.headerSubtitle {
+  font-size: 14px;
+  color: var(--gray-500);
+}
+
+/* Stats Grid */
+.statsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 640px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .statsGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* AI Insights Section */
+.aiInsightsCard {
+  margin-bottom: 24px;
+}
+
+.aiInsightsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.aiInsightsTitleWrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.aiIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--primary-blue), var(--purple));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.aiInsightsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .aiInsightsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.aiInsightItem {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: var(--gray-50);
+  transition: all 200ms;
+}
+
+.aiInsightItem:hover {
+  background-color: var(--gray-100);
+  transform: translateY(-2px);
+}
+
+.aiInsightIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.aiInsightContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.aiInsightTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin-bottom: 4px;
+}
+
+.aiInsightText {
+  font-size: 13px;
+  color: var(--gray-600);
+  line-height: 1.5;
+}
+
+/* Main Content Grid */
+.mainContentGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .mainContentGrid {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.coursesSection {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sidebarSection {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Section Headers */
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+/* Courses List */
+.coursesList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.courseCard {
+  border-left: 4px solid var(--primary-blue);
+  cursor: pointer;
+}
+
+.courseCardContent {
+  display: flex;
+  align-items: start;
+  gap: 12px;
+}
+
+.courseIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background-color: var(--primary-blue-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-blue);
+  font-size: 18px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.courseInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.courseName {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin-bottom: 4px;
+}
+
+.courseTeacher {
+  font-size: 14px;
+  color: var(--gray-500);
+  margin-bottom: 8px;
+}
+
+.courseMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.courseProgress {
+  font-size: 12px;
+  color: var(--gray-500);
+}
+
+.courseNextClass {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--gray-200);
+  font-size: 12px;
+  color: var(--gray-500);
+}
+
+/* Upcoming Dues Section */
+.duesList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dueItem {
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--gray-200);
+  background-color: var(--gray-50);
+  cursor: pointer;
+  transition: all 200ms;
+}
+
+.dueItem:hover {
+  background-color: white;
+  border-color: var(--primary-blue);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.dueItemHeader {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 8px;
+}
+
+.dueTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin-bottom: 4px;
+}
+
+.dueSubject {
+  font-size: 13px;
+  color: var(--gray-500);
+  margin-bottom: 4px;
+}
+
+.dueDateText {
+  font-size: 12px;
+  color: var(--gray-600);
+  margin-bottom: 12px;
+}
+
+.dueButton {
+  margin-top: 8px;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  color: var(--gray-400);
+  text-align: center;
+}
+
+.emptyState svg {
+  margin-bottom: 12px;
+}
+
+.emptyState p {
+  font-size: 14px;
+  color: var(--gray-500);
+}
+
+/* Announcements Section */
+.announcementsCard {
+  margin-top: 0;
+}
+
+.announcementsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.announcementItem {
+  display: flex;
+  align-items: start;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  transition: background-color 200ms;
+  cursor: pointer;
+}
+
+.announcementItem:hover {
+  background-color: var(--gray-50);
+}
+
+.announcementDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+
+.announcementDot.read {
+  background-color: var(--gray-300);
+}
+
+.announcementDot.unread {
+  background-color: var(--primary-blue);
+}
+
+.announcementContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.announcementTitle {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray-900);
+  margin-bottom: 4px;
+}
+
+.announcementText {
+  font-size: 12px;
+  color: var(--gray-500);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.announcementDate {
+  font-size: 12px;
+  color: var(--gray-400);
+  margin-top: 4px;
+  display: inline-block;
+}
+
+.viewAllButton {
+  margin-top: 16px;
+}
+
+/* Weekly Calendar Section */
+.calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.calendarDay {
+  border-radius: 8px;
+  border: 1px solid var(--gray-200);
+  overflow: hidden;
+}
+
+.calendarDayHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background-color: var(--gray-50);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.calendarDayName {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-700);
+}
+
+.calendarDayDate {
+  font-size: 12px;
+  color: var(--gray-500);
+}
+
+.calendarClasses {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.calendarClass {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 6px;
+  background-color: var(--gray-50);
+  cursor: pointer;
+  transition: all 200ms;
+}
+
+.calendarClass:hover {
+  background-color: var(--primary-blue-light);
+}
+
+.calendarClassBar {
+  width: 4px;
+  height: 32px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.calendarClassInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.calendarClassName {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-900);
+  margin-bottom: 2px;
+}
+
+.calendarClassTime {
+  display: block;
+  font-size: 11px;
+  color: var(--gray-500);
+}
+
+

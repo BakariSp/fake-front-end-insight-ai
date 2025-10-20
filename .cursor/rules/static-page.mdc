@@ -1,0 +1,22 @@
+---
+alwaysApply: true
+---
+
+# Project Purpose
+
+This project is **ONLY for mock and static pages**. 
+
+## Main Goals
+- Improve UI design and implementation
+- Create logical connections between components and pages
+- Support the development and learning of frontend developers/students
+
+## Development Guidelines
+- Focus on static content and mock data
+- Prioritize clean, educational code examples
+- Emphasize UI/UX best practices
+- Create reusable component patterns for learning purposes
+- No backend integration or real API calls needed
+
+## Documentation
+- all doc should be in @doc folder

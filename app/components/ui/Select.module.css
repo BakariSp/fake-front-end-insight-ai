@@ -1,0 +1,240 @@
+/* Select/Dropdown Component Styles */
+
+.selectWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.selectWrapper.fullWidth {
+  width: 100%;
+}
+
+.selectLabel {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.01em;
+}
+
+.selectContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.selectContainer.fullWidth {
+  width: 100%;
+}
+
+.select {
+  appearance: none;
+  width: 100%;
+  min-width: 160px;
+  height: 44px;
+  padding: 0 40px 0 16px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  font-family: inherit;
+  color: var(--gray-900);
+  background: linear-gradient(to bottom, white, var(--gray-50));
+  border: 1.5px solid var(--gray-300);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  outline: none;
+}
+
+.select:hover {
+  border-color: var(--primary-blue);
+  background: white;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+  transform: translateY(-1px);
+}
+
+.select:focus {
+  border-color: var(--primary-blue);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1), 0 4px 12px rgba(59, 130, 246, 0.15);
+  transform: translateY(-1px);
+}
+
+.select:active {
+  transform: translateY(0);
+}
+
+.select.error {
+  border-color: var(--error-red);
+  background: linear-gradient(to bottom, white, rgba(239, 68, 68, 0.02));
+}
+
+.select.error:hover,
+.select.error:focus {
+  border-color: var(--error-red);
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1), 0 4px 12px rgba(239, 68, 68, 0.15);
+}
+
+.select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--gray-100);
+  border-color: var(--gray-300);
+}
+
+.select:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Custom dropdown arrow */
+.selectIcon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--primary-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.select:hover + .selectIcon,
+.select:focus + .selectIcon {
+  color: var(--accent-blue);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.select:focus + .selectIcon {
+  animation: bounce 0.5s ease;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-50%) scale(1.1);
+  }
+  50% {
+    transform: translateY(-40%) scale(1.15);
+  }
+}
+
+.select.error + .selectIcon {
+  color: var(--error-red);
+}
+
+/* Prefix Icon Support */
+.selectWithPrefix {
+  padding-left: 44px;
+}
+
+.prefixIcon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--gray-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
+
+.select:hover ~ .prefixIcon,
+.select:focus ~ .prefixIcon {
+  color: var(--primary-blue);
+}
+
+/* Error Message */
+.errorMessage {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--error-red);
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-weight: 500;
+}
+
+.errorIcon {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+}
+
+/* Helper Text */
+.helperText {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--gray-500);
+  line-height: 1.4;
+}
+
+/* Size Variants */
+.select.small {
+  height: 36px;
+  font-size: 0.875rem;
+  padding: 0 36px 0 12px;
+  min-width: 120px;
+}
+
+.selectWithPrefix.small {
+  padding-left: 36px;
+}
+
+.select.small + .selectIcon {
+  right: 10px;
+}
+
+.select.small ~ .prefixIcon {
+  left: 10px;
+}
+
+.select.large {
+  height: 52px;
+  font-size: 1rem;
+  padding: 0 48px 0 20px;
+  min-width: 180px;
+}
+
+.selectWithPrefix.large {
+  padding-left: 52px;
+}
+
+.select.large + .selectIcon {
+  right: 18px;
+}
+
+.select.large ~ .prefixIcon {
+  left: 18px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .select {
+    height: 42px;
+    font-size: 0.875rem;
+    min-width: 140px;
+  }
+
+  .select.large {
+    height: 48px;
+  }
+
+  .select.small {
+    height: 34px;
+  }
+}
+
+@media (max-width: 480px) {
+  .selectWrapper.fullWidth {
+    width: 100%;
+  }
+
+  .select {
+    min-width: 100%;
+  }
+}
+

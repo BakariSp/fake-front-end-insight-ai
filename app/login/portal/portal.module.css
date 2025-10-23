@@ -1,0 +1,378 @@
+/* Portal Login Page */
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8f0fe 50%, #f0f4ff 100%);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Soft background circles */
+.backgroundCircle1 {
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(79, 127, 255, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.backgroundCircle2 {
+  position: absolute;
+  bottom: -15%;
+  left: -10%;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(146, 84, 222, 0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.loginBox {
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  width: 100%;
+  max-width: 480px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Header */
+.header {
+  margin-bottom: 32px;
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  color: var(--gray-600);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 20px;
+}
+
+.backButton:hover {
+  background: var(--gray-50);
+  color: var(--gray-900);
+  border-color: var(--gray-300);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logoIcon {
+  font-size: 36px;
+}
+
+.logo h1 {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+  color: var(--gray-900);
+}
+
+.logo p {
+  font-size: 13px;
+  margin: 0;
+  color: var(--gray-500);
+}
+
+/* Role Selection */
+.roleSelection {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.roleLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-600);
+  margin-bottom: 12px;
+}
+
+.roleToggle {
+  display: inline-flex;
+  gap: 8px;
+  background: var(--gray-100);
+  padding: 4px;
+  border-radius: 10px;
+}
+
+.roleToggleButton {
+  padding: 10px 24px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: var(--gray-600);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.roleToggleButton.active {
+  background: white;
+  color: var(--primary-blue);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Login Content */
+.loginContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.loginTitle {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.loginTitle h2 {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 8px;
+}
+
+.loginTitle p {
+  font-size: 14px;
+  color: var(--gray-600);
+}
+
+/* SSO Buttons */
+.ssoButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ssoButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 20px;
+  background: white;
+  border: 1.5px solid var(--gray-300);
+  border-radius: 10px;
+  color: var(--gray-800);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ssoButton:hover {
+  background: var(--gray-50);
+  border-color: var(--gray-400);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.ssoIcon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Divider */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 8px 0;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--gray-200);
+}
+
+.divider span {
+  font-size: 13px;
+  color: var(--gray-500);
+  font-weight: 500;
+}
+
+/* Email Toggle */
+.emailToggle {
+  padding: 14px 20px;
+  background: white;
+  border: 1.5px solid var(--gray-300);
+  border-radius: 10px;
+  color: var(--gray-800);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.emailToggle:hover {
+  background: var(--gray-50);
+  border-color: var(--gray-400);
+}
+
+/* Form Fields */
+.formFields {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.formOptions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -6px;
+}
+
+.rememberMe {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--gray-700);
+  cursor: pointer;
+}
+
+.rememberMe input {
+  cursor: pointer;
+}
+
+.forgotPassword {
+  font-size: 14px;
+  color: var(--primary-blue);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.forgotPassword:hover {
+  text-decoration: underline;
+}
+
+/* Back to SSO */
+.backToSSO {
+  padding: 10px;
+  background: transparent;
+  border: none;
+  color: var(--gray-600);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.backToSSO:hover {
+  color: var(--primary-blue);
+}
+
+/* Signup Link */
+.signupLink {
+  text-align: center;
+  font-size: 14px;
+  color: var(--gray-600);
+}
+
+.signupLink a {
+  color: var(--primary-blue);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.signupLink a:hover {
+  text-decoration: underline;
+}
+
+/* Demo Hint */
+.demoHint {
+  margin-top: 24px;
+  padding: 20px;
+  background: linear-gradient(135deg, #f0f4ff 0%, #e8f0fe 100%);
+  border-radius: 12px;
+  border: 1px solid var(--gray-200);
+  text-align: center;
+}
+
+.demoHint p {
+  font-size: 13px;
+  color: var(--gray-700);
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.demoButtons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.demoButtons button {
+  padding: 8px 16px;
+  background: white;
+  border: 1px solid var(--gray-300);
+  border-radius: 8px;
+  color: var(--primary-blue);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.demoButtons button:hover {
+  background: var(--primary-blue);
+  color: white;
+  border-color: var(--primary-blue);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(79, 127, 255, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .loginBox {
+    padding: 32px 24px;
+  }
+
+  .loginTitle h2 {
+    font-size: 22px;
+  }
+
+  .roleToggleButton {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .demoButtons {
+    flex-direction: column;
+  }
+
+  .logo h1 {
+    font-size: 20px;
+  }
+}

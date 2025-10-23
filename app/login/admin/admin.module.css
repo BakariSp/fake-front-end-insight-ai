@@ -1,0 +1,287 @@
+/* Admin Login Page */
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8f0fe 50%, #f0f4ff 100%);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Soft background circles */
+.backgroundPattern {
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(79, 127, 255, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.backgroundPattern::after {
+  content: '';
+  position: absolute;
+  bottom: -500px;
+  left: -700px;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(146, 84, 222, 0.06) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.loginBox {
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  width: 100%;
+  max-width: 520px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Header */
+.header {
+  margin-bottom: 32px;
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  color: var(--gray-600);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 24px;
+}
+
+.backButton:hover {
+  background: var(--gray-50);
+  color: var(--gray-900);
+  border-color: var(--gray-300);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logoIcon {
+  font-size: 48px;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary-blue), var(--purple));
+  border-radius: 16px;
+}
+
+.logo h1 {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+  color: var(--gray-900);
+}
+
+.logo p {
+  font-size: 14px;
+  margin: 0;
+  color: var(--gray-500);
+}
+
+/* Notice */
+.notice {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  background: var(--warning-orange-light);
+  border-left: 4px solid var(--warning-orange);
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.noticeIcon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.notice p {
+  font-size: 14px;
+  color: var(--gray-700);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Form */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formOptions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -8px;
+}
+
+.rememberMe {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--gray-700);
+  cursor: pointer;
+}
+
+.rememberMe input {
+  cursor: pointer;
+}
+
+.forgotPassword {
+  font-size: 14px;
+  color: var(--primary-blue);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.forgotPassword:hover {
+  color: var(--primary-blue-dark);
+  text-decoration: underline;
+}
+
+/* Security Notice */
+.securityNotice {
+  margin-top: 24px;
+  padding: 16px;
+  background: var(--success-green-light);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.securityNotice p {
+  font-size: 13px;
+  color: var(--success-green);
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Mock Accounts */
+.mockAccounts {
+  margin-top: 32px;
+  padding: 20px;
+  background: var(--gray-50);
+  border-radius: 12px;
+  border: 1px dashed var(--gray-300);
+}
+
+.mockTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-700);
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.mockList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mockAccount {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.mockAccount:hover {
+  background: var(--primary-blue-light);
+  border-color: var(--primary-blue);
+  transform: translateX(4px);
+}
+
+.mockAvatar {
+  font-size: 32px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary-blue), var(--purple));
+  border-radius: 50%;
+}
+
+.mockInfo {
+  flex: 1;
+}
+
+.mockName {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mockBadge {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--purple-light);
+  color: var(--purple);
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.mockEmail {
+  font-size: 12px;
+  color: var(--gray-500);
+}
+
+.mockLogin {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--primary-blue);
+  white-space: nowrap;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .loginBox {
+    padding: 32px 24px;
+  }
+
+  .logo h1 {
+    font-size: 20px;
+  }
+
+  .logoIcon {
+    width: 56px;
+    height: 56px;
+    font-size: 36px;
+  }
+}
+

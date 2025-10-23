@@ -20,7 +20,8 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     options, 
     prefixIcon,
     selectSize = 'medium',
-    className = '', 
+    className = '',
+    required,
     ...props 
   }, ref) => {
     const selectClasses = [
@@ -41,11 +42,16 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
       styles.selectContainer,
       fullWidth && styles.fullWidth
     ].filter(Boolean).join(' ');
+
+    const labelClasses = [
+      styles.selectLabel,
+      required && styles.selectLabelRequired
+    ].filter(Boolean).join(' ');
     
     return (
       <div className={wrapperClasses}>
         {label && (
-          <label className={styles.selectLabel}>
+          <label className={labelClasses}>
             {label}
           </label>
         )}

@@ -1,0 +1,220 @@
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputWrapper.fullWidth {
+  width: 100%;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-900);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  line-height: 1.4;
+  transition: color 0.2s ease;
+}
+
+.labelRequired::after {
+  content: '*';
+  color: var(--error-red);
+  margin-left: 2px;
+}
+
+.inputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  height: 44px;
+  padding: 0 16px;
+  font-size: 15px;
+  font-weight: 400;
+  border: 2px solid var(--gray-300);
+  border-radius: 10px;
+  background: white;
+  color: var(--gray-900);
+  transition: all 0.2s ease;
+  line-height: 1.5;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.input::placeholder {
+  color: var(--gray-400);
+  font-weight: 400;
+}
+
+.input:hover:not(:disabled) {
+  border-color: var(--gray-400);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 4px rgba(79, 127, 255, 0.1),
+              0 1px 2px rgba(0, 0, 0, 0.05);
+  background: white;
+}
+
+.input:disabled {
+  background: var(--gray-100);
+  color: var(--gray-500);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.input.fullWidth {
+  width: 100%;
+}
+
+.input.hasIcon {
+  padding-left: 44px;
+}
+
+.input.hasError {
+  border-color: var(--error-red);
+}
+
+.input.hasError:focus {
+  border-color: var(--error-red);
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1),
+              0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.iconWrapper {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gray-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  pointer-events: none;
+  transition: color 0.2s ease;
+}
+
+.input:focus ~ .iconWrapper,
+.input:hover:not(:disabled) ~ .iconWrapper {
+  color: var(--primary-blue);
+}
+
+.input.hasError ~ .iconWrapper {
+  color: var(--error-red);
+}
+
+.errorMessage {
+  font-size: 13px;
+  color: var(--error-red);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  animation: slideDown 0.2s ease;
+  line-height: 1.4;
+}
+
+.errorMessage::before {
+  content: '⚠';
+  font-size: 14px;
+}
+
+.helperText {
+  font-size: 13px;
+  color: var(--gray-600);
+  margin: 0;
+  line-height: 1.4;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Textarea variant */
+.textarea {
+  height: auto;
+  min-height: 100px;
+  padding: 12px 16px;
+  resize: vertical;
+  font-family: inherit;
+  line-height: 1.6;
+}
+
+/* Size variants */
+.input.small {
+  height: 36px;
+  padding: 0 12px;
+  font-size: 14px;
+  border-radius: 8px;
+}
+
+.input.large {
+  height: 52px;
+  padding: 0 20px;
+  font-size: 16px;
+  border-radius: 12px;
+}
+
+/* Special input types */
+.input[type="date"],
+.input[type="time"],
+.input[type="datetime-local"] {
+  cursor: pointer;
+}
+
+.input[type="date"]::-webkit-calendar-picker-indicator,
+.input[type="time"]::-webkit-calendar-picker-indicator,
+.input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: opacity(0.6);
+  transition: filter 0.2s ease;
+}
+
+.input[type="date"]:hover::-webkit-calendar-picker-indicator,
+.input[type="time"]:hover::-webkit-calendar-picker-indicator,
+.input[type="datetime-local"]:hover::-webkit-calendar-picker-indicator {
+  filter: opacity(1);
+}
+
+.input[type="number"]::-webkit-inner-spin-button,
+.input[type="number"]::-webkit-outer-spin-button {
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.input[type="number"]:hover::-webkit-inner-spin-button,
+.input[type="number"]:hover::-webkit-outer-spin-button {
+  opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .input {
+    height: 42px;
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+  
+  .input.small {
+    height: 38px;
+  }
+  
+  .input.large {
+    height: 48px;
+  }
+}
+

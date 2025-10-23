@@ -1,0 +1,373 @@
+{
+  "login": {
+    "platform": "智慧教育平台",
+    "studentLogin": "學生登入",
+    "teacherLogin": "教師登入",
+    "adminLogin": "管理員登入",
+    "email": "郵箱",
+    "password": "密碼",
+    "enterPassword": "請輸入密碼",
+    "rememberMe": "記住我",
+    "forgotPassword": "忘記密碼？",
+    "orLoginWith": "或使用以下方式登入",
+    "demoAccounts": "示範帳號",
+    "quickLogin": "快速登入"
+  },
+  "common": {
+    "loading": "載入中...",
+    "search": "搜尋",
+    "filter": "篩選",
+    "export": "匯出",
+    "save": "儲存",
+    "cancel": "取消",
+    "delete": "刪除",
+    "edit": "編輯",
+    "view": "檢視",
+    "submit": "提交",
+    "add": "新增",
+    "back": "返回",
+    "next": "下一步",
+    "previous": "上一步",
+    "close": "關閉",
+    "confirm": "確認",
+    "all": "全部"
+  },
+  "nav": {
+    "dashboard": "儀表板",
+    "classes": "課程",
+    "assignments": "作業",
+    "grades": "成績",
+    "calendar": "日曆",
+    "resources": "資源",
+    "messages": "訊息",
+    "settings": "設定",
+    "help": "幫助與支援",
+    "logout": "登出"
+  },
+  "dashboard": {
+    "title": "儀表板",
+    "welcome": "歡迎回來",
+    "overview": "概覽",
+    "myClasses": "我的課程",
+    "upcomingAssignments": "即將到期的作業",
+    "recentActivity": "最近活動",
+    "statistics": {
+      "totalCourses": "總課程數",
+      "completedAssignments": "已完成作業",
+      "averageGrade": "平均成績",
+      "studyHours": "學習時長"
+    }
+  },
+  "admin": {
+    "common": {
+      "platform": "管理員後台",
+      "adminDashboard": "管理員控制面板",
+      "viewDetails": "檢視詳情",
+      "viewMore": "檢視更多",
+      "addNew": "新增",
+      "bulkImport": "批次匯入",
+      "bulkExport": "批次匯出",
+      "sendEmail": "傳送郵件",
+      "sendNotification": "傳送通知",
+      "actions": "操作",
+      "status": "狀態",
+      "active": "在職",
+      "inactive": "休假",
+      "terminated": "離職",
+      "enrolled": "在校",
+      "suspended": "休學",
+      "transferred": "轉學"
+    },
+    "nav": {
+      "dashboard": "控制面板",
+      "notifications": "群發通知",
+      "permissions": "權限管理",
+      "users": "使用者管理",
+      "teachers": "教師管理",
+      "students": "學生管理",
+      "parents": "家長管理",
+      "classes": "班級概覽",
+      "reports": "資料報告",
+      "settings": "系統設定"
+    },
+    "dashboard": {
+      "title": "管理員控制面板",
+      "welcome": "歡迎回來",
+      "quickStats": "快速統計",
+      "quickActions": "快速操作",
+      "recentActivities": "最近活動",
+      "systemAlerts": "系統警報",
+      "gradeOverview": "年級快覽",
+      "stats": {
+        "totalStudents": "學生總數",
+        "totalTeachers": "教師總數",
+        "totalParents": "家長總數",
+        "activeClasses": "活躍班級",
+        "pendingTasks": "待處理事項",
+        "unreadMessages": "未讀訊息"
+      },
+      "quickAction": {
+        "sendNotification": "傳送群發通知",
+        "managePermissions": "管理權限",
+        "viewReports": "檢視報告",
+        "addUser": "新增使用者"
+      },
+      "alerts": {
+        "attendanceDecline": "出勤率下降",
+        "parentEngagement": "家長參與度需提升",
+        "systemNormal": "系統運作正常"
+      }
+    },
+    "notifications": {
+      "title": "群發通知",
+      "subtitle": "傳送通知給教師、學生、家長",
+      "createNew": "建立新通知",
+      "history": "通知歷史",
+      "templates": "通知範本",
+      "create": {
+        "title": "建立通知",
+        "basicInfo": "基本資訊",
+        "notificationTitle": "通知標題",
+        "priority": "優先順序",
+        "content": "通知內容",
+        "attachments": "附件",
+        "targetSelection": "目標對象",
+        "sendOptions": "傳送選項",
+        "channels": "傳送管道",
+        "sendTime": "傳送時間",
+        "sendNow": "立即傳送",
+        "scheduled": "定時傳送",
+        "saveDraft": "儲存草稿",
+        "preview": "預覽通知"
+      },
+      "priority": {
+        "urgent": "緊急",
+        "important": "重要",
+        "normal": "普通",
+        "info": "資訊"
+      },
+      "target": {
+        "byRole": "按角色選擇",
+        "byGrade": "按年級選擇",
+        "byClass": "按班級選擇",
+        "allTeachers": "所有教師",
+        "allStudents": "所有學生",
+        "allParents": "所有家長",
+        "allUsers": "全部使用者"
+      },
+      "channels": {
+        "app": "應用程式內通知",
+        "email": "郵件",
+        "sms": "簡訊",
+        "push": "推播通知"
+      },
+      "templates": {
+        "emergency": "緊急警報範本",
+        "suspension": "停課通知範本",
+        "parentMeeting": "家長會通知範本",
+        "event": "活動公告範本",
+        "holiday": "假期通知範本",
+        "reportCard": "成績單發布範本",
+        "createNew": "建立新範本",
+        "useTemplate": "使用範本"
+      },
+      "stats": {
+        "sent": "已送達",
+        "failed": "失敗",
+        "readRate": "閱讀率",
+        "recipients": "接收人數"
+      }
+    },
+    "permissions": {
+      "title": "權限管理",
+      "subtitle": "管理角色和使用者權限",
+      "roleManagement": "角色管理",
+      "userPermissions": "使用者權限",
+      "auditLog": "權限稽核",
+      "createRole": "建立自訂角色",
+      "roles": {
+        "superAdmin": "超級管理員",
+        "schoolAdmin": "學校管理員",
+        "gradeCoordinator": "年級協調員",
+        "teacher": "教師",
+        "parent": "家長",
+        "student": "學生"
+      },
+      "permissionMatrix": "權限矩陣",
+      "legend": {
+        "full": "完全存取",
+        "limited": "有限存取",
+        "readonly": "唯讀",
+        "none": "無權限"
+      },
+      "audit": {
+        "roleChange": "角色變更",
+        "permissionGrant": "權限授予",
+        "permissionRevoke": "權限撤銷",
+        "permissionExpired": "權限過期"
+      },
+      "alerts": {
+        "loginFailures": "多次登入失敗",
+        "abnormalAccess": "異常時間存取",
+        "securityNormal": "系統安全正常"
+      }
+    },
+    "users": {
+      "title": "使用者管理",
+      "teachers": {
+        "title": "教師管理",
+        "subtitle": "管理教師基本資訊和班級分配",
+        "addNew": "新增教師",
+        "department": "部門",
+        "subjects": "教授科目",
+        "classes": "教授班級",
+        "stats": {
+          "total": "教師總數",
+          "active": "在職",
+          "onLeave": "休假",
+          "terminated": "離職"
+        }
+      },
+      "students": {
+        "title": "學生管理",
+        "subtitle": "管理學生基本資訊和班級分配",
+        "addNew": "註冊新學生",
+        "studentId": "學號",
+        "grade": "年級",
+        "class": "班級",
+        "parentContact": "家長聯絡",
+        "stats": {
+          "total": "學生總數",
+          "enrolled": "在校",
+          "suspended": "休學",
+          "transferred": "轉學"
+        }
+      },
+      "parents": {
+        "title": "家長管理",
+        "subtitle": "管理家長帳號和子女關聯",
+        "addNew": "新增家長",
+        "children": "子女",
+        "lastLogin": "最後登入",
+        "neverLoggedIn": "從未登入",
+        "sendLoginInfo": "傳送登入資訊",
+        "stats": {
+          "total": "家長總數",
+          "activated": "已啟用",
+          "notActivated": "未啟用",
+          "multipleChildren": "多子女"
+        }
+      },
+      "filters": {
+        "allDepartments": "所有部門",
+        "allGrades": "所有年級",
+        "allClasses": "所有班級",
+        "allStatuses": "所有狀態"
+      }
+    },
+    "classes": {
+      "title": "班級概覽",
+      "subtitle": "檢視年級和班級統計資訊",
+      "gradeOverview": "年級概覽",
+      "classDetails": "班級詳情",
+      "grades": {
+        "k2": "K-2年級",
+        "3to5": "3-5年級",
+        "6to8": "6-8年級",
+        "9to12": "9-12年級"
+      },
+      "stats": {
+        "classes": "班級數",
+        "students": "學生數",
+        "teachers": "教師數",
+        "attendance": "平均出勤率",
+        "parentEngagement": "家長參與度"
+      },
+      "classInfo": {
+        "className": "班級名稱",
+        "classTeacher": "班主任",
+        "studentCount": "學生數",
+        "classroom": "教室"
+      }
+    },
+    "reports": {
+      "title": "資料報告",
+      "subtitle": "檢視統計資料和分析報告",
+      "notificationReports": "通知報告",
+      "userActivity": "使用者活動報告",
+      "statisticsOverview": "統計概覽",
+      "notifications": {
+        "title": "通知統計總覽",
+        "sentCount": "傳送通知數",
+        "deliveryCount": "總送達數",
+        "openRate": "平均開啟率",
+        "responseRate": "平均回應率",
+        "trends": "通知傳送趨勢",
+        "effectiveness": "通知效果分析"
+      },
+      "userActivity": {
+        "title": "登入統計",
+        "totalUsers": "總使用者數",
+        "activeUsers": "活躍使用者",
+        "activeRate": "活躍率",
+        "dailyActive": "日活躍使用者趨勢",
+        "moduleUsage": "各模組使用頻率",
+        "accessTime": "存取時段分佈"
+      },
+      "statistics": {
+        "userStats": "使用者統計",
+        "monthlyData": "本月資料",
+        "yearComparison": "年度對比",
+        "aiInsights": "AI洞察",
+        "exportReport": "匯出報告"
+      }
+    },
+    "settings": {
+      "title": "系統設定",
+      "subtitle": "配置學校資訊和系統參數",
+      "schoolInfo": "學校資訊",
+      "academicYear": "學年設定",
+      "security": "安全設定",
+      "integration": "整合設定",
+      "schoolInfo": {
+        "name": "學校名稱",
+        "address": "學校地址",
+        "phone": "聯絡電話",
+        "email": "官方郵箱",
+        "website": "學校網站",
+        "logo": "學校Logo"
+      },
+      "academicYear": {
+        "current": "當前學年",
+        "startDate": "學年開始日期",
+        "endDate": "學年結束日期",
+        "semesters": "學期設定",
+        "holidays": "假期設定"
+      },
+      "security": {
+        "passwordPolicy": "密碼策略",
+        "twoFactor": "雙因素認證",
+        "sessionTimeout": "會話逾時",
+        "ipWhitelist": "IP白名單",
+        "loginLockout": "登入失敗鎖定",
+        "backup": "備份設定",
+        "autoBackup": "自動備份",
+        "backupNow": "立即備份",
+        "restore": "復原備份"
+      },
+      "integration": {
+        "googleWorkspace": "Google Workspace",
+        "microsoft365": "Microsoft 365",
+        "smsGateway": "簡訊閘道",
+        "emailService": "郵件服務",
+        "connected": "已連線",
+        "notConnected": "未連線",
+        "connect": "連線",
+        "disconnect": "中斷連線",
+        "test": "測試",
+        "configure": "配置"
+      }
+    }
+  }
+}
+

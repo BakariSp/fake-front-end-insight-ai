@@ -22,7 +22,7 @@ const navItems: NavItem[] = [
   {
     id: 'dashboard',
     label: 'Dashboard',
-    href: '/dashboard',
+    href: '/student/dashboard',
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
         <path d="M3 4h6v6H3V4zm8 0h6v4h-6V4zM3 12h6v4H3v-4zm8 0h6v4h-6v-4z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -32,7 +32,7 @@ const navItems: NavItem[] = [
   {
     id: 'class',
     label: 'Class',
-    href: '/class',
+    href: '/student/class',
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
         <rect x="3" y="4" width="14" height="12" rx="1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -44,7 +44,7 @@ const navItems: NavItem[] = [
   {
     id: 'magic-tools',
     label: 'AI Magic Tools',
-    href: '/magic-tools',
+    href: '/student/magic-tools',
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
         <path d="M8 2l2 4 4 1-3 3 1 4-4-2-4 2 1-4-3-3 4-1 2-4z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -55,7 +55,7 @@ const navItems: NavItem[] = [
   {
     id: 'communication',
     label: 'Communication',
-    href: '/communication',
+    href: '/student/communication',
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
         <path d="M17 6H3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -67,7 +67,7 @@ const navItems: NavItem[] = [
   {
     id: 'resource-library',
     label: 'Resource Library',
-    href: '/resource-library',
+    href: '/student/resource-library',
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
         <path d="M4 4h12v12H4V4zm2 2v8m4-8v8m4-8v8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -77,7 +77,7 @@ const navItems: NavItem[] = [
   {
     id: 'settings',
     label: 'Settings',
-    href: '/settings',
+    href: '/student/settings',
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
         <circle cx="10" cy="10" r="3" strokeWidth="1.5"/>
@@ -94,20 +94,20 @@ const Sidebar: React.FC = () => {
   
   // Extract classId from pathname and manage expanded state
   useEffect(() => {
-    const classIdMatch = pathname?.match(/\/class\/(\d+)/);
+    const classIdMatch = pathname?.match(/\/student\/class\/(\d+)/);
     
     if (classIdMatch) {
-      // We're in a class detail page (e.g., /class/801/overview or /class/801/assignments)
+      // We're in a class detail page (e.g., /student/class/801/overview or /student/class/801/assignments)
       const classId = classIdMatch[1];
       setCurrentClassId(classId);
       if (!expandedItems.includes('class')) {
         setExpandedItems(prev => [...prev, 'class']);
       }
-    } else if (pathname === '/class') {
+    } else if (pathname === '/student/class') {
       // On class list page, collapse the class menu
       setCurrentClassId(null);
       setExpandedItems(prev => prev.filter(id => id !== 'class'));
-    } else if (!pathname?.startsWith('/class')) {
+    } else if (!pathname?.startsWith('/student/class')) {
       // Not in class section at all
       setCurrentClassId(null);
     }
@@ -125,8 +125,8 @@ const Sidebar: React.FC = () => {
   };
   
   const isActive = (href: string) => {
-    if (href === '/class') {
-      return pathname === '/class';
+    if (href === '/student/class') {
+      return pathname === '/student/class';
     }
     return pathname === href || pathname?.startsWith(href + '/');
   };
@@ -142,31 +142,31 @@ const Sidebar: React.FC = () => {
       { 
         id: 'overview', 
         label: 'Overview', 
-        href: `/class/${currentClassId}/overview`, 
+        href: `/student/class/${currentClassId}/overview`, 
         icon: null 
       },
       { 
         id: 'assignments', 
         label: 'Assignments', 
-        href: `/class/${currentClassId}/assignments`, 
+        href: `/student/class/${currentClassId}/assignments`, 
         icon: null 
       },
       { 
         id: 'grades', 
         label: 'My Grades', 
-        href: `/class/${currentClassId}/grades`, 
+        href: `/student/class/${currentClassId}/grades`, 
         icon: null 
       },
       { 
         id: 'materials', 
         label: 'Materials', 
-        href: `/class/${currentClassId}/materials`, 
+        href: `/student/class/${currentClassId}/materials`, 
         icon: null 
       },
       { 
         id: 'members', 
         label: 'Class Members', 
-        href: `/class/${currentClassId}/members`, 
+        href: `/student/class/${currentClassId}/members`, 
         icon: null 
       },
     ];

@@ -1,0 +1,510 @@
+.container {
+  padding: 32px 32px 48px 32px;
+  max-width: 1600px;
+  width: 100%;
+  background: #F5F7FA;
+  min-height: 100vh;
+}
+
+/* Welcome Header */
+.welcomeTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin: 0 0 1.5rem 0;
+}
+
+/* Main Layout */
+.mainLayout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 1.5rem;
+}
+
+.leftContent {
+  min-width: 0;
+}
+
+.rightSidebar {
+  min-width: 0;
+}
+
+/* Magic Tools Banner */
+.magicToolsBanner {
+  background: linear-gradient(135deg, #4F7FFF 0%, #2563EB 100%);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.magicToolsBanner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(30%, -30%);
+}
+
+.bannerContent {
+  position: relative;
+  z-index: 1;
+}
+
+.bannerLabel {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0.5rem;
+}
+
+.bannerTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0 0 1.5rem 0;
+  max-width: 400px;
+  line-height: 1.3;
+}
+
+.tryNowButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: #1A1A1A;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 24px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tryNowButton:hover {
+  background: #000000;
+  transform: translateX(4px);
+}
+
+.tryNowButton svg {
+  transition: transform 0.2s;
+}
+
+.tryNowButton:hover svg {
+  transform: translateX(2px);
+}
+
+/* Quick Actions */
+.quickActions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.75rem 1.25rem;
+  background: #FFFFFF;
+  border: 1px solid #E8E8E8;
+  border-radius: 8px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #1A1A1A;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.actionButton:hover {
+  background: #F5F7FA;
+  border-color: #4F7FFF;
+  color: #4F7FFF;
+}
+
+.actionIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: #4F7FFF;
+  color: #FFFFFF;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: #FFFFFF;
+  border: 2px dashed #D9D9D9;
+  border-radius: 8px;
+  color: #8C8C8C;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.addButton:hover {
+  border-color: #4F7FFF;
+  color: #4F7FFF;
+  background: #F5F7FA;
+}
+
+/* Sections */
+.section {
+  margin-bottom: 1.5rem;
+}
+
+.sectionHeaderWithIcon {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.sectionIconWrapper {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #E8EEFF;
+  border-radius: 8px;
+}
+
+.sectionTitleMain {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin: 0;
+}
+
+/* Table Container */
+.tableContainer {
+  background: #FFFFFF;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.assignmentTable,
+.filesTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.assignmentTable thead,
+.filesTable thead {
+  background: #F5F7FA;
+}
+
+.assignmentTable th,
+.filesTable th {
+  padding: 1rem 1.25rem;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #8C8C8C;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #E8E8E8;
+}
+
+.assignmentTable tbody tr,
+.filesTable tbody tr {
+  border-bottom: 1px solid #F0F0F0;
+  transition: background 0.2s;
+}
+
+.assignmentTable tbody tr:hover,
+.filesTable tbody tr:hover {
+  background: #FAFBFF;
+}
+
+.assignmentTable tbody tr:last-child,
+.filesTable tbody tr:last-child {
+  border-bottom: none;
+}
+
+.assignmentTable td,
+.filesTable td {
+  padding: 1rem 1.25rem;
+  font-size: 0.875rem;
+  color: #262626;
+}
+
+.assignmentCell,
+.fileCell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.assignmentIcon,
+.fileIcon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F5F7FA;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 0.375rem 0.875rem;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.statusgray {
+  background: #F5F5F5;
+  color: #8C8C8C;
+}
+
+.statusorange {
+  background: #FFF7E6;
+  color: #FA8C16;
+}
+
+.statusgreen {
+  background: #F6FFED;
+  color: #52C41A;
+}
+
+.viewButton {
+  padding: 0.375rem 1rem;
+  background: none;
+  border: none;
+  color: #4F7FFF;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.viewButton:hover {
+  color: #3D65E0;
+  text-decoration: underline;
+}
+
+/* Right Sidebar */
+.sidebarCard {
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.sidebarTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin: 0 0 1.25rem 0;
+}
+
+/* Schedule */
+.scheduleList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.scheduleItem {
+  padding: 1rem;
+  background: #F5F7FA;
+  border-radius: 8px;
+}
+
+.scheduleTime {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #4F7FFF;
+  margin-bottom: 0.625rem;
+}
+
+.scheduleTime svg {
+  flex-shrink: 0;
+}
+
+.scheduleDetails {
+  font-size: 0.8125rem;
+  color: #595959;
+  line-height: 1.6;
+}
+
+.scheduleClass,
+.scheduleTopic,
+.scheduleLocation {
+  margin-bottom: 0.25rem;
+}
+
+.scheduleEnd {
+  text-align: center;
+  padding: 1.5rem;
+  color: #BFBFBF;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.scheduleEnd p {
+  margin: 0;
+}
+
+/* Announcements */
+.announcementList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.announcementItem {
+  display: flex;
+  gap: 0.875rem;
+}
+
+.announcementAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.announcementContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.announcementAuthor {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin: 0 0 0.25rem 0;
+}
+
+.announcementTitle {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #262626;
+  margin: 0 0 0.375rem 0;
+}
+
+.announcementMessage {
+  font-size: 0.8125rem;
+  color: #8C8C8C;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .mainLayout {
+    grid-template-columns: 1fr 300px;
+  }
+
+  .quickActions {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 1024px) {
+  .mainLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .rightSidebar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .sidebarCard {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem 1rem;
+  }
+
+  .welcomeTitle {
+    font-size: 1.25rem;
+  }
+
+  .bannerTitle {
+    font-size: 1.25rem;
+  }
+
+  .magicToolsBanner {
+    padding: 1.5rem;
+  }
+
+  .quickActions {
+    flex-direction: column;
+  }
+
+  .actionButton {
+    width: 100%;
+  }
+
+  .addButton {
+    width: 100%;
+  }
+
+  .rightSidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebarCard {
+    margin-bottom: 1.5rem;
+  }
+
+  .tableContainer {
+    overflow-x: auto;
+  }
+
+  .assignmentTable,
+  .filesTable {
+    min-width: 600px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .bannerTitle {
+    font-size: 1.125rem;
+  }
+
+  .sectionTitleMain {
+    font-size: 1rem;
+  }
+}

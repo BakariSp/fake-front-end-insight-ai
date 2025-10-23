@@ -1001,3 +1001,425 @@ export const mockTeacherGroups: TeacherGroup[] = [
   },
 ];
 
+// ============================================
+// Teacher Platform Data
+// ============================================
+
+// Teacher Resource Types
+export interface TeacherResource {
+  id: string;
+  title: string;
+  description: string;
+  subject: string;
+  type: 'pdf' | 'video' | 'ppt' | 'doc' | 'link' | 'image' | 'folder';
+  uploadDate: string;
+  uploadedBy: string;
+  fileSize?: string;
+  downloads?: number;
+  tags?: string[];
+  scope: 'personal' | 'group' | 'school' | 'class';
+  grade?: string;
+  semester?: string;
+  isFavorite?: boolean;
+  isAIRecommended?: boolean;
+  recommendationReason?: string;
+  folder?: string; // Folder path/category for organization
+  itemCount?: number; // For folder type - number of items inside
+}
+
+export interface ParentNotice {
+  id: string;
+  title: string;
+  content: string;
+  recipients: string[];
+  sendDate: string;
+  deliveryStatus: 'sent' | 'delivered' | 'read';
+  readCount: number;
+  totalRecipients: number;
+  type: 'assignment' | 'report' | 'activity' | 'reminder';
+}
+
+export interface TeacherCollaboration {
+  id: string;
+  groupName: string;
+  fileName: string;
+  action: 'uploaded' | 'updated' | 'deleted';
+  uploadedBy: string;
+  uploadDate: string;
+  fileType: string;
+  description?: string;
+}
+
+// Teacher Resources - Mock Data
+export const mockTeacherUploads: TeacherResource[] = [
+  {
+    id: 'TR001',
+    title: 'Unit 3 Lesson Plan - Food & Culture',
+    description: 'Comprehensive lesson plan for English Unit 3 with activity designs and assessment rubrics',
+    subject: 'English',
+    type: 'doc',
+    uploadDate: '2025-10-18',
+    uploadedBy: 'You',
+    fileSize: '2.4MB',
+    downloads: 15,
+    tags: ['lesson plan', 'unit 3', 'grade 6'],
+    scope: 'personal',
+    grade: 'Grade 6',
+    semester: '2025 Fall',
+  },
+  {
+    id: 'TR002',
+    title: 'Quadratic Functions - Practice Worksheet',
+    description: 'Self-created practice problems covering quadratic functions, vertex form, and applications',
+    subject: 'Mathematics',
+    type: 'pdf',
+    uploadDate: '2025-10-15',
+    uploadedBy: 'You',
+    fileSize: '1.8MB',
+    downloads: 32,
+    tags: ['worksheet', 'quadratic', 'practice'],
+    scope: 'personal',
+    grade: 'Grade 9',
+    semester: '2025 Fall',
+  },
+  {
+    id: 'TR003',
+    title: 'Chemistry Lab Safety Video',
+    description: 'Instructional video on laboratory safety procedures and equipment usage',
+    subject: 'Science',
+    type: 'video',
+    uploadDate: '2025-10-10',
+    uploadedBy: 'You',
+    fileSize: '45MB',
+    downloads: 28,
+    tags: ['lab', 'safety', 'video tutorial'],
+    scope: 'class',
+    grade: 'Grade 8',
+  },
+];
+
+export const mockSchoolResources: TeacherResource[] = [
+  // Folders for organization
+  {
+    id: 'FOLDER_001',
+    title: 'School Policies & Guidelines',
+    description: 'Official school policies, handbooks, and administrative guidelines',
+    subject: 'General',
+    type: 'folder',
+    uploadDate: '2025-09-01',
+    uploadedBy: 'Admin Office',
+    scope: 'school',
+    itemCount: 8,
+    tags: ['policies', 'guidelines', 'official'],
+  },
+  {
+    id: 'FOLDER_002',
+    title: 'Curriculum & Assessment',
+    description: 'HKDSE curriculum materials, assessment templates, and exam guidelines',
+    subject: 'General',
+    type: 'folder',
+    uploadDate: '2025-09-01',
+    uploadedBy: 'Academic Department',
+    scope: 'school',
+    itemCount: 15,
+    tags: ['curriculum', 'assessment', 'HKDSE'],
+  },
+  {
+    id: 'FOLDER_003',
+    title: 'Subject Departments',
+    description: 'Shared resources organized by subject departments',
+    subject: 'General',
+    type: 'folder',
+    uploadDate: '2025-09-15',
+    uploadedBy: 'Academic Department',
+    scope: 'school',
+    itemCount: 6,
+    tags: ['departments', 'subjects', 'teaching'],
+  },
+  {
+    id: 'FOLDER_004',
+    title: 'Professional Development',
+    description: 'Teacher training materials, workshops, and PD resources',
+    subject: 'General',
+    type: 'folder',
+    uploadDate: '2025-08-20',
+    uploadedBy: 'HR Department',
+    scope: 'school',
+    itemCount: 12,
+    tags: ['training', 'PD', 'workshops'],
+  },
+  {
+    id: 'FOLDER_005',
+    title: 'Parent Communication',
+    description: 'Templates and resources for parent-teacher communication',
+    subject: 'General',
+    type: 'folder',
+    uploadDate: '2025-09-01',
+    uploadedBy: 'Admin Office',
+    scope: 'school',
+    itemCount: 10,
+    tags: ['parent', 'communication', 'templates'],
+  },
+  
+  // Files inside folders
+  {
+    id: 'SR001',
+    title: 'School Assessment Templates 2025',
+    description: 'Official assessment and grading templates for all subjects',
+    subject: 'General',
+    type: 'doc',
+    uploadDate: '2025-09-01',
+    uploadedBy: 'Admin Office',
+    fileSize: '3.2MB',
+    downloads: 156,
+    tags: ['template', 'assessment', 'official'],
+    scope: 'school',
+    folder: 'Curriculum & Assessment',
+  },
+  {
+    id: 'SR002',
+    title: 'HKDSE Examination Guidelines 2026',
+    description: 'Updated examination guidelines and requirements for HKDSE',
+    subject: 'General',
+    type: 'pdf',
+    uploadDate: '2025-09-15',
+    uploadedBy: 'Academic Department',
+    fileSize: '5.8MB',
+    downloads: 234,
+    tags: ['HKDSE', 'exam', 'guidelines'],
+    scope: 'school',
+    folder: 'Curriculum & Assessment',
+  },
+  {
+    id: 'SR003',
+    title: 'Math Department - Teaching Resources',
+    description: 'Shared teaching materials and best practices from math department',
+    subject: 'Mathematics',
+    type: 'ppt',
+    uploadDate: '2025-10-01',
+    uploadedBy: 'Math Department',
+    fileSize: '12.5MB',
+    downloads: 67,
+    tags: ['math', 'teaching', 'department'],
+    scope: 'school',
+    folder: 'Subject Departments',
+  },
+  {
+    id: 'SR004',
+    title: 'Student Handbook 2025-2026',
+    description: 'Complete student handbook with school rules and regulations',
+    subject: 'General',
+    type: 'pdf',
+    uploadDate: '2025-08-15',
+    uploadedBy: 'Admin Office',
+    fileSize: '4.5MB',
+    downloads: 298,
+    tags: ['handbook', 'rules', 'students'],
+    scope: 'school',
+    folder: 'School Policies & Guidelines',
+  },
+  {
+    id: 'SR005',
+    title: 'English Department - Resources Collection',
+    description: 'Curated teaching resources for English language instruction',
+    subject: 'English',
+    type: 'doc',
+    uploadDate: '2025-09-20',
+    uploadedBy: 'English Department',
+    fileSize: '8.3MB',
+    downloads: 89,
+    tags: ['english', 'resources', 'department'],
+    scope: 'school',
+    folder: 'Subject Departments',
+  },
+  {
+    id: 'SR006',
+    title: 'Classroom Management Best Practices',
+    description: 'Evidence-based strategies for effective classroom management',
+    subject: 'General',
+    type: 'doc',
+    uploadDate: '2025-08-25',
+    uploadedBy: 'PD Coordinator',
+    fileSize: '2.1MB',
+    downloads: 145,
+    tags: ['classroom', 'management', 'best practices'],
+    scope: 'school',
+    folder: 'Professional Development',
+  },
+  {
+    id: 'SR007',
+    title: 'Parent-Teacher Meeting Templates',
+    description: 'Structured templates for conducting effective parent-teacher conferences',
+    subject: 'General',
+    type: 'doc',
+    uploadDate: '2025-09-05',
+    uploadedBy: 'Admin Office',
+    fileSize: '1.8MB',
+    downloads: 178,
+    tags: ['parent', 'meeting', 'templates'],
+    scope: 'school',
+    folder: 'Parent Communication',
+  },
+  {
+    id: 'SR008',
+    title: 'Science Department - Lab Safety Protocols',
+    description: 'Essential safety guidelines for science laboratory activities',
+    subject: 'Science',
+    type: 'pdf',
+    uploadDate: '2025-09-10',
+    uploadedBy: 'Science Department',
+    fileSize: '3.6MB',
+    downloads: 112,
+    tags: ['science', 'safety', 'lab'],
+    scope: 'school',
+    folder: 'Subject Departments',
+  },
+  {
+    id: 'SR009',
+    title: 'Technology Integration Workshop Materials',
+    description: 'Resources from the digital teaching tools workshop',
+    subject: 'General',
+    type: 'ppt',
+    uploadDate: '2025-09-28',
+    uploadedBy: 'IT Department',
+    fileSize: '15.2MB',
+    downloads: 56,
+    tags: ['technology', 'workshop', 'digital'],
+    scope: 'school',
+    folder: 'Professional Development',
+  },
+  {
+    id: 'SR010',
+    title: 'School Assessment Calendar 2025-2026',
+    description: 'Complete calendar of all assessments and examinations',
+    subject: 'General',
+    type: 'pdf',
+    uploadDate: '2025-08-30',
+    uploadedBy: 'Academic Department',
+    fileSize: '1.2MB',
+    downloads: 267,
+    tags: ['calendar', 'assessment', 'schedule'],
+    scope: 'school',
+    folder: 'Curriculum & Assessment',
+  },
+];
+
+export const mockTeacherAIResources: TeacherResource[] = [
+  {
+    id: 'AI001',
+    title: 'Similar Lesson Plans - Food & Culture Theme',
+    description: 'AI-suggested lesson plans from other teachers covering similar topics',
+    subject: 'English',
+    type: 'doc',
+    uploadDate: '2025-10-20',
+    uploadedBy: 'AI System',
+    fileSize: '1.5MB',
+    tags: ['AI generated', 'lesson plan', 'similar'],
+    scope: 'school',
+    isAIRecommended: true,
+    recommendationReason: 'Based on your recent Unit 3 lesson plan',
+  },
+  {
+    id: 'AI002',
+    title: 'Differentiated Learning Materials - Quadratic Functions',
+    description: 'Multi-level practice materials adapted for different student abilities',
+    subject: 'Mathematics',
+    type: 'pdf',
+    uploadDate: '2025-10-19',
+    uploadedBy: 'AI System',
+    fileSize: '2.1MB',
+    tags: ['AI generated', 'differentiated', 'practice'],
+    scope: 'personal',
+    isAIRecommended: true,
+    recommendationReason: 'Matches your class performance data',
+  },
+];
+
+export const mockTeacherFavorites: TeacherResource[] = [
+  {
+    id: 'FAV001',
+    title: 'Classroom Management Strategies',
+    description: 'Proven strategies for managing diverse classroom environments',
+    subject: 'General',
+    type: 'doc',
+    uploadDate: '2025-08-20',
+    uploadedBy: 'Education Consultant',
+    fileSize: '1.2MB',
+    downloads: 445,
+    tags: ['classroom', 'management', 'best practices'],
+    scope: 'school',
+    isFavorite: true,
+  },
+];
+
+// Parent Notices - Mock Data
+export const mockParentNotices: ParentNotice[] = [
+  {
+    id: 'PN001',
+    title: 'Unit 3 Assessment Results Available',
+    content: 'Dear Parents, your child\'s Unit 3 assessment has been graded. Please review the results and feedback in the parent portal.',
+    recipients: ['Class 6A Parents', 'Class 6B Parents'],
+    sendDate: '2025-10-21',
+    deliveryStatus: 'read',
+    readCount: 42,
+    totalRecipients: 45,
+    type: 'report',
+  },
+  {
+    id: 'PN002',
+    title: 'Homework Reminder - Due Tomorrow',
+    content: 'This is a reminder that the Quadratic Functions worksheet is due tomorrow. Students who need extra help can attend office hours.',
+    recipients: ['Class 9A Parents'],
+    sendDate: '2025-10-22',
+    deliveryStatus: 'delivered',
+    readCount: 18,
+    totalRecipients: 28,
+    type: 'reminder',
+  },
+  {
+    id: 'PN003',
+    title: 'Field Trip Permission Required',
+    content: 'We are planning a science museum visit on November 10th. Please sign the permission form by October 30th.',
+    recipients: ['Class 8A Parents', 'Class 8B Parents'],
+    sendDate: '2025-10-19',
+    deliveryStatus: 'sent',
+    readCount: 35,
+    totalRecipients: 52,
+    type: 'activity',
+  },
+];
+
+// Teacher Collaboration - Mock Data
+export const mockTeacherCollaboration: TeacherCollaboration[] = [
+  {
+    id: 'TC001',
+    groupName: 'Mathematics Department',
+    fileName: 'Midterm_Exam_Template_2025.docx',
+    action: 'uploaded',
+    uploadedBy: 'Mr. Wong',
+    uploadDate: '2025-10-20',
+    fileType: 'doc',
+    description: 'Updated midterm exam template with new formatting',
+  },
+  {
+    id: 'TC002',
+    groupName: 'Grade 6 Teachers',
+    fileName: 'Student_Progress_Report_Oct.xlsx',
+    action: 'updated',
+    uploadedBy: 'Ms. Chan',
+    uploadDate: '2025-10-19',
+    fileType: 'excel',
+    description: 'Added latest test scores and attendance data',
+  },
+  {
+    id: 'TC003',
+    groupName: 'Science Department',
+    fileName: 'Lab_Safety_Guidelines_v3.pdf',
+    action: 'uploaded',
+    uploadedBy: 'Dr. Leung',
+    uploadDate: '2025-10-18',
+    fileType: 'pdf',
+    description: 'Updated safety protocols for chemistry lab',
+  },
+];
+

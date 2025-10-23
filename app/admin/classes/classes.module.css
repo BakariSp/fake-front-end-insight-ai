@@ -1,0 +1,198 @@
+.classesPage {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: var(--gray-500);
+}
+
+/* Grade Grid */
+.gradeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.gradeCard {
+  padding: 24px;
+  transition: all 0.3s ease;
+}
+
+.gradeCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.gradeHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.gradeIcon {
+  font-size: 32px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-blue-light);
+  border-radius: 12px;
+}
+
+.gradeName {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+.gradeStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.gradeStat {
+  text-align: center;
+}
+
+.gradeStatLabel {
+  font-size: 12px;
+  color: var(--gray-500);
+  margin-bottom: 4px;
+}
+
+.gradeStatValue {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--gray-900);
+}
+
+.attendanceSection {
+  padding: 16px;
+  background: var(--gray-50);
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.attendanceLabel {
+  font-size: 13px;
+  color: var(--gray-600);
+  margin-bottom: 8px;
+}
+
+.attendanceValue {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gray-900);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.trend {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Table Card */
+.tableCard {
+  margin-top: 32px;
+}
+
+.cardHeader {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+.classTable {
+  overflow-x: auto;
+}
+
+.classTable table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.classTable th {
+  text-align: left;
+  padding: 16px 24px;
+  background: var(--gray-50);
+  color: var(--gray-700);
+  font-size: 13px;
+  font-weight: 600;
+  border-bottom: 2px solid var(--gray-200);
+}
+
+.classTable td {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--gray-200);
+  font-size: 14px;
+  color: var(--gray-700);
+}
+
+.classTable tr:last-child td {
+  border-bottom: none;
+}
+
+.classTable tr:hover {
+  background: var(--gray-50);
+}
+
+.classNameCell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.classIcon {
+  font-size: 20px;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 8px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .gradeGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .gradeGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .gradeStats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+

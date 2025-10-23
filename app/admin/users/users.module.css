@@ -1,0 +1,318 @@
+.usersPage {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: var(--gray-500);
+}
+
+/* Stats Grid */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.statCard {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.statLabel {
+  font-size: 13px;
+  color: var(--gray-600);
+  font-weight: 500;
+}
+
+.statValue {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 250px;
+  padding: 10px 16px;
+  border: 1px solid var(--gray-300);
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--gray-900);
+  transition: all 0.2s ease;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(79, 127, 255, 0.1);
+}
+
+.filterSelect {
+  padding: 8px 16px;
+  border: 1px solid var(--gray-300);
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--gray-700);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filterSelect:hover {
+  border-color: var(--primary-blue);
+}
+
+.filterSelect:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(79, 127, 255, 0.1);
+}
+
+/* User Table */
+.userTable {
+  overflow-x: auto;
+}
+
+.userTable table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.userTable th {
+  text-align: left;
+  padding: 16px;
+  background: var(--gray-50);
+  color: var(--gray-700);
+  font-size: 13px;
+  font-weight: 600;
+  border-bottom: 2px solid var(--gray-200);
+  white-space: nowrap;
+}
+
+.userTable td {
+  padding: 16px;
+  border-bottom: 1px solid var(--gray-200);
+  font-size: 14px;
+  color: var(--gray-700);
+}
+
+.userTable tr:last-child td {
+  border-bottom: none;
+}
+
+.userTable tr:hover {
+  background: var(--gray-50);
+}
+
+/* User Cell */
+.userCell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.userAvatar {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gray-100);
+  border-radius: 50%;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.userName {
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+/* Department Cell */
+.departmentCell {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.department {
+  font-weight: 500;
+  color: var(--gray-900);
+}
+
+.subjects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.subjectTag {
+  padding: 2px 8px;
+  background: var(--primary-blue-light);
+  color: var(--primary-blue);
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* Classes */
+.classes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.classTag {
+  padding: 4px 10px;
+  background: var(--success-green-light);
+  color: var(--success-green);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Status Tag */
+.statusTag {
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+/* Phone Cell */
+.phoneCell {
+  color: var(--gray-600);
+  font-size: 13px;
+  font-family: monospace;
+}
+
+/* ID Cell */
+.idCell {
+  color: var(--primary-blue);
+  font-weight: 600;
+  font-family: monospace;
+}
+
+/* Grade Cell */
+.gradeCell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Parent Cell */
+.parentCell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.parentName {
+  font-weight: 500;
+  color: var(--gray-900);
+}
+
+/* Children Cell */
+.childrenCell {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.childTag {
+  padding: 4px 10px;
+  background: var(--purple-light);
+  color: var(--purple);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Date Cell */
+.dateCell {
+  color: var(--gray-500);
+  font-size: 13px;
+}
+
+.neverLogin {
+  color: var(--warning-orange);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Action Buttons */
+.actionButtons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .filters {
+    flex-direction: column;
+  }
+
+  .searchInput {
+    width: 100%;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .userTable {
+    font-size: 12px;
+  }
+
+  .userTable th,
+  .userTable td {
+    padding: 12px 8px;
+  }
+}
+

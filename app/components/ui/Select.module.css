@@ -11,11 +11,19 @@
 
 .selectLabel {
   display: block;
-  font-size: 0.875rem;
+  font-size: 14px;
   font-weight: 600;
   color: var(--gray-900);
-  margin-bottom: 0.5rem;
+  margin-bottom: 8px;
   letter-spacing: 0.01em;
+  line-height: 1.4;
+  transition: color 0.2s ease;
+}
+
+.selectLabelRequired::after {
+  content: '*';
+  color: var(--error-red);
+  margin-left: 2px;
 }
 
 .selectContainer {
@@ -33,58 +41,59 @@
   min-width: 160px;
   height: 44px;
   padding: 0 40px 0 16px;
-  font-size: 0.9375rem;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 400;
   font-family: inherit;
   color: var(--gray-900);
-  background: linear-gradient(to bottom, white, var(--gray-50));
-  border: 1.5px solid var(--gray-300);
-  border-radius: 12px;
+  background: white;
+  border: 2px solid var(--gray-300);
+  border-radius: 10px;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
   outline: none;
+  line-height: 1.5;
 }
 
-.select:hover {
-  border-color: var(--primary-blue);
-  background: white;
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
-  transform: translateY(-1px);
+.select:hover:not(:disabled) {
+  border-color: var(--gray-400);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
 .select:focus {
   border-color: var(--primary-blue);
   background: white;
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1), 0 4px 12px rgba(59, 130, 246, 0.15);
-  transform: translateY(-1px);
+  box-shadow: 0 0 0 4px rgba(79, 127, 255, 0.1),
+              0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .select:active {
-  transform: translateY(0);
+  transform: none;
 }
 
 .select.error {
   border-color: var(--error-red);
-  background: linear-gradient(to bottom, white, rgba(239, 68, 68, 0.02));
+  background: white;
 }
 
-.select.error:hover,
 .select.error:focus {
   border-color: var(--error-red);
-  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1), 0 4px 12px rgba(239, 68, 68, 0.15);
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1),
+              0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .select:disabled {
-  opacity: 0.5;
+  opacity: 0.6;
   cursor: not-allowed;
   background: var(--gray-100);
   border-color: var(--gray-300);
+  color: var(--gray-500);
 }
 
 .select:disabled:hover {
   transform: none;
-  box-shadow: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  border-color: var(--gray-300);
 }
 
 /* Custom dropdown arrow */
@@ -94,29 +103,24 @@
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
-  color: var(--primary-blue);
+  color: var(--gray-500);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
-.select:hover + .selectIcon,
+.select:hover:not(:disabled) + .selectIcon,
 .select:focus + .selectIcon {
-  color: var(--accent-blue);
-  transform: translateY(-50%) scale(1.1);
-}
-
-.select:focus + .selectIcon {
-  animation: bounce 0.5s ease;
+  color: var(--primary-blue);
 }
 
 @keyframes bounce {
   0%, 100% {
-    transform: translateY(-50%) scale(1.1);
+    transform: translateY(-50%);
   }
   50% {
-    transform: translateY(-40%) scale(1.15);
+    transform: translateY(-45%);
   }
 }
 
@@ -149,13 +153,26 @@
 
 /* Error Message */
 .errorMessage {
-  margin-top: 0.5rem;
-  font-size: 0.75rem;
+  margin-top: 8px;
+  font-size: 13px;
   color: var(--error-red);
   display: flex;
   align-items: center;
-  gap: 0.375rem;
-  font-weight: 500;
+  gap: 6px;
+  font-weight: 400;
+  line-height: 1.4;
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .errorIcon {
@@ -166,9 +183,9 @@
 
 /* Helper Text */
 .helperText {
-  margin-top: 0.5rem;
-  font-size: 0.75rem;
-  color: var(--gray-500);
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--gray-600);
   line-height: 1.4;
 }
 

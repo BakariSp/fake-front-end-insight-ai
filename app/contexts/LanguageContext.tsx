@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 // Supported languages
-export type Language = 'en' | 'zh' | 'es';
+export type Language = 'en' | 'zh' | 'zh-TW';
 
 interface LanguageContextType {
   language: Language;
@@ -16,12 +16,12 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 // Import all translations
 import enTranslations from '@/messages/en.json';
 import zhTranslations from '@/messages/zh.json';
-import esTranslations from '@/messages/es.json';
+import zhTWTranslations from '@/messages/zh-TW.json';
 
 const translations = {
   en: enTranslations,
   zh: zhTranslations,
-  es: esTranslations,
+  'zh-TW': zhTWTranslations,
 };
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
@@ -30,7 +30,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   // Load language from localStorage on mount
   useEffect(() => {
     const savedLang = localStorage.getItem('language') as Language;
-    if (savedLang && ['en', 'zh', 'es'].includes(savedLang)) {
+    if (savedLang && ['en', 'zh', 'zh-TW'].includes(savedLang)) {
       setLanguageState(savedLang);
     }
   }, []);

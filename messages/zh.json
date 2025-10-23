@@ -1,4 +1,18 @@
 {
+  "login": {
+    "platform": "智慧教育平台",
+    "studentLogin": "学生登录",
+    "teacherLogin": "教师登录",
+    "adminLogin": "管理员登录",
+    "email": "邮箱",
+    "password": "密码",
+    "enterPassword": "请输入密码",
+    "rememberMe": "记住我",
+    "forgotPassword": "忘记密码？",
+    "orLoginWith": "或使用以下方式登录",
+    "demoAccounts": "演示账号",
+    "quickLogin": "快速登录"
+  },
   "common": {
     "loading": "加载中...",
     "search": "搜索",
@@ -10,6 +24,7 @@
     "edit": "编辑",
     "view": "查看",
     "submit": "提交",
+    "add": "添加",
     "back": "返回",
     "next": "下一步",
     "previous": "上一步",
@@ -122,7 +137,7 @@
       "ta": "助教"
     }
   },
-  "settings": {
+  "settingsMenu": {
     "title": "设置",
     "profile": "个人资料",
     "notifications": "通知",
@@ -397,6 +412,369 @@
       "attachFile": "附件",
       "referenceAssignment": "引用作业",
       "noMessages": "暂无消息"
+    }
+  },
+  "admin": {
+    "common": {
+      "platform": "管理员后台",
+      "adminDashboard": "管理员控制面板",
+      "viewDetails": "查看详情",
+      "viewMore": "查看更多",
+      "addNew": "添加新",
+      "bulkImport": "批量导入",
+      "bulkExport": "批量导出",
+      "sendEmail": "发送邮件",
+      "sendNotification": "发送通知",
+      "actions": "操作",
+      "status": "状态",
+      "active": "在职",
+      "inactive": "休假",
+      "terminated": "离职",
+      "enrolled": "在校",
+      "suspended": "休学",
+      "transferred": "转学"
+    },
+    "nav": {
+      "dashboard": "控制面板",
+      "notifications": "群发通知",
+      "permissions": "权限管理",
+      "users": "用户管理",
+      "teachers": "教师管理",
+      "students": "学生管理",
+      "parents": "家长管理",
+      "classes": "班级概览",
+      "reports": "数据报告",
+      "settings": "系统设置"
+    },
+    "dashboard": {
+      "title": "管理员控制面板",
+      "welcome": "欢迎回来",
+      "quickStats": "快速统计",
+      "quickActions": "快速操作",
+      "recentActivities": "最近活动",
+      "systemAlerts": "系统警报",
+      "gradeOverview": "年级快览",
+      "stats": {
+        "totalStudents": "学生总数",
+        "totalTeachers": "教师总数",
+        "totalParents": "家长总数",
+        "activeClasses": "活跃班级",
+        "pendingTasks": "待处理事项",
+        "unreadMessages": "未读消息"
+      },
+      "quickAction": {
+        "sendNotification": "发送群发通知",
+        "managePermissions": "管理权限",
+        "viewReports": "查看报告",
+        "addUser": "添加用户"
+      },
+      "alerts": {
+        "attendanceDecline": "出勤率下降",
+        "parentEngagement": "家长参与度需提升",
+        "systemNormal": "系统运行正常"
+      }
+    },
+    "notifications": {
+      "title": "群发通知",
+      "subtitle": "发送通知给教师、学生、家长",
+      "createNew": "创建新通知",
+      "history": "通知历史",
+      "templatesTab": "通知模板",
+      "create": {
+        "title": "创建通知",
+        "basicInfo": "基本信息",
+        "notificationTitle": "通知标题",
+        "priority": "优先级",
+        "content": "通知内容",
+        "attachments": "附件",
+        "targetSelection": "目标对象",
+        "sendOptions": "发送选项",
+        "channels": "发送渠道",
+        "sendTime": "发送时间",
+        "sendNow": "立即发送",
+        "scheduled": "定时发送",
+        "saveDraft": "保存草稿",
+        "preview": "预览通知"
+      },
+      "priority": {
+        "urgent": "紧急",
+        "important": "重要",
+        "normal": "普通",
+        "info": "信息"
+      },
+      "target": {
+        "byRole": "按角色选择",
+        "byGrade": "按年级选择",
+        "byClass": "按班级选择",
+        "allTeachers": "所有教师",
+        "allStudents": "所有学生",
+        "allParents": "所有家长",
+        "allUsers": "全部用户"
+      },
+      "channels": {
+        "app": "应用内通知",
+        "email": "邮件",
+        "sms": "短信",
+        "push": "推送通知"
+      },
+      "templates": {
+        "emergency": "紧急警报模板",
+        "suspension": "停课通知模板",
+        "parentMeeting": "家长会通知模板",
+        "event": "活动公告模板",
+        "holiday": "假期通知模板",
+        "reportCard": "成绩单发布模板",
+        "createNew": "创建新模板",
+        "useTemplate": "使用模板"
+      },
+      "stats": {
+        "sent": "已送达",
+        "failed": "失败",
+        "readRate": "阅读率",
+        "recipients": "接收人数"
+      }
+    },
+    "permissions": {
+      "title": "权限管理",
+      "subtitle": "管理角色和用户权限",
+      "roleManagement": "角色管理",
+      "userPermissions": "用户权限",
+      "auditLog": "权限审计",
+      "createRole": "创建自定义角色",
+      "people": "人",
+      "permissionScope": "权限范围",
+      "viewDetails": "查看详情",
+      "editPermissions": "编辑权限",
+      "assignUsers": "分配用户",
+      "allPermissions": "全部权限（不可编辑）",
+      "schoolManagement": "学校管理权限",
+      "gradeLevel": "年级层面权限",
+      "classManagement": "班级管理权限",
+      "childInfoView": "子女信息查看",
+      "selfInfoView": "自身信息查看",
+      "roles": {
+        "superAdmin": "超级管理员",
+        "schoolAdmin": "学校管理员",
+        "gradeCoordinator": "年级协调员",
+        "teacher": "教师",
+        "parent": "家长",
+        "student": "学生"
+      },
+      "permissionMatrix": "权限矩阵",
+      "legendText": "图例：✓ = 完全访问 | ~ = 有限访问 | R = 只读 | ✗ = 无权限",
+      "legend": {
+        "full": "完全访问",
+        "limited": "有限访问",
+        "readonly": "只读",
+        "none": "无权限"
+      },
+      "modules": {
+        "dashboard": "主面板",
+        "notifications": "群发通知",
+        "permissions": "权限管理",
+        "users": "用户管理",
+        "classes": "班级概览",
+        "reports": "数据报告",
+        "settings": "系统设置"
+      },
+      "userTable": {
+        "searchPlaceholder": "搜索用户姓名或邮箱...",
+        "allRoles": "所有角色",
+        "userName": "用户姓名",
+        "email": "邮箱",
+        "currentRole": "当前角色",
+        "extraPermissions": "额外权限",
+        "lastLogin": "最后登录",
+        "none": "无",
+        "exportReport": "导出权限报告"
+      },
+      "audit": {
+        "allTime": "所有时间",
+        "today": "今天",
+        "last7Days": "最近7天",
+        "last30Days": "最近30天",
+        "allActions": "所有操作",
+        "roleChange": "角色变更",
+        "permissionGrant": "权限授予",
+        "permissionRevoke": "权限撤销",
+        "permissionExpired": "权限过期",
+        "time": "时间",
+        "operator": "操作人",
+        "actionType": "操作类型",
+        "targetUser": "目标用户",
+        "changes": "变更内容",
+        "ipAddress": "IP地址",
+        "system": "系统",
+        "systemAuto": "系统自动",
+        "exportAuditLog": "导出审计日志"
+      },
+      "alerts": {
+        "loginFailures": "多次登录失败",
+        "loginFailuresDesc": "检测到 3 个账号登录失败次数异常",
+        "abnormalAccess": "异常时间访问",
+        "abnormalAccessDesc": "凌晨 2 点有管理员账号登录",
+        "securityNormal": "系统安全正常",
+        "securityNormalDesc": "未检测到安全威胁"
+      }
+    },
+    "users": {
+      "title": "用户管理",
+      "teachers": {
+        "title": "教师管理",
+        "subtitle": "管理教师基本信息和班级分配",
+        "addNew": "添加新教师",
+        "department": "部门",
+        "subjects": "教授科目",
+        "classes": "教授班级",
+        "stats": {
+          "total": "教师总数",
+          "active": "在职",
+          "onLeave": "休假",
+          "terminated": "离职"
+        }
+      },
+      "students": {
+        "title": "学生管理",
+        "subtitle": "管理学生基本信息和班级分配",
+        "addNew": "注册新学生",
+        "studentId": "学号",
+        "grade": "年级",
+        "class": "班级",
+        "parentContact": "家长联系",
+        "stats": {
+          "total": "学生总数",
+          "enrolled": "在校",
+          "suspended": "休学",
+          "transferred": "转学"
+        }
+      },
+      "parents": {
+        "title": "家长管理",
+        "subtitle": "管理家长账号和子女关联",
+        "addNew": "添加家长",
+        "children": "子女",
+        "lastLogin": "最后登录",
+        "neverLoggedIn": "从未登录",
+        "sendLoginInfo": "发送登录信息",
+        "stats": {
+          "total": "家长总数",
+          "activated": "已激活",
+          "notActivated": "未激活",
+          "multipleChildren": "多子女"
+        }
+      },
+      "filters": {
+        "allDepartments": "所有部门",
+        "allGrades": "所有年级",
+        "allClasses": "所有班级",
+        "allStatuses": "所有状态"
+      }
+    },
+    "classes": {
+      "title": "班级概览",
+      "subtitle": "查看年级和班级统计信息",
+      "gradeOverview": "年级概览",
+      "classDetails": "班级详情",
+      "grades": {
+        "k2": "K-2年级",
+        "3to5": "3-5年级",
+        "6to8": "6-8年级",
+        "9to12": "9-12年级"
+      },
+      "stats": {
+        "classes": "班级数",
+        "students": "学生数",
+        "teachers": "教师数",
+        "attendance": "平均出勤率",
+        "parentEngagement": "家长参与度"
+      },
+      "classInfo": {
+        "className": "班级名称",
+        "classTeacher": "班主任",
+        "studentCount": "学生数",
+        "classroom": "教室"
+      }
+    },
+    "reports": {
+      "title": "数据报告",
+      "subtitle": "查看统计数据和分析报告",
+      "notificationReports": "通知报告",
+      "userActivityTab": "用户活动报告",
+      "statisticsOverview": "统计概览",
+      "notifications": {
+        "title": "通知统计总览",
+        "sentCount": "发送通知数",
+        "deliveryCount": "总送达数",
+        "openRate": "平均打开率",
+        "responseRate": "平均响应率",
+        "trends": "通知发送趋势",
+        "effectiveness": "通知效果分析"
+      },
+      "userActivity": {
+        "title": "登录统计",
+        "totalUsers": "总用户数",
+        "activeUsers": "活跃用户",
+        "activeRate": "活跃率",
+        "dailyActive": "日活跃用户趋势",
+        "moduleUsage": "各模块使用频率",
+        "accessTime": "访问时段分布"
+      },
+      "statistics": {
+        "userStats": "用户统计",
+        "monthlyData": "本月数据",
+        "yearComparison": "年度对比",
+        "aiInsights": "AI洞察",
+        "exportReport": "导出报告"
+      }
+    },
+    "settings": {
+      "title": "系统设置",
+      "subtitle": "配置学校信息和系统参数",
+      "tabs": {
+        "schoolInfo": "学校信息",
+        "academicYear": "学年设置",
+        "security": "安全设置",
+        "integration": "集成设置"
+      },
+      "schoolInfo": {
+        "name": "学校名称",
+        "address": "学校地址",
+        "phone": "联系电话",
+        "email": "官方邮箱",
+        "website": "学校网站",
+        "logo": "学校Logo"
+      },
+      "academicYear": {
+        "current": "当前学年",
+        "startDate": "学年开始日期",
+        "endDate": "学年结束日期",
+        "semesters": "学期设置",
+        "holidays": "假期设置"
+      },
+      "security": {
+        "passwordPolicy": "密码策略",
+        "twoFactor": "双因素认证",
+        "sessionTimeout": "会话超时",
+        "ipWhitelist": "IP白名单",
+        "loginLockout": "登录失败锁定",
+        "backup": "备份设置",
+        "autoBackup": "自动备份",
+        "backupNow": "立即备份",
+        "restore": "恢复备份",
+        "viewHistory": "查看历史"
+      },
+      "integration": {
+        "googleWorkspace": "Google Workspace",
+        "microsoft365": "Microsoft 365",
+        "smsGateway": "短信网关",
+        "emailService": "邮件服务",
+        "connected": "已连接",
+        "notConnected": "未连接",
+        "connect": "连接",
+        "disconnect": "断开",
+        "test": "测试",
+        "configure": "配置"
+      }
     }
   }
 }

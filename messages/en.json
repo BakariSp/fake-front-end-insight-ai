@@ -1,4 +1,18 @@
 {
+  "login": {
+    "platform": "Smart Education Platform",
+    "studentLogin": "Student Login",
+    "teacherLogin": "Teacher Login",
+    "adminLogin": "Admin Login",
+    "email": "Email",
+    "password": "Password",
+    "enterPassword": "Enter password",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot password?",
+    "orLoginWith": "Or login with",
+    "demoAccounts": "Demo Accounts",
+    "quickLogin": "Quick Login"
+  },
   "common": {
     "loading": "Loading...",
     "search": "Search",
@@ -10,6 +24,7 @@
     "edit": "Edit",
     "view": "View",
     "submit": "Submit",
+    "add": "Add",
     "back": "Back",
     "next": "Next",
     "previous": "Previous",
@@ -122,7 +137,7 @@
       "ta": "Teaching Assistant"
     }
   },
-  "settings": {
+  "settingsMenu": {
     "title": "Settings",
     "profile": "Profile",
     "notifications": "Notifications",
@@ -397,6 +412,369 @@
       "attachFile": "Attach File",
       "referenceAssignment": "Reference Assignment",
       "noMessages": "No messages"
+    }
+  },
+  "admin": {
+    "common": {
+      "platform": "Admin Platform",
+      "adminDashboard": "Admin Dashboard",
+      "viewDetails": "View Details",
+      "viewMore": "View More",
+      "addNew": "Add New",
+      "bulkImport": "Bulk Import",
+      "bulkExport": "Bulk Export",
+      "sendEmail": "Send Email",
+      "sendNotification": "Send Notification",
+      "actions": "Actions",
+      "status": "Status",
+      "active": "Active",
+      "inactive": "On Leave",
+      "terminated": "Terminated",
+      "enrolled": "Enrolled",
+      "suspended": "Suspended",
+      "transferred": "Transferred"
+    },
+    "nav": {
+      "dashboard": "Dashboard",
+      "notifications": "Notifications",
+      "permissions": "Permissions",
+      "users": "Users",
+      "teachers": "Teachers",
+      "students": "Students",
+      "parents": "Parents",
+      "classes": "Classes",
+      "reports": "Reports",
+      "settings": "Settings"
+    },
+    "dashboard": {
+      "title": "Admin Dashboard",
+      "welcome": "Welcome back",
+      "quickStats": "Quick Stats",
+      "quickActions": "Quick Actions",
+      "recentActivities": "Recent Activities",
+      "systemAlerts": "System Alerts",
+      "gradeOverview": "Grade Overview",
+      "stats": {
+        "totalStudents": "Total Students",
+        "totalTeachers": "Total Teachers",
+        "totalParents": "Total Parents",
+        "activeClasses": "Active Classes",
+        "pendingTasks": "Pending Tasks",
+        "unreadMessages": "Unread Messages"
+      },
+      "quickAction": {
+        "sendNotification": "Send Notification",
+        "managePermissions": "Manage Permissions",
+        "viewReports": "View Reports",
+        "addUser": "Add User"
+      },
+      "alerts": {
+        "attendanceDecline": "Attendance Decline",
+        "parentEngagement": "Parent Engagement Needs Improvement",
+        "systemNormal": "System Running Normally"
+      }
+    },
+    "notifications": {
+      "title": "Mass Notifications",
+      "subtitle": "Send notifications to teachers, students, parents",
+      "createNew": "Create Notification",
+      "history": "Notification History",
+      "templatesTab": "Templates",
+      "create": {
+        "title": "Create Notification",
+        "basicInfo": "Basic Information",
+        "notificationTitle": "Notification Title",
+        "priority": "Priority",
+        "content": "Content",
+        "attachments": "Attachments",
+        "targetSelection": "Target Selection",
+        "sendOptions": "Send Options",
+        "channels": "Channels",
+        "sendTime": "Send Time",
+        "sendNow": "Send Now",
+        "scheduled": "Scheduled",
+        "saveDraft": "Save Draft",
+        "preview": "Preview"
+      },
+      "priority": {
+        "urgent": "Urgent",
+        "important": "Important",
+        "normal": "Normal",
+        "info": "Info"
+      },
+      "target": {
+        "byRole": "By Role",
+        "byGrade": "By Grade",
+        "byClass": "By Class",
+        "allTeachers": "All Teachers",
+        "allStudents": "All Students",
+        "allParents": "All Parents",
+        "allUsers": "All Users"
+      },
+      "channels": {
+        "app": "In-App",
+        "email": "Email",
+        "sms": "SMS",
+        "push": "Push Notification"
+      },
+      "templates": {
+        "emergency": "Emergency Alert",
+        "suspension": "Class Suspension",
+        "parentMeeting": "Parent Meeting",
+        "event": "Event Announcement",
+        "holiday": "Holiday Notice",
+        "reportCard": "Report Card",
+        "createNew": "Create Template",
+        "useTemplate": "Use Template"
+      },
+      "stats": {
+        "sent": "Sent",
+        "failed": "Failed",
+        "readRate": "Read Rate",
+        "recipients": "Recipients"
+      }
+    },
+    "permissions": {
+      "title": "Permission Management",
+      "subtitle": "Manage roles and user permissions",
+      "roleManagement": "Role Management",
+      "userPermissions": "User Permissions",
+      "auditLog": "Audit Log",
+      "createRole": "Create Custom Role",
+      "people": "people",
+      "permissionScope": "Permission Scope",
+      "viewDetails": "View Details",
+      "editPermissions": "Edit Permissions",
+      "assignUsers": "Assign Users",
+      "allPermissions": "All Permissions (Not Editable)",
+      "schoolManagement": "School Management Permissions",
+      "gradeLevel": "Grade Level Permissions",
+      "classManagement": "Class Management Permissions",
+      "childInfoView": "Children Information View Only",
+      "selfInfoView": "Self Information View Only",
+      "roles": {
+        "superAdmin": "Super Admin",
+        "schoolAdmin": "School Admin",
+        "gradeCoordinator": "Grade Coordinator",
+        "teacher": "Teacher",
+        "parent": "Parent",
+        "student": "Student"
+      },
+      "permissionMatrix": "Permission Matrix",
+      "legendText": "Legend: ✓ = Full Access | ~ = Limited Access | R = Read Only | ✗ = No Access",
+      "legend": {
+        "full": "Full Access",
+        "limited": "Limited Access",
+        "readonly": "Read Only",
+        "none": "No Access"
+      },
+      "modules": {
+        "dashboard": "Dashboard",
+        "notifications": "Mass Notifications",
+        "permissions": "Permission Management",
+        "users": "User Management",
+        "classes": "Class Overview",
+        "reports": "Data Reports",
+        "settings": "System Settings"
+      },
+      "userTable": {
+        "searchPlaceholder": "Search by name or email...",
+        "allRoles": "All Roles",
+        "userName": "User Name",
+        "email": "Email",
+        "currentRole": "Current Role",
+        "extraPermissions": "Extra Permissions",
+        "lastLogin": "Last Login",
+        "none": "None",
+        "exportReport": "Export Permission Report"
+      },
+      "audit": {
+        "allTime": "All Time",
+        "today": "Today",
+        "last7Days": "Last 7 Days",
+        "last30Days": "Last 30 Days",
+        "allActions": "All Actions",
+        "roleChange": "Role Change",
+        "permissionGrant": "Permission Grant",
+        "permissionRevoke": "Permission Revoke",
+        "permissionExpired": "Permission Expired",
+        "time": "Time",
+        "operator": "Operator",
+        "actionType": "Action Type",
+        "targetUser": "Target User",
+        "changes": "Changes",
+        "ipAddress": "IP Address",
+        "system": "System",
+        "systemAuto": "System Auto",
+        "exportAuditLog": "Export Audit Log"
+      },
+      "alerts": {
+        "loginFailures": "Multiple Login Failures",
+        "loginFailuresDesc": "Detected 3 accounts with abnormal login failures",
+        "abnormalAccess": "Abnormal Access Time",
+        "abnormalAccessDesc": "Admin account login at 2 AM",
+        "securityNormal": "Security Normal",
+        "securityNormalDesc": "No security threats detected"
+      }
+    },
+    "users": {
+      "title": "User Management",
+      "teachers": {
+        "title": "Teacher Management",
+        "subtitle": "Manage teacher information and class assignments",
+        "addNew": "Add Teacher",
+        "department": "Department",
+        "subjects": "Subjects",
+        "classes": "Classes",
+        "stats": {
+          "total": "Total Teachers",
+          "active": "Active",
+          "onLeave": "On Leave",
+          "terminated": "Terminated"
+        }
+      },
+      "students": {
+        "title": "Student Management",
+        "subtitle": "Manage student information and class assignments",
+        "addNew": "Register Student",
+        "studentId": "Student ID",
+        "grade": "Grade",
+        "class": "Class",
+        "parentContact": "Parent Contact",
+        "stats": {
+          "total": "Total Students",
+          "enrolled": "Enrolled",
+          "suspended": "Suspended",
+          "transferred": "Transferred"
+        }
+      },
+      "parents": {
+        "title": "Parent Management",
+        "subtitle": "Manage parent accounts and student relationships",
+        "addNew": "Add Parent",
+        "children": "Children",
+        "lastLogin": "Last Login",
+        "neverLoggedIn": "Never Logged In",
+        "sendLoginInfo": "Send Login Info",
+        "stats": {
+          "total": "Total Parents",
+          "activated": "Activated",
+          "notActivated": "Not Activated",
+          "multipleChildren": "Multiple Children"
+        }
+      },
+      "filters": {
+        "allDepartments": "All Departments",
+        "allGrades": "All Grades",
+        "allClasses": "All Classes",
+        "allStatuses": "All Statuses"
+      }
+    },
+    "classes": {
+      "title": "Class Overview",
+      "subtitle": "View grade and class statistics",
+      "gradeOverview": "Grade Overview",
+      "classDetails": "Class Details",
+      "grades": {
+        "k2": "K-2 Grade",
+        "3to5": "3-5 Grade",
+        "6to8": "6-8 Grade",
+        "9to12": "9-12 Grade"
+      },
+      "stats": {
+        "classes": "Classes",
+        "students": "Students",
+        "teachers": "Teachers",
+        "attendance": "Avg Attendance",
+        "parentEngagement": "Parent Engagement"
+      },
+      "classInfo": {
+        "className": "Class Name",
+        "classTeacher": "Class Teacher",
+        "studentCount": "Students",
+        "classroom": "Classroom"
+      }
+    },
+    "reports": {
+      "title": "Reports & Analytics",
+      "subtitle": "View statistics and analysis reports",
+      "notificationReports": "Notification Reports",
+      "userActivityTab": "User Activity",
+      "statisticsOverview": "Statistics Overview",
+      "notifications": {
+        "title": "Notification Statistics",
+        "sentCount": "Sent Count",
+        "deliveryCount": "Delivery Count",
+        "openRate": "Open Rate",
+        "responseRate": "Response Rate",
+        "trends": "Trends",
+        "effectiveness": "Effectiveness"
+      },
+      "userActivity": {
+        "title": "Login Statistics",
+        "totalUsers": "Total Users",
+        "activeUsers": "Active Users",
+        "activeRate": "Active Rate",
+        "dailyActive": "Daily Active Trends",
+        "moduleUsage": "Module Usage",
+        "accessTime": "Access Time Distribution"
+      },
+      "statistics": {
+        "userStats": "User Stats",
+        "monthlyData": "Monthly Data",
+        "yearComparison": "Year Comparison",
+        "aiInsights": "AI Insights",
+        "exportReport": "Export Report"
+      }
+    },
+    "settings": {
+      "title": "System Settings",
+      "subtitle": "Configure school information and system parameters",
+      "tabs": {
+        "schoolInfo": "School Information",
+        "academicYear": "Academic Year",
+        "security": "Security",
+        "integration": "Integration"
+      },
+      "schoolInfo": {
+        "name": "School Name",
+        "address": "Address",
+        "phone": "Phone",
+        "email": "Email",
+        "website": "Website",
+        "logo": "Logo"
+      },
+      "academicYear": {
+        "current": "Current Year",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "semesters": "Semesters",
+        "holidays": "Holidays"
+      },
+      "security": {
+        "passwordPolicy": "Password Policy",
+        "twoFactor": "Two-Factor Auth",
+        "sessionTimeout": "Session Timeout",
+        "ipWhitelist": "IP Whitelist",
+        "loginLockout": "Login Lockout",
+        "backup": "Backup",
+        "autoBackup": "Auto Backup",
+        "backupNow": "Backup Now",
+        "restore": "Restore",
+        "viewHistory": "View History"
+      },
+      "integration": {
+        "googleWorkspace": "Google Workspace",
+        "microsoft365": "Microsoft 365",
+        "smsGateway": "SMS Gateway",
+        "emailService": "Email Service",
+        "connected": "Connected",
+        "notConnected": "Not Connected",
+        "connect": "Connect",
+        "disconnect": "Disconnect",
+        "test": "Test",
+        "configure": "Configure"
+      }
     }
   }
 }

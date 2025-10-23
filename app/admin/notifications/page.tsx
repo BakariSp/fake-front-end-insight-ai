@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import Card from '../../components/ui/Card';
 import Button from '../../components/ui/Button';
-import Tabs from '../../components/ui/Tabs';
+import TabNav from '../../components/ui/TabNav';
 import styles from './notifications.module.css';
 
 export default function NotificationsPage() {
@@ -138,7 +138,7 @@ export default function NotificationsPage() {
         </Link>
       </div>
 
-      <Tabs
+      <TabNav
         tabs={[
           { id: 'history', label: '通知历史', icon: '📋' },
           { id: 'templates', label: '通知模板', icon: '📝' },

@@ -4,7 +4,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import Card from '../../../components/ui/Card';
 import Button from '../../../components/ui/Button';
-import Tabs from '../../../components/ui/Tabs';
+import TabNav from '../../../components/ui/TabNav';
 import styles from '../users.module.css';
 
 export default function ParentsPage() {
@@ -59,7 +59,7 @@ export default function ParentsPage() {
         </Button>
       </div>
 
-      <Tabs
+      <TabNav
         tabs={[
           { id: 'teachers', label: '教师管理', icon: '👨‍🏫', href: '/admin/users/teachers' },
           { id: 'students', label: '学生管理', icon: '👨‍🎓', href: '/admin/users/students' },

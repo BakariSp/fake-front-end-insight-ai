@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useLanguage } from '@/app/contexts/LanguageContext';
 import Card from '@/app/components/ui/Card';
@@ -25,7 +25,7 @@ const mockClasses = [
   { id: '4', name: 'Geometry Honors', students: 22, parents: 42 },
 ];
 
-export default function TeacherCommunicationPage() {
+function TeacherCommunicationContent() {
   const searchParams = useSearchParams();
   const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState('announcements');
@@ -645,5 +645,13 @@ export default function TeacherCommunicationPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function TeacherCommunicationPage() {
+  return (
+    <Suspense fallback={<div style={{ padding: '2rem', textAlign: 'center' }}>Loading...</div>}>
+      <TeacherCommunicationContent />
+    </Suspense>
   );
 }

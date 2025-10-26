@@ -105,12 +105,14 @@ export default function TeacherDashboard() {
             <div className={styles.bannerContent}>
               <div className={styles.bannerLabel}>Magic Tools</div>
               <h2 className={styles.bannerTitle}>A clean pipeline for reliable AI results.</h2>
-              <button className={styles.tryNowButton}>
-                Try Now
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M6 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                </svg>
-              </button>
+              <Link href="/teacher/magic-tools">
+                <button className={styles.tryNowButton}>
+                  Try Now
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M6 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  </svg>
+                </button>
+              </Link>
             </div>
           </div>
 

@@ -33,7 +33,6 @@ export default function TeacherLayout({ children }: { children: React.ReactNode 
         </svg>
       ),
       href: '/teacher/magic-tools',
-      badge: 'Coming Soon',
     },
     {
       id: 'class',

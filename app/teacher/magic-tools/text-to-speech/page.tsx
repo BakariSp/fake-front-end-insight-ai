@@ -196,21 +196,6 @@ export default function TextToSpeechPage() {
   return (
     <div className={styles.container}>
       <div className={styles.mainContent}>
-        {/* Header */}
-        <div className={styles.header}>
-          <button className={styles.backButton} onClick={() => window.history.back()}>
-            ← Back
-          </button>
-          <h1 className={styles.title}>
-            <span className={styles.icon}>🔊</span>
-            Text to Speech
-            <span className={styles.titleZh}>文字转语音</span>
-          </h1>
-          <p className={styles.subtitle}>
-            Convert your text into natural-sounding speech using AI-powered voice synthesis
-          </p>
-        </div>
-
         {/* Main Controls */}
         <div className={styles.layout}>
           <div className={styles.leftPanel}>

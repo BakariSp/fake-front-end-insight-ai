@@ -163,11 +163,11 @@ export default function MistakeAnalysisPage() {
   };
 
   const generatePractice = (mistake: Mistake) => {
-    router.push(`/student/magic-tools/practice-generator?topic=${mistake.topic}&subject=${mistake.subject}`);
+    router.push(`/student/insight-tools/practice-generator?topic=${mistake.topic}&subject=${mistake.subject}`);
   };
 
   const reviewMistake = (mistake: Mistake) => {
-    router.push(`/student/magic-tools/ai-tutor?mode=homework&question=${mistake.id}`);
+    router.push(`/student/insight-tools/ai-tutor?mode=homework&question=${mistake.id}`);
   };
 
   return (
@@ -471,10 +471,10 @@ export default function MistakeAnalysisPage() {
             </div>
 
             <div className={styles.planActions}>
-              <Button variant="primary" onClick={() => router.push('/student/magic-tools/practice-generator')}>
+              <Button variant="primary" onClick={() => router.push('/student/insight-tools/practice-generator')}>
                 Start Practice Session 开始练习
               </Button>
-              <Button variant="secondary" onClick={() => router.push('/student/magic-tools/ai-tutor')}>
+              <Button variant="secondary" onClick={() => router.push('/student/insight-tools/ai-tutor')}>
                 Get AI Help 获取AI帮助
               </Button>
             </div>

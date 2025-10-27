@@ -344,25 +344,25 @@ export default function PerformancePage() {
         <div className={styles.actionsGrid}>
           <Button
             variant="primary"
-            onClick={() => router.push('/student/magic-tools/mistake-analysis')}
+            onClick={() => router.push('/student/insight-tools/mistake-analysis')}
           >
             Review Mistakes 复习错题
           </Button>
           <Button
             variant="primary"
-            onClick={() => router.push('/student/magic-tools/practice-generator')}
+            onClick={() => router.push('/student/insight-tools/practice-generator')}
           >
             Practice Weak Areas 针对性练习
           </Button>
           <Button
             variant="secondary"
-            onClick={() => router.push('/student/magic-tools/ai-tutor')}
+            onClick={() => router.push('/student/insight-tools/ai-tutor')}
           >
             Get AI Help 获取AI帮助
           </Button>
           <Button
             variant="secondary"
-            onClick={() => router.push('/student/magic-tools/achievements')}
+            onClick={() => router.push('/student/insight-tools/achievements')}
           >
             View Achievements 查看成就
           </Button>

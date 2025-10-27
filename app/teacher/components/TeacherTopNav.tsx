@@ -29,7 +29,7 @@ const TeacherTopNav: React.FC<TeacherTopNavProps> = ({ customBreadcrumbs }) => {
       'grades': 'Grades',
       'settings': 'Settings',
       'tasks': 'Tasks',
-      'magic-tools': 'Magic Toolkits',
+      'insight-tools': 'Insight Tools',
       'announcements': 'School Announcements',
       'parents': 'Parent Notices',
       'collaboration': 'Teacher Collaboration',

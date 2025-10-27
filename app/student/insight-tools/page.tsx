@@ -4,11 +4,11 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import MainLayout from '@layout/MainLayout';
 import { Card, Button, StatCard } from '@ui';
-import styles from './magicTools.module.css';
+import styles from './insightTools.module.css';
 
-export default function MagicToolsPage() {
+export default function InsightToolsPage() {
   const router = useRouter();
-  const [selectedCategory, setSelectedCategory] = useState<'all' | 'learning' | 'analysis' | 'achievement'>('all');
+  const [selectedCategory, setSelectedCategory] = useState<'all' | 'favorite' | 'learning' | 'analysis' | 'achievement'>('all');
 
   // Mock statistics
   const stats = {
@@ -29,7 +29,9 @@ export default function MagicToolsPage() {
       category: 'learning',
       color: '#4F46E5',
       features: ['Homework Help', 'Step-by-step Explanations', 'Practice Problems', 'Daily Tasks'],
-      href: '/student/magic-tools/ai-tutor',
+      href: '/student/insight-tools/ai-tutor',
+      isFavorite: true,
+      usageCount: 23,
     },
     {
       id: 'mistake-analysis',
@@ -41,7 +43,9 @@ export default function MagicToolsPage() {
       category: 'analysis',
       color: '#DC2626',
       features: ['Error Patterns', 'Targeted Practice', 'Progress Tracking', 'Smart Review'],
-      href: '/student/magic-tools/mistake-analysis',
+      href: '/student/insight-tools/mistake-analysis',
+      isFavorite: true,
+      usageCount: 18,
     },
     {
       id: 'achievement-system',
@@ -53,7 +57,9 @@ export default function MagicToolsPage() {
       category: 'achievement',
       color: '#F59E0B',
       features: ['Badges & Rewards', 'Progress Timeline', 'Growth Analytics', 'Motivation Boost'],
-      href: '/student/magic-tools/achievements',
+      href: '/student/insight-tools/achievements',
+      isFavorite: false,
+      usageCount: 8,
     },
     {
       id: 'practice-generator',
@@ -65,7 +71,9 @@ export default function MagicToolsPage() {
       category: 'learning',
       color: '#10B981',
       features: ['Custom Difficulty', 'Topic-based', 'Adaptive Learning', 'Instant Feedback'],
-      href: '/student/magic-tools/practice-generator',
+      href: '/student/insight-tools/practice-generator',
+      isFavorite: true,
+      usageCount: 15,
     },
     {
       id: 'wellness-chat',
@@ -77,7 +85,9 @@ export default function MagicToolsPage() {
       category: 'learning',
       color: '#8B5CF6',
       features: ['Study Tips', 'Stress Management', 'Motivation', 'Time Management'],
-      href: '/student/magic-tools/wellness-chat',
+      href: '/student/insight-tools/wellness-chat',
+      isFavorite: false,
+      usageCount: 5,
     },
     {
       id: 'performance-eval',
@@ -89,12 +99,18 @@ export default function MagicToolsPage() {
       category: 'analysis',
       color: '#06B6D4',
       features: ['Skill Assessment', 'Improvement Trends', 'Subject Comparison', 'AI Insights'],
-      href: '/student/magic-tools/performance',
+      href: '/student/insight-tools/performance',
+      isFavorite: true,
+      usageCount: 12,
     },
   ];
 
+  const favoriteTools = tools.filter(tool => tool.isFavorite);
+
   const filteredTools = selectedCategory === 'all' 
     ? tools 
+    : selectedCategory === 'favorite'
+    ? favoriteTools
     : tools.filter(tool => tool.category === selectedCategory);
 
   return (
@@ -105,10 +121,10 @@ export default function MagicToolsPage() {
           <div className={styles.titleSection}>
             <h1 className={styles.title}>
               <span className={styles.icon}>✨</span>
-              Magic AI Tools
+              Insight Tools
             </h1>
             <p className={styles.subtitle}>
-              AI 工具 - Personalized learning tools powered by artificial intelligence
+              洞察工具 - Personalized learning tools powered by artificial intelligence
             </p>
           </div>
         </div>
@@ -138,6 +154,50 @@ export default function MagicToolsPage() {
             icon="🔥"
             trend={{ value: stats.studyStreak, isPositive: true }}
           />
+        </div>
+      </div>
+
+      {/* My Favorite - Horizontal Layout */}
+      <div className={styles.favoriteSection}>
+        <div className={styles.sectionHeader}>
+          <div className={styles.sectionTitleWrapper}>
+            <span className={styles.starIcon}>⭐</span>
+            <h2 className={styles.sectionTitle}>My Favorite</h2>
+            <span className={styles.favoriteCount}>{favoriteTools.length}</span>
+          </div>
+          <button 
+            className={styles.viewAllBtn}
+            onClick={() => setSelectedCategory('favorite')}
+          >
+            View All →
+          </button>
+        </div>
+        <div className={styles.favoriteGrid}>
+          {favoriteTools.map((tool) => (
+            <Card key={tool.id} className={styles.favoriteCard}>
+              <div 
+                className={styles.favoriteIconWrapper}
+                style={{ backgroundColor: `${tool.color}15` }}
+              >
+                <span className={styles.favoriteIcon}>{tool.icon}</span>
+              </div>
+              <div className={styles.favoriteContent}>
+                <h3 className={styles.favoriteTitle}>{tool.title}</h3>
+                <p className={styles.favoriteTitleZh}>{tool.titleZh}</p>
+                <div className={styles.favoriteUsage}>
+                  Used {tool.usageCount} times
+                </div>
+              </div>
+              <Button
+                variant="primary"
+                size="small"
+                onClick={() => router.push(tool.href)}
+                style={{ backgroundColor: tool.color }}
+              >
+                Launch
+              </Button>
+            </Card>
+          ))}
         </div>
       </div>
 

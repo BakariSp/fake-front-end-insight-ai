@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="grad8" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2E5BFF;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FF4757;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFD93D;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 立方体效果 -->
+  <!-- 顶面 -->
+  <path d="M 100 50 L 150 75 L 100 100 L 50 75 Z" fill="url(#grad8)" opacity="0.9"/>
+  
+  <!-- 左面 -->
+  <path d="M 50 75 L 50 140 L 100 165 L 100 100 Z" fill="#2E5BFF" opacity="0.7"/>
+  
+  <!-- 右面 -->
+  <path d="M 100 100 L 100 165 L 150 140 L 150 75 Z" fill="#FFD93D" opacity="0.8"/>
+</svg>

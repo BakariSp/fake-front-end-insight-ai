@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD93D;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FF4757;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2E5BFF;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- I字母左边 -->
+  <rect x="60" y="60" width="20" height="100" rx="10" fill="url(#grad2)"/>
+  
+  <!-- I字母右边（负空间形成A） -->
+  <path d="M 120 160 L 120 100 L 140 60 L 160 100 L 160 160 Z" fill="url(#grad2)"/>
+  
+  <!-- A中间的负空间 -->
+  <rect x="130" y="110" width="20" height="15" fill="#ffffff"/>
+</svg>

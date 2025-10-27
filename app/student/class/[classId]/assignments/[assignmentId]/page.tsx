@@ -458,14 +458,14 @@ const GradedView = ({ assignment }: any) => {
         <Button 
           variant="primary"
           size="large"
-          onClick={() => window.location.href = '/student/magic-tools/ai-tutor'}
+          onClick={() => window.location.href = '/student/insight-tools/ai-tutor'}
         >
           📚 View AI Explanation
         </Button>
         <Button 
           variant="secondary"
           size="large"
-          onClick={() => window.location.href = '/student/magic-tools/mistake-analysis'}
+          onClick={() => window.location.href = '/student/insight-tools/mistake-analysis'}
         >
           🔄 Practice Similar Problems
         </Button>

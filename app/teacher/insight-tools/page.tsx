@@ -3,9 +3,9 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Card, Button, StatCard } from '@ui';
-import styles from './magicTools.module.css';
+import styles from './insightTools.module.css';
 
-export default function TeacherMagicToolsPage() {
+export default function TeacherInsightToolsPage() {
   const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'content' | 'assessment' | 'communication'>('all');
 
@@ -28,7 +28,7 @@ export default function TeacherMagicToolsPage() {
       category: 'content',
       color: '#4F46E5',
       features: ['Multiple Voices', 'Speed Control', 'Volume Adjust', 'Download Audio'],
-      href: '/teacher/magic-tools/text-to-speech',
+      href: '/teacher/insight-tools/text-to-speech',
     },
     {
       id: 'lesson-planner',
@@ -40,7 +40,7 @@ export default function TeacherMagicToolsPage() {
       category: 'content',
       color: '#10B981',
       features: ['Smart Templates', 'Curriculum Aligned', 'Time Estimates', 'Resource Links'],
-      href: '/teacher/magic-tools/lesson-planner',
+      href: '/teacher/insight-tools/lesson-planner',
       badge: 'Coming Soon',
     },
     {
@@ -53,8 +53,7 @@ export default function TeacherMagicToolsPage() {
       category: 'assessment',
       color: '#F59E0B',
       features: ['Auto-grading', 'Multiple Types', 'Difficulty Levels', 'Question Bank'],
-      href: '/teacher/magic-tools/quiz-generator',
-      badge: 'Coming Soon',
+      href: '/teacher/insight-tools/quiz-generator',
     },
     {
       id: 'feedback-assistant',
@@ -66,7 +65,7 @@ export default function TeacherMagicToolsPage() {
       category: 'assessment',
       color: '#DC2626',
       features: ['Personalized', 'Constructive', 'Time-saving', 'Multi-language'],
-      href: '/teacher/magic-tools/feedback-assistant',
+      href: '/teacher/insight-tools/feedback-assistant',
       badge: 'Coming Soon',
     },
     {
@@ -79,7 +78,7 @@ export default function TeacherMagicToolsPage() {
       category: 'communication',
       color: '#8B5CF6',
       features: ['Templates', 'Tone Adjustment', 'Translation', 'Preview'],
-      href: '/teacher/magic-tools/announcement-writer',
+      href: '/teacher/insight-tools/announcement-writer',
       badge: 'Coming Soon',
     },
     {
@@ -92,7 +91,7 @@ export default function TeacherMagicToolsPage() {
       category: 'assessment',
       color: '#06B6D4',
       features: ['Trend Analysis', 'Predictions', 'Recommendations', 'Visual Reports'],
-      href: '/teacher/magic-tools/progress-analyzer',
+      href: '/teacher/insight-tools/progress-analyzer',
       badge: 'Coming Soon',
     },
   ];
@@ -108,10 +107,10 @@ export default function TeacherMagicToolsPage() {
           <div className={styles.titleSection}>
             <h1 className={styles.title}>
               <span className={styles.icon}>✨</span>
-              Magic AI Toolkits for Teachers
+              Insight Tools for Teachers
             </h1>
             <p className={styles.subtitle}>
-              AI 工具箱 - Powerful AI tools to enhance teaching efficiency and effectiveness
+              洞察工具 - Powerful AI tools to enhance teaching efficiency and effectiveness
             </p>
           </div>
         </div>

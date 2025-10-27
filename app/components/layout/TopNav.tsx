@@ -32,7 +32,7 @@ const TopNav: React.FC<TopNavProps> = ({ customBreadcrumbs }) => {
       'materials': t('classes.materials'),
       'members': t('classes.members'),
       'communication': t('nav.messages'),
-      'magic-tools': 'Magic Tools',
+      'insight-tools': 'Insight Tools',
       'magic-toolkits': t('nav.resources'),
       'resource-library': t('nav.resources'),
       'settings': t('nav.settings'),
@@ -125,8 +125,8 @@ const TopNav: React.FC<TopNavProps> = ({ customBreadcrumbs }) => {
       return breadcrumbs;
     }
 
-    // Handle other top-level sections (Magic Tools, Communication, Resource Library, Settings)
-    const topLevelSections = ['magic-tools', 'magic-toolkits', 'communication', 'resource-library', 'settings'];
+    // Handle other top-level sections (Insight Tools, Communication, Resource Library, Settings)
+    const topLevelSections = ['insight-tools', 'magic-toolkits', 'communication', 'resource-library', 'settings'];
     
     if (topLevelSections.includes(rootSection)) {
       // Start with the section name as L1

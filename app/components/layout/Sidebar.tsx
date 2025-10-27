@@ -42,9 +42,9 @@ const navItems: NavItem[] = [
     isDynamic: true,
   },
   {
-    id: 'magic-tools',
-    label: 'AI Magic Tools',
-    href: '/student/magic-tools',
+    id: 'insight-tools',
+    label: 'Insight Tools',
+    href: '/student/insight-tools',
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
         <path d="M8 2l2 4 4 1-3 3 1 4-4-2-4 2 1-4-3-3 4-1 2-4z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>

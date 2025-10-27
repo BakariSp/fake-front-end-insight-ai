@@ -46,6 +46,128 @@
   margin-bottom: 2rem;
 }
 
+/* My Favorite Section - Horizontal Layout */
+.favoriteSection {
+  margin-bottom: 3rem;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.sectionTitleWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.starIcon {
+  font-size: 1.5rem;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.favoriteCount {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 8px;
+  background: #4F46E5;
+  color: white;
+  border-radius: 14px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.viewAllBtn {
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: none;
+  color: #4F46E5;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.viewAllBtn:hover {
+  color: #3730A3;
+  transform: translateX(4px);
+}
+
+.favoriteGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.25rem;
+}
+
+.favoriteCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  transition: all 0.3s;
+  border: 2px solid #F3F4F6;
+  background: white;
+}
+
+.favoriteCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border-color: #E5E7EB;
+}
+
+.favoriteIconWrapper {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.favoriteIcon {
+  font-size: 1.75rem;
+}
+
+.favoriteContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.favoriteTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 0.25rem 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.favoriteTitleZh {
+  font-size: 0.813rem;
+  color: #6B7280;
+  margin: 0 0 0.5rem 0;
+}
+
+.favoriteUsage {
+  font-size: 0.75rem;
+  color: #9CA3AF;
+  font-weight: 500;
+}
+
 /* Filter Section */
 .filterSection {
   margin-bottom: 2rem;
@@ -225,6 +347,14 @@
 
   .title {
     font-size: 1.5rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.25rem;
+  }
+
+  .favoriteGrid {
+    grid-template-columns: 1fr;
   }
 
   .toolsGrid {

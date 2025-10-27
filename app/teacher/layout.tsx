@@ -32,7 +32,7 @@ export default function TeacherLayout({ children }: { children: React.ReactNode 
           <path d="M10 2l2 6 6 1-5 4 2 6-5-3-5 3 2-6-5-4 6-1 2-6z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
         </svg>
       ),
-      href: '/teacher/magic-tools',
+      href: '/teacher/insight-tools',
     },
     {
       id: 'class',

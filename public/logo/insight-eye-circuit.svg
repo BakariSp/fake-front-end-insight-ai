@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2E5BFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF4757;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="grad3b">
+      <stop offset="0%" style="stop-color:#FFD93D;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF4757;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+  
+  <!-- 箭头向右（>） -->
+  <path d="M 50 50 L 120 100 L 50 150 L 70 150 L 130 100 L 70 50 Z" fill="url(#grad3)"/>
+  
+  <!-- 箭头向左（<） -->
+  <path d="M 150 50 L 80 100 L 150 150 L 130 150 L 70 100 L 130 50 Z" fill="url(#grad3b)" opacity="0.7"/>
+</svg>

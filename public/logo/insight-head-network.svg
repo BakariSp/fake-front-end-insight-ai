@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2E5BFF;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FF4757;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFD93D;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 神经网络节点连接 -->
+  <circle cx="100" cy="60" r="15" fill="url(#grad4)"/>
+  <circle cx="60" cy="100" r="15" fill="url(#grad4)"/>
+  <circle cx="140" cy="100" r="15" fill="url(#grad4)"/>
+  <circle cx="80" cy="140" r="15" fill="url(#grad4)"/>
+  <circle cx="120" cy="140" r="15" fill="url(#grad4)"/>
+  
+  <!-- 连接线 -->
+  <line x1="100" y1="60" x2="60" y2="100" stroke="url(#grad4)" stroke-width="3" opacity="0.6"/>
+  <line x1="100" y1="60" x2="140" y2="100" stroke="url(#grad4)" stroke-width="3" opacity="0.6"/>
+  <line x1="60" y1="100" x2="80" y2="140" stroke="url(#grad4)" stroke-width="3" opacity="0.6"/>
+  <line x1="140" y1="100" x2="120" y2="140" stroke="url(#grad4)" stroke-width="3" opacity="0.6"/>
+  <line x1="60" y1="100" x2="140" y2="100" stroke="url(#grad4)" stroke-width="3" opacity="0.4"/>
+</svg>

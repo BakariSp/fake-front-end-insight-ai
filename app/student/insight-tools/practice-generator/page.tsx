@@ -430,7 +430,7 @@ export default function PracticeGeneratorPage() {
               </Button>
               <Button
                 variant="primary"
-                onClick={() => router.push('/student/magic-tools/ai-tutor')}
+                onClick={() => router.push('/student/insight-tools/ai-tutor')}
               >
                 Get AI Help 获取AI帮助
               </Button>

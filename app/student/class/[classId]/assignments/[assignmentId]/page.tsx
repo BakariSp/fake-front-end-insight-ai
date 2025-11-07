@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation';
 import MainLayout from '@layout/MainLayout';
 import { Card, Button, Badge, Progress } from '@ui';
 import { mockAssignments, mockClasses } from '@data/mockData';
+import OnlineQuizView from './OnlineQuizView';
 import styles from './assignmentDetail.module.css';
 
 const AssignmentDetailPage = () => {
@@ -60,8 +61,14 @@ const AssignmentDetailPage = () => {
   const daysLeft = getDaysUntilDue();
   const isUrgent = daysLeft <= 2 && assignment.status === 'unsent';
 
-  // Render based on status
+  // Render based on type and status
   const renderContent = () => {
+    // For online quiz type, show the quiz interface
+    if (assignment.type === 'online_quiz' && assignment.status === 'unsent') {
+      return <OnlineQuizView assignment={assignment} isUrgent={isUrgent} daysLeft={daysLeft} />;
+    }
+
+    // For other types, render based on status
     switch (assignment.status) {
       case 'unsent':
         return <UnsentView assignment={assignment} selectedFiles={selectedFiles} onFileSelect={handleFileSelect} onRemoveFile={handleRemoveFile} onSubmit={handleSubmit} isUrgent={isUrgent} daysLeft={daysLeft} />;
@@ -145,6 +152,51 @@ const AssignmentDetailPage = () => {
 
 // Component for unsent assignments (C11a)
 const UnsentView = ({ assignment, selectedFiles, onFileSelect, onRemoveFile, onSubmit, isUrgent, daysLeft }: any) => {
+  // For text-only assignments
+  if (assignment.type === 'text') {
+    return (
+      <div className={styles.contentGrid}>
+        <div className={styles.mainContent}>
+          <Card className={styles.instructionsCard}>
+            <div className={styles.cardHeader}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className={styles.cardIcon}>
+                <rect x="4" y="4" width="16" height="16" rx="2" stroke="var(--primary-blue)" strokeWidth="2"/>
+                <path d="M8 8h8M8 12h8M8 16h5" stroke="var(--primary-blue)" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+              <h2 className={styles.cardTitle}>Assignment Instructions</h2>
+            </div>
+            <div className={styles.instructions}>
+              <div className={styles.instructionText} style={{ whiteSpace: 'pre-wrap' }}>
+                {assignment.description}
+              </div>
+            </div>
+          </Card>
+          {assignment.attachments && assignment.attachments.length > 0 && (
+            <Card className={styles.attachmentsCard}>
+              <h3 className={styles.attachmentsTitle}>Teacher Provided Materials</h3>
+              <div className={styles.attachmentsList}>
+                {assignment.attachments.map((file, index) => (
+                  <div key={index} className={styles.attachmentItem}>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M6 2v4M6 14v4" stroke="var(--primary-blue)" strokeWidth="1.5"/>
+                      <rect x="4" y="2" width="12" height="16" rx="1" stroke="var(--primary-blue)" strokeWidth="1.5"/>
+                    </svg>
+                    <span>{file}</span>
+                  </div>
+                ))}
+              </div>
+            </Card>
+          )}
+        </div>
+        <div className={styles.sidebarContent}>
+          <DeadlineCard assignment={assignment} isUrgent={isUrgent} daysLeft={daysLeft} />
+          <TipsCard />
+        </div>
+      </div>
+    );
+  }
+
+  // For file upload assignments
   return (
     <div className={styles.contentGrid}>
       <div className={styles.mainContent}>
@@ -157,14 +209,30 @@ const UnsentView = ({ assignment, selectedFiles, onFileSelect, onRemoveFile, onS
             <h2 className={styles.cardTitle}>Assignment Instructions</h2>
           </div>
           <div className={styles.instructions}>
-            <p className={styles.instructionText}>Complete the following exercises from Chapter 1:</p>
-            <ul className={styles.instructionList}>
-              <li>Review function definitions and properties</li>
-              <li>Solve problems 1-15 from the textbook</li>
-              <li>Show all work and explain your reasoning</li>
-            </ul>
+            <div className={styles.instructionText} style={{ whiteSpace: 'pre-wrap' }}>
+              {assignment.description || 'No description provided.'}
+            </div>
           </div>
         </Card>
+
+        {/* Teacher Attachments */}
+        {assignment.attachments && assignment.attachments.length > 0 && (
+          <Card className={styles.attachmentsCard}>
+            <h3 className={styles.attachmentsTitle}>Teacher Provided Materials</h3>
+            <div className={styles.attachmentsList}>
+              {assignment.attachments.map((file, index) => (
+                <div key={index} className={styles.attachmentItem}>
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M6 2v4M6 14v4" stroke="var(--primary-blue)" strokeWidth="1.5"/>
+                    <rect x="4" y="2" width="12" height="16" rx="1" stroke="var(--primary-blue)" strokeWidth="1.5"/>
+                  </svg>
+                  <span>{file}</span>
+                  <Button variant="ghost" size="small">Download</Button>
+                </div>
+              ))}
+            </div>
+          </Card>
+        )}
 
         {/* File Upload Card */}
         <Card className={styles.uploadCard}>
@@ -261,43 +329,52 @@ const UnsentView = ({ assignment, selectedFiles, onFileSelect, onRemoveFile, onS
 
       {/* Sidebar Info */}
       <div className={styles.sidebarContent}>
-        <Card className={styles.deadlineCard}>
-          <div className={styles.deadlineHeader}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <circle cx="12" cy="12" r="10" stroke={isUrgent ? 'var(--error-red)' : 'var(--primary-blue)'} strokeWidth="2"/>
-              <path d="M12 6v6l4 2" stroke={isUrgent ? 'var(--error-red)' : 'var(--primary-blue)'} strokeWidth="2" strokeLinecap="round"/>
-            </svg>
-            <h3 className={styles.deadlineTitle}>Deadline</h3>
-          </div>
-          <div className={styles.deadlineContent}>
-            <p className={styles.deadlineDate}>{assignment.dueDate}</p>
-            <p className={styles.deadlineTime}>23:59 PM</p>
-            {daysLeft >= 0 && (
-              <div className={isUrgent ? styles.timeLeftUrgent : styles.timeLeftNormal}>
-                {daysLeft === 0 ? '⏰ Due Today!' : daysLeft === 1 ? '📅 Due Tomorrow' : `📆 ${daysLeft} days remaining`}
-              </div>
-            )}
-          </div>
-        </Card>
-
-        <Card className={styles.tipsCard}>
-          <div className={styles.tipsHeader}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M12 15v-3m0-3h.01M5.07 19.27A10 10 0 1119.27 5.07 10 10 0 015.07 19.27z" stroke="var(--purple)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            <h3 className={styles.tipsTitle}>Submission Tips</h3>
-          </div>
-          <ul className={styles.tipsList}>
-            <li>✓ Check all requirements before submitting</li>
-            <li>✓ Include your name and class information</li>
-            <li>✓ Ensure files are readable and well-organized</li>
-            <li>✓ Double-check file formats are accepted</li>
-          </ul>
-        </Card>
+        <DeadlineCard assignment={assignment} isUrgent={isUrgent} daysLeft={daysLeft} />
+        <TipsCard />
       </div>
     </div>
   );
 };
+
+// Deadline Card Component
+const DeadlineCard = ({ assignment, isUrgent, daysLeft }: any) => (
+  <Card className={styles.deadlineCard}>
+    <div className={styles.deadlineHeader}>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="10" stroke={isUrgent ? 'var(--error-red)' : 'var(--primary-blue)'} strokeWidth="2"/>
+        <path d="M12 6v6l4 2" stroke={isUrgent ? 'var(--error-red)' : 'var(--primary-blue)'} strokeWidth="2" strokeLinecap="round"/>
+      </svg>
+      <h3 className={styles.deadlineTitle}>Deadline</h3>
+    </div>
+    <div className={styles.deadlineContent}>
+      <p className={styles.deadlineDate}>{assignment.dueDate}</p>
+      <p className={styles.deadlineTime}>23:59 PM</p>
+      {daysLeft >= 0 && (
+        <div className={isUrgent ? styles.timeLeftUrgent : styles.timeLeftNormal}>
+          {daysLeft === 0 ? '⏰ Due Today!' : daysLeft === 1 ? '📅 Due Tomorrow' : `📆 ${daysLeft} days remaining`}
+        </div>
+      )}
+    </div>
+  </Card>
+);
+
+// Tips Card Component
+const TipsCard = () => (
+  <Card className={styles.tipsCard}>
+    <div className={styles.tipsHeader}>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M12 15v-3m0-3h.01M5.07 19.27A10 10 0 1119.27 5.07 10 10 0 015.07 19.27z" stroke="var(--purple)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+      <h3 className={styles.tipsTitle}>Submission Tips</h3>
+    </div>
+    <ul className={styles.tipsList}>
+      <li>✓ Check all requirements before submitting</li>
+      <li>✓ Include your name and class information</li>
+      <li>✓ Ensure files are readable and well-organized</li>
+      <li>✓ Double-check file formats are accepted</li>
+    </ul>
+  </Card>
+);
 
 // Component for sent assignments (C11b)
 const SentView = ({ assignment, onWithdraw }: any) => {

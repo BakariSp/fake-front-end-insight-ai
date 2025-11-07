@@ -1,5 +1,18 @@
 // Mock data for student platform
 
+// Question types for online quizzes
+export interface QuizQuestion {
+  id: string;
+  type: 'single_choice' | 'multiple_choice' | 'open_ended' | 'voice' | 'video';
+  question: string;
+  points: number;
+  options?: string[]; // For choice questions
+  correctAnswer?: string | string[]; // For auto-grading
+  explanation?: string;
+  imageUrl?: string;
+  audioUrl?: string;
+}
+
 export interface Assignment {
   id: string;
   title: string;
@@ -10,6 +23,12 @@ export interface Assignment {
   aiScore?: number;
   teacherFeedback?: string;
   classId: string;
+  type: 'text' | 'file_upload' | 'online_quiz'; // Assignment type
+  description?: string; // Assignment instructions
+  attachments?: string[]; // Teacher provided files
+  questions?: QuizQuestion[]; // For online_quiz type
+  totalPoints?: number; // Total points for quiz
+  duration?: number; // Time limit in minutes
 }
 
 export interface Class {
@@ -84,38 +103,106 @@ export const mockClasses: Class[] = [
     subject: 'Chemistry',
     progress: 'Microscopic World III',
   },
+  {
+    id: '806',
+    name: 'Liberal Studies (通識教育)',
+    teacher: 'Mr. Ho Chi Fai',
+    subject: 'Liberal Studies',
+    progress: 'Theme 1: Personal Development and Interpersonal Relationships',
+    nextClass: '2025-10-24 14:00',
+  },
 ];
 
-// Assignments data - HKDSE aligned
+// Assignments data - HKDSE aligned with various types
 export const mockAssignments: Assignment[] = [
+  // ONLINE QUIZ - Single/Multiple Choice
   {
     id: 'A20251012_001',
-    title: 'Quadratic Functions Worksheet',
+    title: 'Quadratic Functions Quiz',
     subject: 'Mathematics',
     dueDate: '2025-10-25',
     status: 'unsent',
     classId: '801',
+    type: 'online_quiz',
+    description: 'Complete the following quiz about quadratic functions. You have 30 minutes to complete all 10 questions.',
+    totalPoints: 50,
+    duration: 30,
+    questions: [
+      {
+        id: 'Q001',
+        type: 'single_choice',
+        question: '15 + 3 = ?',
+        points: 5,
+        options: ['12', '18', '13', '16'],
+        correctAnswer: '18',
+        explanation: '15加3等于18。',
+      },
+      {
+        id: 'Q002',
+        type: 'single_choice',
+        question: 'What is the vertex form of a quadratic function?',
+        points: 5,
+        options: [
+          'y = ax² + bx + c',
+          'y = a(x - h)² + k',
+          'y = a(x + h)² - k',
+          'y = (x - h)(x - k)'
+        ],
+        correctAnswer: 'y = a(x - h)² + k',
+        explanation: 'The vertex form is y = a(x - h)² + k, where (h, k) is the vertex.',
+      },
+      {
+        id: 'Q003',
+        type: 'multiple_choice',
+        question: 'Which of the following are properties of quadratic functions? (Select all that apply)',
+        points: 10,
+        options: [
+          'They have a parabolic shape',
+          'They have exactly one turning point',
+          'They are always increasing',
+          'The graph is symmetric about a vertical line'
+        ],
+        correctAnswer: ['They have a parabolic shape', 'They have exactly one turning point', 'The graph is symmetric about a vertical line'],
+        explanation: 'Quadratic functions have a parabolic shape, one turning point (vertex), and are symmetric about a vertical line through the vertex. They are not always increasing.',
+      },
+      {
+        id: 'Q004',
+        type: 'single_choice',
+        question: 'If a > 0 in y = ax² + bx + c, the parabola opens:',
+        points: 5,
+        options: ['Upward', 'Downward', 'To the right', 'To the left'],
+        correctAnswer: 'Upward',
+        explanation: 'When a > 0, the parabola opens upward.',
+      },
+      {
+        id: 'Q005',
+        type: 'open_ended',
+        question: 'Convert y = 2x² + 8x + 5 to vertex form. Show your work using the completing the square method.',
+        points: 15,
+        explanation: 'y = 2(x² + 4x) + 5 = 2(x² + 4x + 4 - 4) + 5 = 2(x + 2)² - 8 + 5 = 2(x + 2)² - 3',
+      },
+      {
+        id: 'Q006',
+        type: 'single_choice',
+        question: 'What is the axis of symmetry for y = (x - 3)² + 4?',
+        points: 5,
+        options: ['x = -3', 'x = 3', 'x = 4', 'x = -4'],
+        correctAnswer: 'x = 3',
+        explanation: 'In vertex form y = a(x - h)² + k, the axis of symmetry is x = h. Here h = 3.',
+      },
+      {
+        id: 'Q007',
+        type: 'single_choice',
+        question: 'The minimum value of y = 2(x - 1)² + 3 is:',
+        points: 5,
+        options: ['1', '2', '3', '-3'],
+        correctAnswer: '3',
+        explanation: 'Since a = 2 > 0, the parabola opens upward and has a minimum at the vertex (1, 3). The minimum value is k = 3.',
+      },
+    ],
   },
-  {
-    id: 'A20251012_002',
-    title: 'More about Quadratic Functions',
-    subject: 'Mathematics',
-    dueDate: '2025-10-28',
-    status: 'sent',
-    submitTime: '2025-10-20 14:30',
-    classId: '801',
-  },
-  {
-    id: 'A20251010_003',
-    title: 'Paper 1 Part B2 - Reading Passage Analysis',
-    subject: 'English',
-    dueDate: '2025-10-22',
-    status: 'graded',
-    submitTime: '2025-10-18 20:43',
-    aiScore: 82,
-    teacherFeedback: 'Good understanding of the text. Try to elaborate more on your arguments.',
-    classId: '802',
-  },
+  
+  // FILE UPLOAD - Lab Report
   {
     id: 'A20251015_004',
     title: 'Heat and Internal Energy - Lab Report',
@@ -126,7 +213,28 @@ export const mockAssignments: Assignment[] = [
     aiScore: 78,
     teacherFeedback: 'Experimental procedure is clear. Analysis needs improvement.',
     classId: '803',
+    type: 'file_upload',
+    description: 'Submit your complete lab report including: experimental setup, procedure, data collection, analysis, and conclusion. Include all graphs and calculations.',
+    attachments: ['Lab_Guidelines.pdf', 'Data_Template.xlsx'],
   },
+  
+  // TEXT TYPE - Reading Analysis
+  {
+    id: 'A20251010_003',
+    title: 'Paper 1 Part B2 - Reading Passage Analysis',
+    subject: 'English',
+    dueDate: '2025-10-22',
+    status: 'graded',
+    submitTime: '2025-10-18 20:43',
+    aiScore: 82,
+    teacherFeedback: 'Good understanding of the text. Try to elaborate more on your arguments.',
+    classId: '802',
+    type: 'file_upload',
+    description: 'Read the provided passage and answer questions 1-6. Write your responses in complete sentences and support your answers with evidence from the text.',
+    attachments: ['Reading_Passage.pdf'],
+  },
+  
+  // TEXT TYPE - Essay Writing
   {
     id: 'A20251008_005',
     title: 'Paper 2 Writing Task 8 - Article Writing',
@@ -137,7 +245,80 @@ export const mockAssignments: Assignment[] = [
     aiScore: 88,
     teacherFeedback: 'Well-structured article with good vocabulary. Keep it up!',
     classId: '802',
+    type: 'file_upload',
+    description: 'Write an article (400-500 words) about "The Impact of Social Media on Teenagers". Include an engaging introduction, well-developed body paragraphs, and a strong conclusion.',
   },
+  
+  // ONLINE QUIZ with VOICE question
+  {
+    id: 'A20251023_008',
+    title: 'English Oral Practice - Part A Individual Response',
+    subject: 'English',
+    dueDate: '2025-11-05',
+    status: 'unsent',
+    classId: '802',
+    type: 'online_quiz',
+    description: 'Practice for DSE Paper 4 Speaking. Record your responses to the prompts. Speak clearly and aim for 1 minute per response.',
+    totalPoints: 20,
+    duration: 10,
+    questions: [
+      {
+        id: 'Q101',
+        type: 'voice',
+        question: 'Describe a memorable experience from your school life. Explain why it was significant to you.',
+        points: 10,
+        explanation: 'Speak for about 1 minute. Include specific details and personal reflections.',
+      },
+      {
+        id: 'Q102',
+        type: 'voice',
+        question: 'Do you think students should have part-time jobs? Why or why not?',
+        points: 10,
+        explanation: 'Give your opinion with at least 2 supporting reasons.',
+      },
+    ],
+  },
+  
+  // ONLINE QUIZ - Mixed types
+  {
+    id: 'A20251012_002',
+    title: 'Functions and Graphs - Concept Check',
+    subject: 'Mathematics',
+    dueDate: '2025-10-28',
+    status: 'sent',
+    submitTime: '2025-10-20 14:30',
+    classId: '801',
+    type: 'online_quiz',
+    description: 'Quick quiz to check your understanding of functions and graphs.',
+    totalPoints: 30,
+    duration: 20,
+    questions: [
+      {
+        id: 'Q201',
+        type: 'single_choice',
+        question: 'Which of the following is NOT a function?',
+        points: 5,
+        options: ['y = x²', 'x = y²', 'y = 2x + 1', 'y = |x|'],
+        correctAnswer: 'x = y²',
+      },
+      {
+        id: 'Q202',
+        type: 'multiple_choice',
+        question: 'Select all the even functions:',
+        points: 10,
+        options: ['y = x²', 'y = x³', 'y = |x|', 'y = cos(x)'],
+        correctAnswer: ['y = x²', 'y = |x|', 'y = cos(x)'],
+      },
+      {
+        id: 'Q203',
+        type: 'open_ended',
+        question: 'Explain in your own words what the vertical line test tells us about whether a graph represents a function.',
+        points: 15,
+      },
+    ],
+  },
+  
+  // TEXT TYPE with attachments
   {
     id: 'A20251016_006',
     title: '文言文閱讀理解練習',
@@ -145,7 +326,12 @@ export const mockAssignments: Assignment[] = [
     dueDate: '2025-10-26',
     status: 'unsent',
     classId: '804',
+    type: 'file_upload',
+    description: '閱讀所提供的文言文篇章，完成理解問題1-8題。需要解釋重點字詞及分析文章主旨。',
+    attachments: ['文言文篇章.pdf', '詞彙表.pdf'],
   },
+  
+  // FILE UPLOAD - Chemistry
   {
     id: 'A20251018_007',
     title: 'Redox Reactions Practice Questions',
@@ -154,6 +340,286 @@ export const mockAssignments: Assignment[] = [
     status: 'sent',
     submitTime: '2025-10-21 18:15',
     classId: '805',
+    type: 'file_upload',
+    description: 'Complete questions 1-20 from the textbook. Show all working including half-equations and electron transfer.',
+    attachments: ['Question_Sheet.pdf'],
+  },
+  
+  // ONLINE QUIZ with VIDEO response
+  {
+    id: 'A20251024_009',
+    title: 'Physics Experiment Demonstration',
+    subject: 'Physics',
+    dueDate: '2025-11-10',
+    status: 'unsent',
+    classId: '803',
+    type: 'online_quiz',
+    description: 'Record a video demonstrating and explaining a simple physics experiment at home.',
+    totalPoints: 30,
+    duration: 60,
+    questions: [
+      {
+        id: 'Q301',
+        type: 'video',
+        question: 'Demonstrate an experiment showing the principle of energy conservation. Explain the physics behind your demonstration.',
+        points: 30,
+        explanation: 'Your video should be 3-5 minutes long. Include: setup, demonstration, explanation of the physics principles, and conclusion.',
+      },
+    ],
+  },
+  
+  // TEXT TYPE - Simple instruction
+  {
+    id: 'A20251025_010',
+    title: 'Weekly Math Practice Set 3',
+    subject: 'Mathematics',
+    dueDate: '2025-11-02',
+    status: 'unsent',
+    classId: '801',
+    type: 'text',
+    description: 'Complete exercises 1-15 from Chapter 3 of your textbook. Focus on:\n• Solving quadratic equations by factorization\n• Using the quadratic formula\n• Finding the discriminant\n• Solving word problems\n\nShow all your working clearly.',
+  },
+
+  // ==================== LIBERAL STUDIES ASSIGNMENTS ====================
+  // Covers ALL assignment types for comprehensive testing
+
+  // 1. ONLINE QUIZ with all question types
+  {
+    id: 'LS_QUIZ_001',
+    title: 'Comprehensive Skills Assessment',
+    subject: 'Liberal Studies',
+    dueDate: '2025-11-08',
+    status: 'unsent',
+    classId: '806',
+    type: 'online_quiz',
+    description: 'This comprehensive quiz tests various skills including critical thinking, oral communication, and analytical writing. Complete all sections carefully.',
+    totalPoints: 100,
+    duration: 45,
+    questions: [
+      {
+        id: 'LSQ1',
+        type: 'single_choice',
+        question: 'Which of the following best describes sustainable development?',
+        points: 10,
+        options: [
+          'Economic growth at any cost',
+          'Meeting present needs without compromising future generations',
+          'Focusing only on environmental protection',
+          'Maximizing short-term profits'
+        ],
+        correctAnswer: 'Meeting present needs without compromising future generations',
+        explanation: 'Sustainable development balances economic, social, and environmental needs for current and future generations.',
+      },
+      {
+        id: 'LSQ2',
+        type: 'multiple_choice',
+        question: 'Select all factors that contribute to Hong Kong\'s aging population:',
+        points: 15,
+        options: [
+          'Declining birth rate',
+          'Improved healthcare',
+          'Increased life expectancy',
+          'Economic recession',
+          'Better education system'
+        ],
+        correctAnswer: ['Declining birth rate', 'Improved healthcare', 'Increased life expectancy'],
+        explanation: 'Aging population is primarily driven by lower birth rates and longer life expectancy due to better healthcare.',
+      },
+      {
+        id: 'LSQ3',
+        type: 'open_ended',
+        question: 'Analyze the impact of social media on teenagers\' mental health. Discuss both positive and negative effects, and suggest ways to promote healthy social media use. (250-300 words)',
+        points: 30,
+        explanation: 'Look for balanced analysis covering: cyberbullying, FOMO, body image issues, but also community building and support networks. Practical suggestions should be included.',
+      },
+      {
+        id: 'LSQ4',
+        type: 'voice',
+        question: 'Present your views on whether Hong Kong should implement a universal retirement protection scheme. Speak for 2-3 minutes, covering economic feasibility, social benefits, and potential challenges.',
+        points: 25,
+        explanation: 'Assessment criteria: clarity of expression, logical structure, depth of analysis, and use of evidence.',
+      },
+      {
+        id: 'LSQ5',
+        type: 'single_choice',
+        question: 'What is the primary cause of wealth inequality in modern societies?',
+        points: 10,
+        options: [
+          'Lack of education opportunities',
+          'Unequal distribution of resources and opportunities',
+          'Individual laziness',
+          'Government overspending'
+        ],
+        correctAnswer: 'Unequal distribution of resources and opportunities',
+      },
+      {
+        id: 'LSQ6',
+        type: 'open_ended',
+        question: 'Explain how climate change affects global food security. Use specific examples and data to support your answer.',
+        points: 10,
+        explanation: 'Should include: extreme weather impacts on crops, changing agricultural zones, water scarcity, and specific case studies.',
+      },
+    ],
+  },
+
+  // 2. FILE UPLOAD - Research Report
+  {
+    id: 'LS_FILE_001',
+    title: 'Independent Enquiry Study (IES) - Draft Submission',
+    subject: 'Liberal Studies',
+    dueDate: '2025-11-15',
+    status: 'unsent',
+    classId: '806',
+    type: 'file_upload',
+    description: 'Submit your IES draft including:\n\n1. Title and research question (clear and focused)\n2. Background and rationale (why this topic matters)\n3. Research methodology (surveys, interviews, data analysis)\n4. Preliminary findings (charts, tables, analysis)\n5. Bibliography (at least 5 credible sources)\n\nFormat: PDF document, 3000-4000 words\nInclude all appendices (survey forms, interview transcripts, raw data)',
+    attachments: ['IES_Guidelines_2025.pdf', 'IES_Template.docx', 'Sample_IES_Report.pdf'],
+  },
+
+  // 3. FILE UPLOAD - Essay with attachments
+  {
+    id: 'LS_FILE_002',
+    title: 'Extended Response - Hong Kong Identity',
+    subject: 'Liberal Studies',
+    dueDate: '2025-11-20',
+    status: 'unsent',
+    classId: '806',
+    type: 'file_upload',
+    description: 'Write an essay (800-1000 words) on:\n\n"To what extent do young people in Hong Kong identify with Chinese culture?"\n\nYour essay should:\n• Include an introduction with a clear thesis statement\n• Present multiple perspectives and evidence\n• Analyze causes and implications\n• Provide a balanced conclusion\n\nUse the provided reading materials and add at least 3 additional sources.',
+    attachments: ['Reading_Package_Identity.pdf', 'Survey_Data_2024.xlsx'],
+  },
+
+  // 4. TEXT TYPE - Reading assignment
+  {
+    id: 'LS_TEXT_001',
+    title: 'Current Affairs Analysis - Weekly Reading',
+    subject: 'Liberal Studies',
+    dueDate: '2025-10-30',
+    status: 'unsent',
+    classId: '806',
+    type: 'text',
+    description: 'This week\'s focus: Environmental Protection and Sustainable Development\n\nTasks:\n1. Read the three newspaper articles provided on Google Classroom\n2. Watch the documentary "Our Planet" Episode 3 (45 mins)\n3. Complete the reflection questions in your workbook (pages 23-25)\n4. Prepare to discuss in next class:\n   • What are the main environmental challenges facing Hong Kong?\n   • How can individuals contribute to sustainability?\n   • What policies should the government implement?\n\nNo submission required - but be ready for class discussion and quiz!',
+  },
+
+  // 5. VIDEO RESPONSE - Presentation
+  {
+    id: 'LS_VIDEO_001',
+    title: 'Video Presentation - Social Issue Analysis',
+    subject: 'Liberal Studies',
+    dueDate: '2025-11-25',
+    status: 'unsent',
+    classId: '806',
+    type: 'online_quiz',
+    description: 'Create a 5-minute video presentation analyzing a current social issue in Hong Kong.',
+    totalPoints: 50,
+    duration: 60,
+    questions: [
+      {
+        id: 'LSVID1',
+        type: 'video',
+        question: 'Record a 4-6 minute video presentation on ONE of the following topics:\n\n1. Housing affordability crisis in Hong Kong\n2. Mental health challenges among students\n3. Digital divide and educational inequality\n4. Youth unemployment and career prospects\n\nYour presentation should include:\n• Clear problem statement and context\n• Analysis of causes and stakeholders\n• Impact on different groups in society\n• At least 2 proposed solutions with justification\n• Visual aids (PowerPoint slides, charts, or images)\n\nAssessment Criteria:\n- Content and Analysis (20 points)\n- Structure and Clarity (10 points)\n- Use of Evidence (10 points)\n- Presentation Skills (10 points)',
+        points: 50,
+        explanation: 'Your video will be assessed on content depth, logical structure, evidence-based arguments, and presentation delivery.',
+      },
+    ],
+  },
+
+  // 6. ORAL PRACTICE - Voice recording
+  {
+    id: 'LS_VOICE_001',
+    title: 'Oral Practice - Debate Preparation',
+    subject: 'Liberal Studies',
+    dueDate: '2025-11-12',
+    status: 'unsent',
+    classId: '806',
+    type: 'online_quiz',
+    description: 'Prepare for the in-class debate by recording your opening statement.',
+    totalPoints: 30,
+    duration: 15,
+    questions: [
+      {
+        id: 'LSVOICE1',
+        type: 'voice',
+        question: 'Motion: "Hong Kong should implement a four-day work week"\n\nRecord your opening statement (2-3 minutes) either FOR or AGAINST the motion.\n\nInclude:\n• Clear stance and position\n• 3 main arguments with explanations\n• Evidence or examples to support each point\n• Anticipate and address opposing views\n• Strong conclusion\n\nTips:\n- Speak clearly and at a steady pace\n- Use persuasive language\n- Show passion but remain logical\n- Time yourself before recording',
+        points: 30,
+        explanation: 'Your recording will help you prepare for the actual debate and allows me to give you feedback on your arguments and presentation.',
+      },
+    ],
+  },
+
+  // 7. MIXED QUIZ - All question types
+  {
+    id: 'LS_MIXED_001',
+    title: 'Mid-term Assessment - All Skills',
+    subject: 'Liberal Studies',
+    dueDate: '2025-11-18',
+    status: 'unsent',
+    classId: '806',
+    type: 'online_quiz',
+    description: 'Comprehensive mid-term assessment covering multiple skills and content areas.',
+    totalPoints: 80,
+    duration: 60,
+    questions: [
+      {
+        id: 'LSMIX1',
+        type: 'single_choice',
+        question: 'Which international organization is primarily responsible for global health issues?',
+        points: 5,
+        options: ['UNESCO', 'WHO', 'UNICEF', 'WTO'],
+        correctAnswer: 'WHO',
+      },
+      {
+        id: 'LSMIX2',
+        type: 'multiple_choice',
+        question: 'Select all that are renewable energy sources:',
+        points: 10,
+        options: ['Solar power', 'Natural gas', 'Wind energy', 'Coal', 'Hydroelectric power'],
+        correctAnswer: ['Solar power', 'Wind energy', 'Hydroelectric power'],
+      },
+      {
+        id: 'LSMIX3',
+        type: 'open_ended',
+        question: 'Using the data in the chart provided, analyze the trend in Hong Kong\'s waste generation over the past decade. What are the implications and what solutions would you propose? (Include photos of your analysis with graphs and calculations)',
+        points: 25,
+        explanation: 'Students can type their analysis and upload photos of hand-drawn graphs or calculations.',
+      },
+      {
+        id: 'LSMIX4',
+        type: 'voice',
+        question: 'Listen to the news clip about fake news on social media. Summarize the main points and explain why media literacy is important. (2 minutes)',
+        points: 20,
+      },
+      {
+        id: 'LSMIX5',
+        type: 'single_choice',
+        question: 'What does "One Country, Two Systems" refer to?',
+        points: 5,
+        options: [
+          'Hong Kong\'s economic system',
+          'The principle governing Hong Kong\'s relationship with Mainland China',
+          'Hong Kong\'s education system',
+          'The dual language policy'
+        ],
+        correctAnswer: 'The principle governing Hong Kong\'s relationship with Mainland China',
+      },
+      {
+        id: 'LSMIX6',
+        type: 'open_ended',
+        question: 'Evaluate the effectiveness of Hong Kong\'s public healthcare system. Consider accessibility, quality, and sustainability.',
+        points: 15,
+      },
+    ],
+  },
+
+  // 8. SIMPLE TEXT assignment
+  {
+    id: 'LS_TEXT_002',
+    title: 'Newspaper Clipping Collection',
+    subject: 'Liberal Studies',
+    dueDate: '2025-11-05',
+    status: 'unsent',
+    classId: '806',
+    type: 'text',
+    description: 'Current Affairs Portfolio Task:\n\nCollect 5 newspaper articles (print or online) related to different LS modules:\n• Module 1: Personal Development (1 article)\n• Module 2: Hong Kong Today (2 articles)\n• Module 3: Modern China (1 article)\n• Module 4: Globalization (1 article)\n\nFor each article:\n1. Paste/print and bring to class\n2. Write a 100-word summary\n3. Note down 3 keywords\n4. Think of 2 discussion questions\n\nWe will use these articles for group discussions next week.\n\nNo online submission - bring physical copies to class!',
   },
 ];
 
@@ -200,6 +666,14 @@ export const mockClassMembers: Record<string, ClassMember[]> = {
     { id: 'S002', name: 'Leung Ka Yan', role: 'student' },
     { id: 'S005', name: 'Cheng Hoi Ling', role: 'student' },
     { id: 'S010', name: 'Cheung Chun Hei', role: 'student' },
+  ],
+  '806': [
+    { id: 'T007', name: 'Mr. Ho Chi Fai', role: 'teacher', email: 'ho.cf@school.edu.hk' },
+    { id: 'S001', name: 'Chan Siu Ming', role: 'student' },
+    { id: 'S003', name: 'Wong Tsz Hin', role: 'student' },
+    { id: 'S004', name: 'Lam Wing Kei', role: 'student' },
+    { id: 'S006', name: 'Li Ka Wai', role: 'student' },
+    { id: 'S011', name: 'Fung Ching Yi', role: 'student' },
   ],
 };
 

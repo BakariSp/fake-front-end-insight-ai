@@ -28,6 +28,11 @@ export const classTranslations = {
       progress: 'Microscopic World III',
       subject: 'Chemistry',
     },
+    '806': {
+      name: 'Liberal Studies (通識教育)',
+      progress: 'Theme 1: Personal Development and Interpersonal Relationships',
+      subject: 'Liberal Studies',
+    },
   },
   zh: {
     '801': {
@@ -54,6 +59,11 @@ export const classTranslations = {
       name: '化学科（选修）',
       progress: '微观世界III',
       subject: '化学',
+    },
+    '806': {
+      name: '通识教育科',
+      progress: '单元一：个人成长与人际关系',
+      subject: '通识教育',
     },
   },
   'zh-TW': {
@@ -82,17 +92,18 @@ export const classTranslations = {
       progress: '微觀世界III',
       subject: '化學',
     },
+    '806': {
+      name: '通識教育科',
+      progress: '單元一：個人成長與人際關係',
+      subject: '通識教育',
+    },
   },
 };
 
 export const assignmentTranslations = {
   en: {
     'A20251012_001': {
-      title: 'Quadratic Functions Worksheet',
-      subject: 'Mathematics',
-    },
-    'A20251012_002': {
-      title: 'More about Quadratic Functions',
+      title: 'Quadratic Functions Quiz',
       subject: 'Mathematics',
     },
     'A20251010_003': {
@@ -118,14 +129,58 @@ export const assignmentTranslations = {
       title: 'Redox Reactions Practice Questions',
       subject: 'Chemistry',
     },
+    'A20251023_008': {
+      title: 'English Oral Practice - Part A Individual Response',
+      subject: 'English',
+    },
+    'A20251012_002': {
+      title: 'Functions and Graphs - Concept Check',
+      subject: 'Mathematics',
+    },
+    'A20251024_009': {
+      title: 'Physics Experiment Demonstration',
+      subject: 'Physics',
+    },
+    'A20251025_010': {
+      title: 'Weekly Math Practice Set 3',
+      subject: 'Mathematics',
+    },
+    'LS_QUIZ_001': {
+      title: 'Comprehensive Skills Assessment',
+      subject: 'Liberal Studies',
+    },
+    'LS_FILE_001': {
+      title: 'Independent Enquiry Study (IES) - Draft Submission',
+      subject: 'Liberal Studies',
+    },
+    'LS_FILE_002': {
+      title: 'Extended Response - Hong Kong Identity',
+      subject: 'Liberal Studies',
+    },
+    'LS_TEXT_001': {
+      title: 'Current Affairs Analysis - Weekly Reading',
+      subject: 'Liberal Studies',
+    },
+    'LS_VIDEO_001': {
+      title: 'Video Presentation - Social Issue Analysis',
+      subject: 'Liberal Studies',
+    },
+    'LS_VOICE_001': {
+      title: 'Oral Practice - Debate Preparation',
+      subject: 'Liberal Studies',
+    },
+    'LS_MIXED_001': {
+      title: 'Mid-term Assessment - All Skills',
+      subject: 'Liberal Studies',
+    },
+    'LS_TEXT_002': {
+      title: 'Newspaper Clipping Collection',
+      subject: 'Liberal Studies',
+    },
   },
   zh: {
     'A20251012_001': {
-      title: '二次函数工作纸',
-      subject: '数学',
-    },
-    'A20251012_002': {
-      title: '进阶二次函数练习',
+      title: '二次函数测验',
       subject: '数学',
     },
     'A20251010_003': {
@@ -151,14 +206,58 @@ export const assignmentTranslations = {
       title: '氧化还原反应练习题',
       subject: '化学',
     },
+    'A20251023_008': {
+      title: '英语口语练习 - 第A部分个人回答',
+      subject: '英文',
+    },
+    'A20251012_002': {
+      title: '函数与图像 - 概念检测',
+      subject: '数学',
+    },
+    'A20251024_009': {
+      title: '物理实验演示',
+      subject: '物理',
+    },
+    'A20251025_010': {
+      title: '每周数学练习集3',
+      subject: '数学',
+    },
+    'LS_QUIZ_001': {
+      title: '综合技能评估',
+      subject: '通识教育',
+    },
+    'LS_FILE_001': {
+      title: '独立专题探究（IES）- 草稿提交',
+      subject: '通识教育',
+    },
+    'LS_FILE_002': {
+      title: '延伸回应题 - 香港身份认同',
+      subject: '通识教育',
+    },
+    'LS_TEXT_001': {
+      title: '时事分析 - 每周阅读',
+      subject: '通识教育',
+    },
+    'LS_VIDEO_001': {
+      title: '视频演示 - 社会议题分析',
+      subject: '通识教育',
+    },
+    'LS_VOICE_001': {
+      title: '口语练习 - 辩论准备',
+      subject: '通识教育',
+    },
+    'LS_MIXED_001': {
+      title: '期中评估 - 全面技能',
+      subject: '通识教育',
+    },
+    'LS_TEXT_002': {
+      title: '报纸剪报收集',
+      subject: '通识教育',
+    },
   },
   'zh-TW': {
     'A20251012_001': {
-      title: '二次函數工作紙',
-      subject: '數學',
-    },
-    'A20251012_002': {
-      title: '進階二次函數練習',
+      title: '二次函數測驗',
       subject: '數學',
     },
     'A20251010_003': {
@@ -183,6 +282,54 @@ export const assignmentTranslations = {
     'A20251018_007': {
       title: '氧化還原反應練習題',
       subject: '化學',
+    },
+    'A20251023_008': {
+      title: '英語口語練習 - 第A部分個人回答',
+      subject: '英文',
+    },
+    'A20251012_002': {
+      title: '函數與圖像 - 概念檢測',
+      subject: '數學',
+    },
+    'A20251024_009': {
+      title: '物理實驗演示',
+      subject: '物理',
+    },
+    'A20251025_010': {
+      title: '每週數學練習集3',
+      subject: '數學',
+    },
+    'LS_QUIZ_001': {
+      title: '綜合技能評估',
+      subject: '通識教育',
+    },
+    'LS_FILE_001': {
+      title: '獨立專題探究（IES）- 草稿提交',
+      subject: '通識教育',
+    },
+    'LS_FILE_002': {
+      title: '延伸回應題 - 香港身份認同',
+      subject: '通識教育',
+    },
+    'LS_TEXT_001': {
+      title: '時事分析 - 每週閱讀',
+      subject: '通識教育',
+    },
+    'LS_VIDEO_001': {
+      title: '視頻演示 - 社會議題分析',
+      subject: '通識教育',
+    },
+    'LS_VOICE_001': {
+      title: '口語練習 - 辯論準備',
+      subject: '通識教育',
+    },
+    'LS_MIXED_001': {
+      title: '期中評估 - 全面技能',
+      subject: '通識教育',
+    },
+    'LS_TEXT_002': {
+      title: '報紙剪報收集',
+      subject: '通識教育',
     },
   },
 };

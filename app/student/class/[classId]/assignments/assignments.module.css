@@ -1,144 +1,151 @@
 /* Assignments Page Styles */
 
-/* Page Header */
+/* Page Header with Inline Stats */
 .pageHeader {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .headerContent {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
 }
 
-.headerText {
+.headerLeft {
   flex: 1;
 }
 
 .headerTitle {
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: 700;
   color: var(--gray-900);
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 0.75rem 0;
   line-height: 1.2;
-  background: linear-gradient(135deg, var(--gray-900), var(--gray-700));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
-.headerDescription {
-  font-size: 1rem;
-  color: var(--gray-600);
-  margin: 0;
-  line-height: 1.5;
-}
-
-.headerActions {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-/* Filter Section */
-.filterSection {
-  margin-bottom: 2rem;
-}
-
-.filterContent {
+/* Inline Stats Bar */
+.statsBar {
   display: flex;
   align-items: center;
   gap: 1rem;
-  flex-wrap: wrap;
+  padding: 0.75rem 0;
 }
 
-.searchWrapper {
-  flex: 1;
-  min-width: 280px;
+.statItem {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
 }
 
-/* Summary Cards */
-.summaryGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.summaryCard {
-  position: relative;
-  padding: 1.75rem;
-  background: linear-gradient(135deg, var(--gray-50) 0%, white 100%);
-  border: 1px solid var(--gray-200);
-  border-radius: 16px;
-  text-align: center;
-  transition: all 0.3s ease;
-  overflow: hidden;
-}
-
-.summaryCard::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--primary-blue), var(--accent-blue));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
-}
-
-.summaryCard:hover::before {
-  transform: scaleX(1);
-}
-
-.summaryCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-  border-color: var(--primary-blue);
-}
-
-.summaryCardValue {
-  font-size: 2.5rem;
+.statValue {
+  font-size: 1.5rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  color: var(--gray-900);
   line-height: 1;
-  background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
-.summaryCardValue.warning {
-  background: linear-gradient(135deg, var(--warning-orange), #F97316);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.statValue.warning {
+  color: var(--warning-orange);
 }
 
-.summaryCardValue.info {
-  background: linear-gradient(135deg, var(--primary-blue), #2563EB);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.statValue.info {
+  color: var(--primary-blue);
 }
 
-.summaryCardValue.success {
-  background: linear-gradient(135deg, var(--success-green), #059669);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.statValue.success {
+  color: var(--success-green);
 }
 
-.summaryCardLabel {
-  font-size: 0.875rem;
-  color: var(--gray-600);
+.statLabel {
+  font-size: 0.75rem;
+  color: var(--gray-500);
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
+
+.statDivider {
+  width: 1px;
+  height: 24px;
+  background: var(--gray-300);
+}
+
+/* Alert Banner */
+.alertBanner {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  border: 1px solid #F59E0B;
+  border-left: 4px solid #F59E0B;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.alertIcon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 10px;
+  color: #F59E0B;
+  box-shadow: 0 2px 4px rgba(245, 158, 11, 0.1);
+}
+
+.alertContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.alertTitle {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #92400E;
+  margin: 0 0 0.25rem 0;
+  line-height: 1.4;
+}
+
+.alertDescription {
+  font-size: 0.875rem;
+  color: #78350F;
+  margin: 0;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Filter Section - Compact */
+.filterSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid var(--gray-200);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
 
 /* Assignments Table Container */
 .tableContainer {
@@ -159,14 +166,34 @@
 .assignmentIcon {
   width: 48px;
   height: 48px;
-  background: linear-gradient(135deg, var(--primary-blue-light), rgba(59, 130, 246, 0.05));
+  background: var(--gray-50);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  border: 1px solid rgba(59, 130, 246, 0.1);
+  border: 1px solid var(--gray-200);
   transition: all 0.3s ease;
+  color: var(--gray-600);
+}
+
+/* Assignment type icon colors */
+.assignmentIcon.online_quiz {
+  background: linear-gradient(135deg, #EEF2FF, #E0E7FF);
+  border-color: rgba(99, 102, 241, 0.2);
+  color: #6366F1;
+}
+
+.assignmentIcon.file_upload {
+  background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+  border-color: rgba(245, 158, 11, 0.2);
+  color: #F59E0B;
+}
+
+.assignmentIcon.text {
+  background: linear-gradient(135deg, #DBEAFE, #BFDBFE);
+  border-color: rgba(59, 130, 246, 0.2);
+  color: #3B82F6;
 }
 
 .assignmentIcon svg {
@@ -174,13 +201,12 @@
 }
 
 .assignmentIcon:hover {
-  background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
-  border-color: var(--primary-blue);
   transform: scale(1.05);
+  border-width: 2px;
 }
 
 .assignmentIcon:hover svg {
-  transform: rotate(-5deg);
+  transform: scale(1.1);
 }
 
 .assignmentInfo {
@@ -191,7 +217,7 @@
 .assignmentTitle {
   font-weight: 600;
   color: var(--gray-900);
-  margin: 0 0 0.25rem 0;
+  margin: 0 0 0.375rem 0;
   font-size: 0.9375rem;
   line-height: 1.4;
   display: -webkit-box;
@@ -200,10 +226,26 @@
   overflow: hidden;
 }
 
-.assignmentSubject {
+.assignmentMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  flex-wrap: wrap;
+}
+
+.assignmentType {
   font-size: 0.75rem;
+  color: var(--gray-600);
+  font-weight: 500;
+  padding: 0.125rem 0.5rem;
+  background: var(--gray-100);
+  border-radius: 4px;
+}
+
+.assignmentPoints,
+.assignmentDuration {
+  font-size: 0.6875rem;
   color: var(--gray-500);
-  margin: 0;
   font-weight: 500;
 }
 
@@ -254,67 +296,81 @@
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
-  .summaryGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 @media (max-width: 768px) {
   .headerTitle {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
 
   .headerContent {
     flex-direction: column;
+    align-items: flex-start;
     gap: 1rem;
   }
 
-  .headerActions {
-    width: 100%;
-    justify-content: stretch;
+  .statsBar {
+    flex-wrap: wrap;
+    gap: 0.75rem;
   }
 
-  .filterContent {
+  .statValue {
+    font-size: 1.25rem;
+  }
+
+  .statLabel {
+    font-size: 0.6875rem;
+  }
+
+  .alertBanner {
     flex-direction: column;
-    align-items: stretch;
+    gap: 0.75rem;
   }
 
-  .searchWrapper {
-    width: 100%;
-    min-width: 100%;
+  .alertIcon {
+    width: 36px;
+    height: 36px;
   }
 
-  .summaryGrid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+  .alertTitle {
+    font-size: 0.875rem;
   }
 
-  .summaryCard {
-    padding: 1.25rem;
+  .alertDescription {
+    font-size: 0.8125rem;
   }
 
-  .summaryCardValue {
-    font-size: 2rem;
+  .filterSection {
+    padding: 0.875rem;
   }
 
   .assignmentIcon {
     width: 40px;
     height: 40px;
   }
+
+  .assignmentTitle {
+    font-size: 0.875rem;
+  }
+
+  .assignmentMeta {
+    gap: 0.25rem;
+  }
 }
 
 @media (max-width: 480px) {
   .headerTitle {
-    font-size: 1.5rem;
+    font-size: 1.375rem;
   }
 
-  .summaryGrid {
-    grid-template-columns: 1fr;
+  .statsBar {
+    gap: 0.5rem;
   }
 
-  .summaryCardValue {
-    font-size: 1.75rem;
+  .statValue {
+    font-size: 1.125rem;
+  }
+
+  .statDivider {
+    height: 20px;
   }
 
   .assignmentCell {

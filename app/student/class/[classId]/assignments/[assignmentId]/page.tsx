@@ -175,7 +175,7 @@ const UnsentView = ({ assignment, selectedFiles, onFileSelect, onRemoveFile, onS
             <Card className={styles.attachmentsCard}>
               <h3 className={styles.attachmentsTitle}>Teacher Provided Materials</h3>
               <div className={styles.attachmentsList}>
-                {assignment.attachments.map((file, index) => (
+                {assignment.attachments.map((file: string, index: number) => (
                   <div key={index} className={styles.attachmentItem}>
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                       <path d="M6 2v4M6 14v4" stroke="var(--primary-blue)" strokeWidth="1.5"/>
@@ -220,7 +220,7 @@ const UnsentView = ({ assignment, selectedFiles, onFileSelect, onRemoveFile, onS
           <Card className={styles.attachmentsCard}>
             <h3 className={styles.attachmentsTitle}>Teacher Provided Materials</h3>
             <div className={styles.attachmentsList}>
-              {assignment.attachments.map((file, index) => (
+              {assignment.attachments.map((file: string, index: number) => (
                 <div key={index} className={styles.attachmentItem}>
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                     <path d="M6 2v4M6 14v4" stroke="var(--primary-blue)" strokeWidth="1.5"/>

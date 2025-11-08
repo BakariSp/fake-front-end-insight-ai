@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import TeacherTopNav from './components/TeacherTopNav';
@@ -12,7 +12,18 @@ import styles from './teacherLayout.module.css';
 
 export default function TeacherLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const [isClassOpen, setIsClassOpen] = useState(false);
+  const [isClassOpen, setIsClassOpen] = useState(pathname?.startsWith('/teacher/classes') || pathname?.startsWith('/teacher/assignments') || pathname?.startsWith('/teacher/grades'));
+  const [isSettingsOpen, setIsSettingsOpen] = useState(pathname?.startsWith('/teacher/settings'));
+
+  // Auto-expand menus based on current path
+  useEffect(() => {
+    if (pathname?.startsWith('/teacher/classes') || pathname?.startsWith('/teacher/assignments') || pathname?.startsWith('/teacher/grades')) {
+      setIsClassOpen(true);
+    }
+    if (pathname?.startsWith('/teacher/settings')) {
+      setIsSettingsOpen(true);
+    }
+  }, [pathname]);
 
   // Get unread counts for modules
   const communicationUnreadCount = getModuleUnreadCount(mockNotifications, 'communication');
@@ -102,7 +113,16 @@ export default function TeacherLayout({ children }: { children: React.ReactNode 
           <path d="M10 2v2M10 16v2M18 10h-2M4 10H2M15.5 4.5l-1.4 1.4M5.9 14.1l-1.4 1.4M15.5 15.5l-1.4-1.4M5.9 5.9L4.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
         </svg>
       ),
-      href: '/teacher/settings',
+      hasSubmenu: true,
+      isOpen: isSettingsOpen,
+      onToggle: () => setIsSettingsOpen(!isSettingsOpen),
+      submenu: [
+        { label: 'Account', href: '/teacher/settings/account' },
+        { label: 'Notifications', href: '/teacher/settings/notifications' },
+        { label: 'Preferences', href: '/teacher/settings/preferences' },
+        { label: 'Privacy & Security', href: '/teacher/settings/privacy' },
+        { label: 'About Insight AI', href: '/teacher/settings/about' },
+      ],
     },
   ];
 

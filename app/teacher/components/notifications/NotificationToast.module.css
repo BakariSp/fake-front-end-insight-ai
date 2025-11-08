@@ -1,0 +1,148 @@
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin-bottom: 12px;
+  min-width: 320px;
+  max-width: 480px;
+  animation: slideInRight 0.3s ease, slideOutRight 0.3s ease 2.7s;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.message {
+  flex: 1;
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+/* Success - Green */
+.success {
+  background: #F6FFED;
+  border: 1px solid #B7EB8F;
+  color: #135200;
+}
+
+.success .icon {
+  color: #52C41A;
+}
+
+.success .closeButton {
+  color: #52C41A;
+}
+
+.success .closeButton:hover {
+  background: #B7EB8F;
+}
+
+/* Error - Red */
+.error {
+  background: #FFF1F0;
+  border: 1px solid #FFCCC7;
+  color: #820014;
+}
+
+.error .icon {
+  color: #FF4D4F;
+}
+
+.error .closeButton {
+  color: #FF4D4F;
+}
+
+.error .closeButton:hover {
+  background: #FFCCC7;
+}
+
+/* Info - Blue */
+.info {
+  background: #E8EEFF;
+  border: 1px solid #ADC6FF;
+  color: #003A8C;
+}
+
+.info .icon {
+  color: #4F7FFF;
+}
+
+.info .closeButton {
+  color: #4F7FFF;
+}
+
+.info .closeButton:hover {
+  background: #ADC6FF;
+}
+
+/* Warning - Orange */
+.warning {
+  background: #FFF7E6;
+  border: 1px solid #FFD591;
+  color: #AD4E00;
+}
+
+.warning .icon {
+  color: #FF9800;
+}
+
+.warning .closeButton {
+  color: #FF9800;
+}
+
+.warning .closeButton:hover {
+  background: #FFD591;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .toast {
+    min-width: auto;
+    max-width: calc(100vw - 32px);
+  }
+}
+

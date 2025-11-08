@@ -1,0 +1,406 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  animation: fadeIn 0.2s ease;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 480px;
+  max-width: 100vw;
+  background: white;
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid #E8E8E8;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin: 0;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  color: #595959;
+  transition: all 0.2s;
+}
+
+.closeButton:hover {
+  background-color: #F5F7FA;
+  color: #4F7FFF;
+}
+
+.filters {
+  padding: 16px 24px;
+  border-bottom: 1px solid #E8E8E8;
+  background: #FAFAFA;
+}
+
+.filterRow {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.filterSelect {
+  flex: 1;
+  min-width: 120px;
+  padding: 8px 12px;
+  border: 1px solid #D9D9D9;
+  border-radius: 6px;
+  background: white;
+  font-size: 13px;
+  color: #595959;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filterSelect:hover {
+  border-color: #4F7FFF;
+}
+
+.filterSelect:focus {
+  outline: none;
+  border-color: #4F7FFF;
+  box-shadow: 0 0 0 3px rgba(79, 127, 255, 0.1);
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  padding: 16px 24px;
+  border-bottom: 1px solid #E8E8E8;
+}
+
+.tab {
+  flex: 1;
+  padding: 8px 16px;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #595959;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.tab:hover {
+  background-color: #F5F7FA;
+  color: #4F7FFF;
+}
+
+.tabActive {
+  background-color: #E8EEFF;
+  color: #4F7FFF;
+  font-weight: 600;
+}
+
+.tabBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  background-color: #FF4D4F;
+  color: white;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  padding: 12px 24px;
+  border-bottom: 1px solid #E8E8E8;
+  background: #FAFAFA;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: white;
+  border: 1px solid #D9D9D9;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #595959;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.actionButton:hover {
+  border-color: #4F7FFF;
+  color: #4F7FFF;
+}
+
+.list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 24px;
+}
+
+.group {
+  margin-bottom: 24px;
+}
+
+.groupHeader {
+  font-size: 12px;
+  font-weight: 600;
+  color: #8C8C8C;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.card {
+  position: relative;
+  padding: 16px;
+  background: white;
+  border: 1px solid #E8E8E8;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.card:hover {
+  border-color: #4F7FFF;
+  box-shadow: 0 2px 8px rgba(79, 127, 255, 0.1);
+}
+
+.cardUnread {
+  background: #F5F9FF;
+  border-left: 3px solid #4F7FFF;
+}
+
+.urgencyCritical {
+  border-left: 3px solid #FF4D4F;
+  background: #FFF1F0;
+}
+
+.urgencyImportant {
+  border-left: 3px solid #FF9800;
+  background: #FFF7E6;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.cardTitle {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.cardTime {
+  font-size: 12px;
+  color: #8C8C8C;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.cardDescription {
+  font-size: 13px;
+  color: #595959;
+  line-height: 1.5;
+  margin: 0 0 12px 0;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.cardBadges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.badgeClass {
+  background: #E8EEFF;
+  color: #4F7FFF;
+}
+
+.badgeSchool {
+  background: #FFF7E6;
+  color: #D46B08;
+}
+
+.badgeAi {
+  background: #F0F5FF;
+  color: #2F54EB;
+}
+
+.moduleTag {
+  padding: 4px 10px;
+  background: #F5F5F5;
+  color: #8C8C8C;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.cardAction {
+  padding: 6px 16px;
+  background: #4F7FFF;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cardAction:hover {
+  background: #3D6BE8;
+}
+
+.cardMenu {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.card:hover .cardMenu {
+  opacity: 1;
+}
+
+.menuButton {
+  padding: 4px 10px;
+  background: white;
+  border: 1px solid #D9D9D9;
+  border-radius: 4px;
+  font-size: 11px;
+  color: #595959;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.menuButton:hover {
+  border-color: #4F7FFF;
+  color: #4F7FFF;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.emptyText {
+  margin-top: 16px;
+  font-size: 14px;
+  color: #8C8C8C;
+}
+
+/* Scrollbar */
+.list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.list::-webkit-scrollbar-track {
+  background: #F5F5F5;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background: #D9D9D9;
+  border-radius: 3px;
+}
+
+.list::-webkit-scrollbar-thumb:hover {
+  background: #BFBFBF;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .drawer {
+    width: 100vw;
+  }
+
+  .filterRow {
+    flex-direction: column;
+  }
+
+  .filterSelect {
+    width: 100%;
+  }
+}
+

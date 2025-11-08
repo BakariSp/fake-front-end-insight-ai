@@ -1,0 +1,88 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.small {
+  font-size: 10px;
+  padding: 3px 6px;
+}
+
+.medium {
+  font-size: 11px;
+  padding: 4px 8px;
+}
+
+/* Badge Types */
+.new {
+  background: #E8EEFF;
+  color: #4F7FFF;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.updated {
+  background: #FFF7E6;
+  color: #D46B08;
+}
+
+.invited {
+  background: #F0F5FF;
+  color: #2F54EB;
+}
+
+.urgent {
+  background: #FFF1F0;
+  color: #FF4D4F;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.count {
+  background: #FF4D4F;
+  color: white;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  padding: 0 6px;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* Blue Dot - for sidebar */
+.blueDot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: #4F7FFF;
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Count Badge - for sidebar */
+.countBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  background: #FF4D4F;
+  color: white;
+  border-radius: 9px;
+  font-size: 11px;
+  font-weight: 600;
+}
+

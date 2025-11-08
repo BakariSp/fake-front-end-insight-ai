@@ -1,0 +1,122 @@
+.container {
+  padding: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 32px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin: 0 0 8px 0;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #8C8C8C;
+  margin: 0;
+}
+
+.classList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.classCard {
+  background: white;
+  border: 1px solid #E8E8E8;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.classCard:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.classHeader {
+  padding: 20px;
+}
+
+.className {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+}
+
+.classSubject {
+  font-size: 13px;
+  color: #8C8C8C;
+}
+
+.classBody {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.statRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.statLabel {
+  font-size: 13px;
+  color: #595959;
+}
+
+.statValue {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1A1A1A;
+}
+
+.classActions {
+  padding: 16px 20px;
+  border-top: 1px solid #F0F0F0;
+  display: flex;
+  gap: 10px;
+}
+
+.viewButton {
+  flex: 1;
+  padding: 10px;
+  background: #4F7FFF;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.viewButton:hover {
+  background: #3D6BE8;
+}
+
+.assignmentButton {
+  flex: 1;
+  padding: 10px;
+  background: white;
+  color: #4F7FFF;
+  border: 1.5px solid #4F7FFF;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.assignmentButton:hover {
+  background: #F5F9FF;
+}
+

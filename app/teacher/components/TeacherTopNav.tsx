@@ -4,6 +4,7 @@ import React from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { LanguageSwitcher } from '@ui';
+import { NotificationBell, NotificationCenter, useNotifications } from './notifications';
 import styles from './TeacherTopNav.module.css';
 
 interface BreadcrumbItem {
@@ -17,6 +18,16 @@ interface TeacherTopNavProps {
 
 const TeacherTopNav: React.FC<TeacherTopNavProps> = ({ customBreadcrumbs }) => {
   const pathname = usePathname();
+  const {
+    notifications,
+    isNotificationCenterOpen,
+    unreadCount,
+    openNotificationCenter,
+    closeNotificationCenter,
+    markAsRead,
+    markAllAsRead,
+    changeNotificationStatus,
+  } = useNotifications();
 
   const translate = (key: string) => {
     const keyMap: Record<string, string> = {
@@ -94,8 +105,18 @@ const TeacherTopNav: React.FC<TeacherTopNavProps> = ({ customBreadcrumbs }) => {
       </div>
 
       <div className={styles.actions}>
+        <NotificationBell count={unreadCount} onClick={openNotificationCenter} />
         <LanguageSwitcher />
       </div>
+
+      <NotificationCenter
+        isOpen={isNotificationCenterOpen}
+        onClose={closeNotificationCenter}
+        notifications={notifications}
+        onMarkAsRead={markAsRead}
+        onMarkAllAsRead={markAllAsRead}
+        onChangeStatus={changeNotificationStatus}
+      />
     </div>
   );
 };

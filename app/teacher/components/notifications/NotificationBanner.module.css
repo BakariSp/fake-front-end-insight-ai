@@ -1,0 +1,205 @@
+.banner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  line-height: 1.4;
+}
+
+.message {
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.actionButton {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+/* Critical - Red */
+.critical {
+  background: #FFF1F0;
+  border: 1px solid #FFCCC7;
+  color: #820014;
+}
+
+.critical .icon {
+  color: #FF4D4F;
+}
+
+.critical .actionButton {
+  background: #FF4D4F;
+  color: white;
+}
+
+.critical .actionButton:hover {
+  background: #D32029;
+}
+
+.critical .closeButton {
+  color: #FF4D4F;
+}
+
+.critical .closeButton:hover {
+  background: #FFCCC7;
+}
+
+/* Important - Orange */
+.important {
+  background: #FFF7E6;
+  border: 1px solid #FFD591;
+  color: #AD4E00;
+}
+
+.important .icon {
+  color: #FF9800;
+}
+
+.important .actionButton {
+  background: #FF9800;
+  color: white;
+}
+
+.important .actionButton:hover {
+  background: #D87A00;
+}
+
+.important .closeButton {
+  color: #FF9800;
+}
+
+.important .closeButton:hover {
+  background: #FFD591;
+}
+
+/* Info - Blue */
+.info {
+  background: #E8EEFF;
+  border: 1px solid #ADC6FF;
+  color: #003A8C;
+}
+
+.info .icon {
+  color: #4F7FFF;
+}
+
+.info .actionButton {
+  background: #4F7FFF;
+  color: white;
+}
+
+.info .actionButton:hover {
+  background: #3D6BE8;
+}
+
+.info .closeButton {
+  color: #4F7FFF;
+}
+
+.info .closeButton:hover {
+  background: #ADC6FF;
+}
+
+/* Success - Green */
+.success {
+  background: #F6FFED;
+  border: 1px solid #B7EB8F;
+  color: #135200;
+}
+
+.success .icon {
+  color: #52C41A;
+}
+
+.success .actionButton {
+  background: #52C41A;
+  color: white;
+}
+
+.success .actionButton:hover {
+  background: #3F9713;
+}
+
+.success .closeButton {
+  color: #52C41A;
+}
+
+.success .closeButton:hover {
+  background: #B7EB8F;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+  }
+
+  .actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+

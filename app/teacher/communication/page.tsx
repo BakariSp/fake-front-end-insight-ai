@@ -130,9 +130,7 @@ function TeacherCommunicationContent() {
       case 'unread':
         return 'warning';
       case 'read':
-        return 'info';
-      case 'confirmed':
-        return 'success';
+        return 'secondary';
       default:
         return 'secondary';
     }
@@ -163,7 +161,10 @@ function TeacherCommunicationContent() {
         </thead>
         <tbody>
           {mockSchoolAnnouncements.map((announcement) => (
-            <tr key={announcement.id}>
+            <tr 
+              key={announcement.id}
+              className={announcement.status === 'read' ? styles.readRow : ''}
+            >
               <td>
                 <input
                   type="checkbox"
@@ -186,12 +187,6 @@ function TeacherCommunicationContent() {
               <td>
                 <div className={styles.actionLinks}>
                   <a href="#" className={styles.actionLink}>View</a>
-                  {announcement.requireConfirmation && (
-                    <>
-                      <span className={styles.actionSeparator}>|</span>
-                      <a href="#" className={styles.actionLink}>Edit</a>
-                    </>
-                  )}
                   <span className={styles.actionSeparator}>|</span>
                   <a href="#" className={styles.actionLink}>Status</a>
                 </div>

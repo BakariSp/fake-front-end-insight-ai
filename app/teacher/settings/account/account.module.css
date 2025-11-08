@@ -1,0 +1,437 @@
+.container {
+  width: 100%;
+}
+
+.header {
+  margin-bottom: 32px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin: 0 0 8px 0;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #8C8C8C;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.content {
+  background: white;
+  border: 1px solid #E8E8E8;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Sections */
+.section {
+  padding: 32px;
+  border-bottom: 1px solid #F0F0F0;
+}
+
+.section:last-of-type {
+  border-bottom: none;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin: 0 0 24px 0;
+}
+
+/* Profile Photo */
+.profilePhotoWrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.profilePhoto {
+  width: 120px;
+  height: 120px;
+  border-radius: 60px;
+  overflow: hidden;
+  border: 3px solid #E8E8E8;
+  flex-shrink: 0;
+}
+
+.profilePhotoImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profilePhotoActions {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.uploadButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: white;
+  border: 1.5px solid #4F7FFF;
+  border-radius: 8px;
+  color: #4F7FFF;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  align-self: flex-start;
+}
+
+.uploadButton:hover {
+  background: #F5F9FF;
+  border-color: #3D6BE8;
+  color: #3D6BE8;
+  box-shadow: 0 2px 8px rgba(79, 127, 255, 0.15);
+}
+
+.removeButton {
+  padding: 0;
+  background: none;
+  border: none;
+  color: #FF4D4F;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  align-self: flex-start;
+}
+
+.removeButton:hover {
+  color: #D9363E;
+  text-decoration: underline;
+}
+
+.photoHint {
+  font-size: 12px;
+  color: #8C8C8C;
+  margin: 0;
+}
+
+/* Form Grid */
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin: 0;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid #D9D9D9;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #1A1A1A;
+  transition: all 0.2s;
+  background: white;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #4F7FFF;
+  box-shadow: 0 0 0 3px rgba(79, 127, 255, 0.1);
+}
+
+.input::placeholder {
+  color: #BFBFBF;
+}
+
+.inputWithBadge {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputWithBadge .input {
+  padding-right: 100px;
+}
+
+.verifiedBadge {
+  position: absolute;
+  right: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: #F6FFED;
+  color: #52C41A;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.linkButton {
+  padding: 0;
+  background: none;
+  border: none;
+  color: #4F7FFF;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  align-self: flex-start;
+}
+
+.linkButton:hover {
+  color: #3D6BE8;
+  text-decoration: underline;
+}
+
+.hint {
+  font-size: 12px;
+  color: #8C8C8C;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Info Grid */
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.infoItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.infoLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: #8C8C8C;
+  margin: 0;
+}
+
+.infoValue {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1A1A1A;
+  padding: 12px 16px;
+  background: #FAFAFA;
+  border: 1.5px solid #E8E8E8;
+  border-radius: 8px;
+}
+
+.infoNote {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 20px 0 0 0;
+  padding: 12px;
+  background: #FFF7E6;
+  border: 1px solid #FFD591;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #D46B08;
+  line-height: 1.5;
+}
+
+.infoNote svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+  stroke: #D46B08;
+}
+
+/* Password Section */
+.passwordSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.passwordText {
+  font-size: 14px;
+  color: #595959;
+  margin: 0;
+}
+
+.changePasswordButton {
+  padding: 10px 20px;
+  background: white;
+  border: 1.5px solid #4F7FFF;
+  border-radius: 8px;
+  color: #4F7FFF;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.changePasswordButton:hover {
+  background: #F5F9FF;
+  border-color: #3D6BE8;
+  color: #3D6BE8;
+  box-shadow: 0 2px 8px rgba(79, 127, 255, 0.15);
+}
+
+.passwordForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.passwordActions {
+  display: flex;
+  gap: 12px;
+  padding-top: 8px;
+}
+
+.cancelButton {
+  padding: 10px 24px;
+  background: white;
+  border: 1.5px solid #D9D9D9;
+  border-radius: 8px;
+  color: #595959;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cancelButton:hover {
+  border-color: #8C8C8C;
+  color: #1A1A1A;
+  background: #F5F5F5;
+}
+
+.updatePasswordButton {
+  padding: 10px 24px;
+  background: linear-gradient(135deg, #4F7FFF 0%, #3D6BE8 100%);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.updatePasswordButton:hover {
+  background: linear-gradient(135deg, #3D6BE8 0%, #2B5AD0 100%);
+  box-shadow: 0 4px 12px rgba(79, 127, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Actions */
+.actions {
+  padding: 24px 32px;
+  background: #FAFAFA;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  border-top: 1px solid #F0F0F0;
+}
+
+.cancelActionButton {
+  padding: 12px 32px;
+  background: white;
+  border: 1.5px solid #D9D9D9;
+  border-radius: 8px;
+  color: #595959;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cancelActionButton:hover {
+  border-color: #8C8C8C;
+  color: #1A1A1A;
+  background: #F5F5F5;
+}
+
+.saveButton {
+  padding: 12px 32px;
+  background: linear-gradient(135deg, #4F7FFF 0%, #3D6BE8 100%);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.saveButton:hover {
+  background: linear-gradient(135deg, #3D6BE8 0%, #2B5AD0 100%);
+  box-shadow: 0 4px 12px rgba(79, 127, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header {
+    margin-bottom: 24px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .section {
+    padding: 24px 20px;
+  }
+
+  .profilePhotoWrapper {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profilePhotoActions {
+    align-items: center;
+  }
+
+  .uploadButton,
+  .removeButton,
+  .linkButton {
+    align-self: center;
+  }
+
+  .infoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .passwordSection {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .actions {
+    padding: 20px;
+    flex-direction: column-reverse;
+  }
+
+  .cancelActionButton,
+  .saveButton {
+    width: 100%;
+  }
+}
+

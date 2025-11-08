@@ -3,9 +3,11 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Card, Button, Badge } from '@ui';
+import { NotificationBanner } from './components/notifications';
 import styles from './teacher.module.css';
 
 export default function TeacherDashboard() {
+  const [showDemoBanner, setShowDemoBanner] = useState(true);
   const assignments = [
     {
       id: '1',
@@ -95,6 +97,20 @@ export default function TeacherDashboard() {
     <div className={styles.container}>
       {/* Welcome Header */}
       <h1 className={styles.welcomeTitle}>Welcome back, Teacher</h1>
+
+      {/* Demo Banner */}
+      {showDemoBanner && (
+        <NotificationBanner
+          type="info"
+          title="🔔 New Notification System Available!"
+          message="Click the bell icon in the top navigation to see all notifications, or visit the demo page to explore all notification features."
+          action={{
+            label: 'View Demo',
+            onClick: () => window.location.href = '/teacher/notification-demo',
+          }}
+          onClose={() => setShowDemoBanner(false)}
+        />
+      )}
 
       {/* Main Layout */}
       <div className={styles.mainLayout}>

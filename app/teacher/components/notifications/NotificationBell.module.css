@@ -1,0 +1,62 @@
+.bellButton {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bellButton:hover {
+  background-color: #F5F7FA;
+}
+
+.bellIcon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  color: #595959;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bellButton:hover .bellIcon {
+  color: #4F7FFF;
+}
+
+.redDot {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 8px;
+  height: 8px;
+  background-color: #FF4D4F;
+  border-radius: 50%;
+  border: 2px solid white;
+  z-index: 1;
+}
+
+.count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  min-width: 18px;
+  height: 18px;
+  background-color: #FF4D4F;
+  color: white;
+  border-radius: 9px;
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  border: 2px solid white;
+  z-index: 2;
+}
+

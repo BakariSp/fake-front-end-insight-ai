@@ -4,11 +4,18 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import TeacherTopNav from './components/TeacherTopNav';
+import { NotificationProvider } from './components/notifications';
+import { BlueDotBadge, CountBadge } from './components/notifications';
+import { getModuleUnreadCount } from './components/notifications/mockData';
+import { mockNotifications } from './components/notifications/mockData';
 import styles from './teacherLayout.module.css';
 
 export default function TeacherLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [isClassOpen, setIsClassOpen] = useState(false);
+
+  // Get unread counts for modules
+  const communicationUnreadCount = getModuleUnreadCount(mockNotifications, 'communication');
 
   const menuItems = [
     {
@@ -57,10 +64,10 @@ export default function TeacherLayout({ children }: { children: React.ReactNode 
       icon: (
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
           <path d="M17 8.5c0 3.5-3.1 6.5-7 6.5-.7 0-1.4-.1-2-.3L4 17l1.3-3.7C4.5 12.4 4 11 4 9.5 4 6 7.1 3 11 3" stroke="currentColor" strokeWidth="1.5"/>
-          <circle cx="14.5" cy="5.5" r="2.5" fill="#FF4D4F"/>
         </svg>
       ),
       href: '/teacher/communication',
+      unreadCount: communicationUnreadCount,
     },
     {
       id: 'resource-library',
@@ -96,7 +103,6 @@ export default function TeacherLayout({ children }: { children: React.ReactNode 
         </svg>
       ),
       href: '/teacher/settings',
-      badge: 'Coming Soon',
     },
   ];
 
@@ -108,9 +114,10 @@ export default function TeacherLayout({ children }: { children: React.ReactNode 
   };
 
   return (
-    <div className={styles.layout}>
-      {/* Sidebar */}
-      <aside className={styles.sidebar}>
+    <NotificationProvider>
+      <div className={styles.layout}>
+        {/* Sidebar */}
+        <aside className={styles.sidebar}>
         {/* Logo */}
         <div className={styles.logo}>
           <div className={styles.logoImage}>
@@ -186,6 +193,9 @@ export default function TeacherLayout({ children }: { children: React.ReactNode 
                   <span className={styles.navIcon}>{item.icon}</span>
                   <span className={styles.navLabel}>{item.label}</span>
                   {item.badge && <span className={styles.navBadge}>{item.badge}</span>}
+                  {item.unreadCount !== undefined && item.unreadCount > 0 && (
+                    <CountBadge count={item.unreadCount} />
+                  )}
                 </Link>
               )}
             </div>
@@ -200,7 +210,8 @@ export default function TeacherLayout({ children }: { children: React.ReactNode 
           {children}
         </div>
       </main>
-    </div>
+      </div>
+    </NotificationProvider>
   );
 }
 

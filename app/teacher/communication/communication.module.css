@@ -224,6 +224,15 @@
   border-bottom: none;
 }
 
+/* Read row - grayed out */
+.readRow {
+  opacity: 0.5;
+}
+
+.readRow:hover {
+  opacity: 0.65;
+}
+
 .table td {
   padding: 1rem 1.25rem;
   font-size: 0.875rem;

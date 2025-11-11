@@ -1,0 +1,169 @@
+.library {
+  width: 280px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.header {
+  padding: 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.header h3 {
+  margin: 0 0 4px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.items {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+}
+
+.libraryItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: white;
+}
+
+.libraryItem:hover {
+  border-color: var(--item-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.libraryItem:active {
+  transform: translateY(0);
+}
+
+.itemIcon {
+  font-size: 28px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+.itemContent {
+  flex: 1;
+}
+
+.itemLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 2px;
+}
+
+.itemDescription {
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+.footer {
+  padding: 16px;
+  border-top: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.tip {
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.tip strong {
+  color: #1a1a1a;
+}
+
+/* 拖拽效果 */
+.libraryItem[draggable="true"] {
+  cursor: grab;
+}
+
+.libraryItem[draggable="true"]:active {
+  cursor: grabbing;
+}
+
+/* 滚动条样式 */
+.items::-webkit-scrollbar {
+  width: 6px;
+}
+
+.items::-webkit-scrollbar-track {
+  background: #f9fafb;
+}
+
+.items::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+.items::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* 响应式设计 */
+@media (max-width: 1280px) {
+  .library {
+    width: 240px;
+  }
+
+  .header {
+    padding: 16px;
+  }
+
+  .items {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .libraryItem {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .library {
+    width: 100%;
+    max-height: 200px;
+  }
+
+  .items {
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .libraryItem {
+    flex-direction: column;
+    min-width: 120px;
+    text-align: center;
+  }
+}
+

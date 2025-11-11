@@ -2,6 +2,87 @@ import { Notification } from './types';
 
 export const mockNotifications: Notification[] = [
   {
+    id: 'ai-grading-001',
+    title: '✨ AI Grading Completed',
+    description: 'AI has finished grading "第二单元综合测试：文言文与古诗词" for 高一（3）班. 43 out of 45 students submitted. Average score: 78.5/100. Click to review results and weak points analysis.',
+    scope: 'class',
+    module: 'classes',
+    urgency: 'important',
+    status: 'inbox',
+    timestamp: new Date(Date.now() - 30 * 60 * 1000), // 30 minutes ago
+    isRead: false,
+    badge: {
+      type: 'ai',
+      label: 'AI Grading',
+    },
+    action: {
+      type: 'view',
+      label: 'View Results',
+      onClick: () => {
+        window.location.href = '/teacher/class/class-001/assignments/assignment-graded-001';
+      }
+    },
+    metadata: {
+      classId: 'class-001',
+      className: '高一（3）班',
+      assignmentId: 'assignment-graded-001',
+    },
+  },
+  {
+    id: 'assignment-published-001',
+    title: '📢 Assignment Published Successfully',
+    description: 'Your assignment "期中复习：现代文阅读理解" has been published to 高一（3）班. 28 out of 45 students have already submitted.',
+    scope: 'class',
+    module: 'classes',
+    urgency: 'normal',
+    status: 'inbox',
+    timestamp: new Date(Date.now() - 90 * 60 * 1000), // 1.5 hours ago
+    isRead: false,
+    badge: {
+      type: 'class',
+      label: '高一（3）班',
+    },
+    action: {
+      type: 'view',
+      label: 'Monitor Progress',
+      onClick: () => {
+        window.location.href = '/teacher/class/class-001/assignments/assignment-published-001';
+      }
+    },
+    metadata: {
+      classId: 'class-001',
+      className: '高一（3）班',
+      assignmentId: 'assignment-published-001',
+    },
+  },
+  {
+    id: 'weak-points-alert-001',
+    title: '📊 Weak Points Identified',
+    description: 'AI analysis found 3 major weak points in your class: 65% of students struggle with 文言文翻译. Click to see detailed analysis and teaching suggestions.',
+    scope: 'class',
+    module: 'classes',
+    urgency: 'important',
+    status: 'inbox',
+    timestamp: new Date(Date.now() - 45 * 60 * 1000), // 45 minutes ago
+    isRead: false,
+    badge: {
+      type: 'ai',
+      label: 'AI Analysis',
+    },
+    action: {
+      type: 'view',
+      label: 'View Analysis',
+      onClick: () => {
+        window.location.href = '/teacher/class/class-001/assignments/assignment-graded-001?tab=analysis';
+      }
+    },
+    metadata: {
+      classId: 'class-001',
+      className: '高一（3）班',
+      assignmentId: 'assignment-graded-001',
+    },
+  },
+  {
     id: '1',
     title: 'Assignment Deadline Approaching',
     description: 'Math homework "Algebra Chapter 5" is due tonight at 23:59. 8 students haven\'t submitted yet.',

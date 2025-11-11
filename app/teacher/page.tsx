@@ -134,10 +134,12 @@ export default function TeacherDashboard() {
 
           {/* Quick Actions */}
           <div className={styles.quickActions}>
-            <button className={styles.actionButton}>
-              <span className={styles.actionIcon}>+</span>
-              Create Assignment
-            </button>
+            <Link href="/teacher/assignments/new">
+              <button className={styles.actionButton}>
+                <span className={styles.actionIcon}>+</span>
+                Create Assignment
+              </button>
+            </Link>
             <button className={styles.actionButton}>
               <span className={styles.actionIcon}>✓</span>
               Grade Assignment

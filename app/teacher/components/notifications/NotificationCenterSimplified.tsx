@@ -76,7 +76,14 @@ const NotificationCenterSimplified: React.FC<NotificationCenterSimplifiedProps> 
       onMarkAsRead(notification.id);
     }
     
-    // Navigate to the appropriate page
+    // If notification has custom onClick action, use that
+    if (notification.action?.onClick) {
+      notification.action.onClick();
+      onClose();
+      return;
+    }
+    
+    // Otherwise, navigate to the appropriate page
     const path = getNotificationPath(notification);
     router.push(path);
     

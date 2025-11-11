@@ -236,7 +236,15 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({
                         <span className={styles.moduleTag}>{notification.module}</span>
                       </div>
                       {notification.action && (
-                        <button className={styles.cardAction}>
+                        <button 
+                          className={styles.cardAction}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (notification.action?.onClick) {
+                              notification.action.onClick();
+                            }
+                          }}
+                        >
                           {notification.action.label}
                         </button>
                       )}

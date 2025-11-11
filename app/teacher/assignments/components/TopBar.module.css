@@ -1,0 +1,300 @@
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  gap: 16px;
+  flex-wrap: wrap;
+  min-height: 80px;
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.backButton {
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #6b7280;
+  transition: all 0.2s;
+}
+
+.backButton:hover {
+  background: #f9fafb;
+  color: #1f2937;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+}
+
+.inputGroup label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.titleInput {
+  min-width: 200px;
+  padding: 8px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.titleInput:focus {
+  border-color: #4f7fff;
+}
+
+.titleInput::placeholder {
+  color: #9ca3af;
+  font-weight: 400;
+}
+
+.titleInput:invalid {
+  border-color: #f5222d;
+}
+
+.select,
+.dateInput {
+  padding: 8px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #1a1a1a;
+  background: white;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.select:focus,
+.dateInput:focus {
+  border-color: #4f7fff;
+}
+
+.dateInput {
+  min-width: 180px;
+}
+
+/* 主题选择器 */
+.topicSelector {
+  position: relative;
+}
+
+.topicButton {
+  padding: 8px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #1a1a1a;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.topicButton:hover {
+  border-color: #4f7fff;
+}
+
+.topicDropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  min-width: 200px;
+  max-height: 300px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  padding: 8px 0;
+}
+
+.topicDropdown.show {
+  display: block;
+}
+
+.topicOption {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.topicOption:hover {
+  background: #f9fafb;
+}
+
+.topicOption input {
+  cursor: pointer;
+}
+
+.selectedTopics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.topicChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  background: #eff6ff;
+  color: #4f7fff;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.topicChip button {
+  background: none;
+  border: none;
+  color: #4f7fff;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.topicChip button:hover {
+  background: rgba(79, 127, 255, 0.2);
+}
+
+.pointsBadge {
+  padding: 8px 16px;
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #0284c7;
+  white-space: nowrap;
+}
+
+.pointsBadge strong {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* 按钮样式 */
+.ghostButton,
+.secondaryButton,
+.primaryButton {
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.ghostButton {
+  background: transparent;
+  border: 1px solid #e5e7eb;
+  color: #6b7280;
+}
+
+.ghostButton:hover {
+  background: #f9fafb;
+  color: #1f2937;
+}
+
+.secondaryButton {
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  color: #1f2937;
+}
+
+.secondaryButton:hover {
+  background: #e5e7eb;
+}
+
+.primaryButton {
+  background: #4f7fff;
+  border: 1px solid #4f7fff;
+  color: white;
+}
+
+.primaryButton:hover {
+  background: #3b66db;
+  border-color: #3b66db;
+}
+
+.primaryButton:disabled {
+  background: #9ca3af;
+  border-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* 响应式设计 */
+@media (max-width: 1280px) {
+  .topBar {
+    padding: 12px 16px;
+  }
+
+  .leftSection {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .topBar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .leftSection,
+  .rightSection {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .rightSection {
+    order: 2;
+  }
+
+  .titleInput {
+    min-width: 100%;
+  }
+}
+

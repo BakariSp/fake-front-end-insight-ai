@@ -1,0 +1,577 @@
+/* 教师端作业详情页面样式 */
+
+.pageContainer {
+  padding: 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Header */
+.pageHeader {
+  margin-bottom: 32px;
+}
+
+.backButton {
+  margin-bottom: 16px;
+}
+
+.headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.headerLeft {
+  flex: 1;
+}
+
+.pageTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin: 0 0 12px 0;
+}
+
+.headerMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--gray-600);
+}
+
+.subject {
+  font-weight: 500;
+  color: var(--primary-blue);
+}
+
+.dueDate {
+  color: var(--gray-700);
+}
+
+.metaDivider {
+  color: var(--gray-400);
+}
+
+.headerRight {
+  display: flex;
+  gap: 12px;
+}
+
+/* Content */
+.content {
+  margin-top: 24px;
+}
+
+.card {
+  margin-bottom: 24px;
+}
+
+/* Overview Content */
+.overviewContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Stats Cards */
+.statsCards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.statCard {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.2s ease;
+}
+
+.statCard:hover {
+  border-color: var(--primary-blue);
+  box-shadow: 0 4px 12px rgba(79, 127, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.statIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.statContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statValue {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--gray-900);
+}
+
+.statLabel {
+  font-size: 13px;
+  color: var(--gray-600);
+  font-weight: 500;
+}
+
+/* Chart Section */
+.chartSection {
+  padding: 24px;
+}
+
+.chartTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin: 0 0 24px 0;
+}
+
+.barChart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  gap: 16px;
+  height: 280px;
+  padding: 0 20px;
+}
+
+.barGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  gap: 8px;
+}
+
+.barWrapper {
+  width: 100%;
+  height: 220px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.bar {
+  width: 100%;
+  max-width: 80px;
+  border-radius: 8px 8px 0 0;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 8px;
+}
+
+.bar:hover {
+  opacity: 0.8;
+  transform: scaleY(1.02);
+}
+
+.barValue {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.barLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-700);
+}
+
+.barPercentage {
+  font-size: 12px;
+  color: var(--gray-600);
+}
+
+/* Strengths Section */
+.strengthsSection {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border: 1px solid var(--success-green-light);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin: 0 0 16px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.strengthsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.strengthItem {
+  font-size: 14px;
+  color: var(--gray-700);
+  padding-left: 24px;
+  position: relative;
+}
+
+.strengthItem::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--success-green);
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* Analysis Content */
+.analysisContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Difficulty Section */
+.difficultySection {
+  padding: 24px;
+}
+
+.difficultyList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.difficultyCard {
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  padding: 20px;
+  transition: all 0.2s ease;
+}
+
+.difficultyCard:hover {
+  border-color: var(--primary-blue);
+  box-shadow: 0 2px 8px rgba(79, 127, 255, 0.08);
+}
+
+.difficultyHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.questionInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.questionNumber {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary-blue);
+  background: var(--primary-blue-light);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.questionTitle {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--gray-900);
+}
+
+.difficultyStats {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 12px;
+}
+
+.statItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.statLabel {
+  color: var(--gray-600);
+}
+
+.statValue {
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+.mistakes {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--gray-200);
+}
+
+.mistakesTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-700);
+  margin-bottom: 8px;
+}
+
+.mistakesList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mistakesList li {
+  font-size: 13px;
+  color: var(--gray-600);
+  padding-left: 16px;
+  position: relative;
+}
+
+.mistakesList li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--error-red);
+  font-weight: 700;
+}
+
+/* Weak Points Section */
+.weakPointsSection {
+  padding: 24px;
+}
+
+.weakPointsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.weakPointCard {
+  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+  border: 1px solid var(--warning-orange);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.weakPointHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.weakPointTopic {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin: 0;
+}
+
+.affectedBadge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--warning-orange);
+  background: var(--white);
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--warning-orange-light);
+}
+
+.weakPointDescription {
+  font-size: 14px;
+  color: var(--gray-700);
+  line-height: 1.6;
+  margin: 0 0 16px 0;
+}
+
+.weakPointSuggestions {
+  padding-top: 16px;
+  border-top: 1px solid rgba(249, 115, 22, 0.2);
+}
+
+.suggestionsTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-700);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.suggestionsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.suggestionsList li {
+  font-size: 13px;
+  color: var(--gray-700);
+  padding-left: 20px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.suggestionsList li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--warning-orange);
+  font-weight: 700;
+}
+
+/* Students Content */
+.studentsContent {
+  padding: 24px;
+}
+
+.studentListSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.studentListHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.studentList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.studentCard {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.2s ease;
+}
+
+.studentCard:hover {
+  border-color: var(--primary-blue);
+  box-shadow: 0 2px 8px rgba(79, 127, 255, 0.1);
+}
+
+.studentAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.studentAvatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.studentInfo {
+  flex: 1;
+}
+
+.studentName {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin: 0 0 4px 0;
+}
+
+.submitTime {
+  font-size: 13px;
+  color: var(--gray-600);
+  margin: 0;
+}
+
+.studentScore {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.scoreValue {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--success-green);
+}
+
+.scoreLabel {
+  font-size: 12px;
+  color: var(--gray-600);
+}
+
+.noScore {
+  font-size: 24px;
+  color: var(--gray-400);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .statsCards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .pageContainer {
+    padding: 16px;
+  }
+
+  .headerContent {
+    flex-direction: column;
+  }
+
+  .statsCards {
+    grid-template-columns: 1fr;
+  }
+
+  .barChart {
+    height: 240px;
+    gap: 8px;
+  }
+
+  .barWrapper {
+    height: 180px;
+  }
+}
+

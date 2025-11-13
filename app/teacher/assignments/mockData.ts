@@ -203,22 +203,111 @@ export const DEFAULT_TASK_CONFIG: Record<TaskType, Partial<Task>> = {
   }
 };
 
-// 示例作业包
-export const MOCK_ASSIGNMENT: AssignmentPackage = {
-  id: 'assignment-001',
-  title: '第一单元综合练习',
+// ===== 四个状态的示例作业包 =====
+
+// 1. Draft - 草稿状态
+export const MOCK_ASSIGNMENT_DRAFT: AssignmentPackage = {
+  id: 'assignment-draft-001',
+  title: '第三单元测试 - 三角函数',
   subject: 'math',
-  topics: ['代数', '函数'],
-  classIds: ['class-001', 'class-002'],
+  topics: ['三角函数', '恒等变换'],
+  classIds: [],  // 还未分配班级
   dueAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
   totalPoints: 100,
   taskIds: ['task-001', 'task-002', 'task-003'],
   state: 'draft',
   gradingMode: 'assist',
-  createdAt: new Date().toISOString(),
+  createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
   updatedAt: new Date().toISOString(),
   version: 1
 };
+
+// 2. Published - 已发布，收集中
+export const MOCK_ASSIGNMENT_PUBLISHED: AssignmentPackage = {
+  id: 'assignment-published-001',
+  title: '第一单元综合练习 - 集合与函数',
+  subject: 'math',
+  topics: ['集合', '函数'],
+  classIds: ['class-001'],
+  dueAt: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString(),
+  totalPoints: 100,
+  taskIds: ['task-011', 'task-012', 'task-013'],
+  state: 'published',
+  publishedAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000).toISOString(),
+  stats: {
+    totalStudents: 45,
+    submittedCount: 28,
+    gradedCount: 0,
+    submissionRate: 62.2,
+    gradingProgress: 0
+  },
+  gradingMode: 'assist',
+  createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
+  updatedAt: new Date().toISOString(),
+  version: 1
+};
+
+// 3. Grading - 批改中
+export const MOCK_ASSIGNMENT_GRADING: AssignmentPackage = {
+  id: 'assignment-grading-001',
+  title: '期中复习 - 数列与不等式',
+  subject: 'math',
+  topics: ['数列', '不等式'],
+  classIds: ['class-001', 'class-002'],
+  dueAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
+  totalPoints: 120,
+  taskIds: ['task-021', 'task-022', 'task-023', 'task-024'],
+  state: 'grading',
+  publishedAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
+  stats: {
+    totalStudents: 45,
+    submittedCount: 43,
+    gradedCount: 28,
+    submissionRate: 95.6,
+    gradingProgress: 65.1
+  },
+  gradingMode: 'assist',
+  createdAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(),
+  updatedAt: new Date().toISOString(),
+  version: 1
+};
+
+// 4. Graded - 已批改完成
+export const MOCK_ASSIGNMENT_GRADED: AssignmentPackage = {
+  id: 'assignment-graded-001',
+  title: '第二单元测试 - 平面向量',
+  subject: 'math',
+  topics: ['平面向量', '向量运算'],
+  classIds: ['class-001'],
+  dueAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
+  totalPoints: 100,
+  taskIds: ['task-031', 'task-032', 'task-033'],
+  state: 'graded',
+  publishedAt: new Date(Date.now() - 12 * 24 * 60 * 60 * 1000).toISOString(),
+  gradedAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000).toISOString(),
+  stats: {
+    totalStudents: 45,
+    submittedCount: 43,
+    gradedCount: 43,
+    submissionRate: 95.6,
+    gradingProgress: 100,
+    avgScore: 78.5,
+    maxScore: 94,
+    minScore: 52
+  },
+  gradingMode: 'assist',
+  createdAt: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString(),
+  updatedAt: new Date().toISOString(),
+  version: 1
+};
+
+// 所有示例作业的数组
+export const MOCK_ASSIGNMENTS: AssignmentPackage[] = [
+  MOCK_ASSIGNMENT_DRAFT,
+  MOCK_ASSIGNMENT_PUBLISHED,
+  MOCK_ASSIGNMENT_GRADING,
+  MOCK_ASSIGNMENT_GRADED
+];
 
 // 示例任务
 export const MOCK_TASKS: Task[] = [

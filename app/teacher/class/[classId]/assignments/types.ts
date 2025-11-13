@@ -1,6 +1,7 @@
 // 教师端班级作业类型定义
 
-export type AssignmentStatus = 'draft' | 'published' | 'graded';
+// 简化的四状态模型：draft（草稿）, published（收集中）, grading（批改中）, graded（已完成）
+export type AssignmentStatus = 'draft' | 'published' | 'grading' | 'graded';
 export type QuestionType = 'choice' | 'fill-blank' | 'essay';
 
 // 作业基本信息

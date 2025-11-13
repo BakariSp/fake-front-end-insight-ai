@@ -2,7 +2,7 @@
 
 import { use } from 'react';
 import AssignmentBuilder from '../../components/AssignmentBuilder';
-import { MOCK_ASSIGNMENT, MOCK_TASKS } from '../../mockData';
+import { MOCK_ASSIGNMENT_DRAFT, MOCK_TASKS } from '../../mockData';
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -13,7 +13,7 @@ export default function EditAssignmentPage({ params }: PageProps) {
   
   // 在实际应用中，这里应该根据ID从API获取数据
   // 现在使用Mock数据
-  const assignment = MOCK_ASSIGNMENT;
+  const assignment = MOCK_ASSIGNMENT_DRAFT;
   const tasks = MOCK_TASKS;
 
   return (

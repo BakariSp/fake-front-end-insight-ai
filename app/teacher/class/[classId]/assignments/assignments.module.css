@@ -1,236 +1,982 @@
-/* 教师端班级作业列表页面样式 */
+/* 教师端班级作业列表页面样式 - 简洁版 */
 
 .pageContainer {
-  padding: 32px;
+  padding: 40px 48px;
   max-width: 1400px;
   margin: 0 auto;
+  background: #FAFAFA;
+  min-height: 100vh;
 }
 
 /* Header */
 .pageHeader {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: 32px;
 }
 
-.headerLeft {
-  flex: 1;
-}
-
 .pageTitle {
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--gray-900);
-  margin: 0 0 8px 0;
-}
-
-.pageSubtitle {
-  font-size: 16px;
-  color: var(--gray-600);
+  font-size: 24px;
+  font-weight: 600;
+  color: #1A1A1A;
   margin: 0;
 }
 
-.headerRight {
+/* Filter Tabs */
+.filterTabs {
   display: flex;
-  gap: 12px;
-}
-
-/* Stats Bar */
-.statsBar {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 8px;
   margin-bottom: 24px;
+  background: white;
+  padding: 8px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
-.statCard {
-  background: var(--white);
-  border: 1px solid var(--gray-200);
-  border-radius: 12px;
-  padding: 20px;
+.filterTab {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #595959;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.filterTab svg {
+  width: 18px;
+  height: 18px;
+  color: currentColor;
+}
+
+.filterTab:hover {
+  background: #F5F5F5;
+  color: #1A1A1A;
+}
+
+.filterTab.active {
+  background: #4F7FFF;
+  color: white;
+}
+
+.filterTab.active svg {
+  color: white;
+}
+
+.filterCount {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-width: 24px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.1);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.filterTab.active .filterCount {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Assignments Table */
+.assignmentsTable {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.tableHeader {
+  display: grid;
+  grid-template-columns: 2fr 0.8fr 1.3fr 1.1fr 1fr 0.8fr;
+  gap: 16px;
+  padding: 16px 24px;
+  background: #FAFAFA;
+  border-bottom: 1px solid #F0F0F0;
+  font-size: 12px;
+  font-weight: 600;
+  color: #8C8C8C;
+  letter-spacing: 0.5px;
+}
+
+.tableBody {
+  min-height: 200px;
+}
+
+.tableRow {
+  display: grid;
+  grid-template-columns: 2fr 0.8fr 1.3fr 1.1fr 1fr 0.8fr;
+  gap: 16px;
+  padding: 20px 24px;
+  border-bottom: 1px solid #F0F0F0;
   transition: all 0.2s ease;
+  align-items: center;
 }
 
-.statCard:hover {
-  border-color: var(--primary-blue);
-  box-shadow: 0 2px 8px rgba(79, 127, 255, 0.1);
-  transform: translateY(-2px);
+.tableRow:hover {
+  background: #F9FAFB;
 }
 
-.statValue {
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--gray-900);
-  margin-bottom: 4px;
+.tableRow:last-child {
+  border-bottom: none;
 }
 
-.statValue.warning {
-  color: var(--warning-yellow);
+/* Column Styles */
+.columnAssignment {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
 }
 
-.statValue.info {
-  color: var(--primary-blue);
+.assignmentIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #667EEA 0%, #4F7FFF 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: white;
 }
 
-.statValue.success {
-  color: var(--success-green);
+.assignmentIcon svg {
+  width: 20px;
+  height: 20px;
 }
 
-.statLabel {
+.assignmentInfo {
+  min-width: 0;
+  flex: 1;
+}
+
+.assignmentName {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.columnStatus {
+  display: flex;
+  align-items: center;
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* AI Grading Column */
+.columnAiGrading {
+  display: flex;
+  align-items: center;
+}
+
+.aiGradingNotAvailable,
+.aiGradingPending {
   font-size: 14px;
-  color: var(--gray-600);
-  text-align: center;
+  color: #8C8C8C;
 }
 
-/* Search Section */
-.searchSection {
-  margin-bottom: 24px;
-}
-
-/* Table Card */
-.tableCard {
-  margin-bottom: 24px;
-}
-
-/* Assignment Title Cell */
-.assignmentTitleCell {
+.aiGradingCompleted {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-.assignmentTitle {
-  font-size: 16px;
+.aiGradingBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+  border-radius: 6px;
+  color: white;
+  font-size: 11px;
   font-weight: 600;
-  color: var(--gray-900);
-  margin: 0;
+  letter-spacing: 0.3px;
+  width: fit-content;
 }
 
-.assignmentMeta {
+.aiGradingBadge svg {
+  width: 14px;
+  height: 14px;
+  color: #FFD700;
+}
+
+.aiGradingLabel {
+  text-transform: uppercase;
+}
+
+.aiGradingScore {
+  font-size: 13px;
+  color: #595959;
+  font-weight: 500;
+}
+
+.aiGradingScore strong {
+  color: #262626;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.aiGradingReadyButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: linear-gradient(135deg, #667EEA15 0%, #764BA215 100%);
+  border: 1.5px solid #667EEA;
+  border-radius: 6px;
+  color: #667EEA;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.aiGradingReadyButton:hover {
+  background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.aiGradingReadyButton svg {
+  width: 14px;
+  height: 14px;
+}
+
+.columnSubmissions {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  color: var(--gray-600);
 }
 
-.subject {
-  font-weight: 500;
-  color: var(--primary-blue);
-}
-
-.points {
-  color: var(--gray-700);
-}
-
-.questionCount {
-  color: var(--gray-600);
-}
-
-.metaDivider {
-  color: var(--gray-400);
-}
-
-/* Date Cell */
-.dateCell {
+.submissionsWrapper {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-}
-
-.date {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--gray-900);
-}
-
-.time {
-  font-size: 12px;
-  color: var(--gray-600);
-}
-
-/* Stats Cell */
-.statsCell {
-  display: flex;
-  align-items: center;
-}
-
-.statsProgress {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  gap: 6px;
   width: 100%;
 }
 
-.statsBar {
-  flex: 1;
-  height: 8px;
-  background: var(--gray-200);
-  border-radius: 4px;
+.submissionsText {
+  font-size: 14px;
+  font-weight: 600;
+  color: #262626;
+}
+
+.submissionsBar {
+  width: 100%;
+  height: 6px;
+  background: #F0F0F0;
+  border-radius: 3px;
   overflow: hidden;
 }
 
-.statsBarFill {
+.submissionsBarFill {
   height: 100%;
-  background: linear-gradient(90deg, var(--primary-blue), var(--primary-blue-dark));
-  border-radius: 4px;
-  transition: width 0.3s ease;
+  border-radius: 3px;
+  transition: width 0.3s ease, background-color 0.3s ease;
 }
 
-.statsText {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--gray-700);
-  white-space: nowrap;
+.columnDate {
+  font-size: 14px;
+  color: #595959;
 }
 
-/* Score */
-.avgScore {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--success-green);
-}
-
-.noScore {
-  font-size: 16px;
-  color: var(--gray-400);
-}
-
-/* Action Buttons */
-.actionButtons {
+.columnDetails {
   display: flex;
-  gap: 8px;
   justify-content: flex-end;
 }
 
+.viewButton {
+  padding: 8px 20px;
+  background: transparent;
+  color: #4F7FFF;
+  border: 1.5px solid #4F7FFF;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.viewButton:hover {
+  background: #4F7FFF;
+  color: white;
+}
+
+/* Empty State */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  color: #8C8C8C;
+}
+
+.emptyState svg {
+  margin-bottom: 16px;
+  opacity: 0.3;
+}
+
+.emptyState p {
+  font-size: 15px;
+  margin: 0;
+}
+
 /* Responsive */
-@media (max-width: 1200px) {
-  .statsBar {
-    grid-template-columns: repeat(2, 1fr);
+
+/* Tablets and smaller laptops (1024px - 1200px) - iPad Air横屏 */
+@media (max-width: 1200px) and (min-width: 1025px) {
+  .pageContainer {
+    padding: 28px 20px;
+  }
+
+  .pageTitle {
+    font-size: 22px;
+  }
+
+  .filterTabs {
+    padding: 7px;
+  }
+
+  .filterTab {
+    padding: 9px 14px;
+    font-size: 13px;
+  }
+
+  .filterTab svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .filterCount {
+    min-width: 22px;
+    height: 19px;
+    font-size: 12px;
+  }
+
+  .tableHeader {
+    padding: 14px 18px;
+    font-size: 11px;
+  }
+
+  .tableHeader,
+  .tableRow {
+    grid-template-columns: 2fr 0.75fr 1.2fr 1fr 0.9fr 0.7fr;
+    gap: 12px;
+  }
+
+  .tableRow {
+    padding: 16px 18px;
+  }
+
+  .assignmentIcon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .assignmentIcon svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .assignmentName {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .statusBadge {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+
+  .aiGradingBadge {
+    padding: 4px 8px;
+    font-size: 10px;
+    gap: 4px;
+  }
+
+  .aiGradingBadge svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .aiGradingScore {
+    font-size: 12px;
+  }
+
+  .aiGradingScore strong {
+    font-size: 13px;
+  }
+
+  .aiGradingReadyButton {
+    padding: 5px 10px;
+    font-size: 11px;
+    gap: 4px;
+  }
+
+  .aiGradingReadyButton svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .submissionsText {
+    font-size: 13px;
+  }
+
+  .submissionsBar {
+    height: 5px;
+  }
+
+  .columnDate {
+    font-size: 13px;
+  }
+
+  .viewButton {
+    padding: 7px 14px;
+    font-size: 13px;
   }
 }
 
+/* iPad and tablets (768px - 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .pageContainer {
+    padding: 32px 24px;
+  }
+
+  .pageTitle {
+    font-size: 22px;
+  }
+
+  .filterTabs {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .filterTabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filterTab {
+    padding: 10px 14px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .filterTab svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .tableHeader {
+    padding: 14px 16px;
+    font-size: 10px;
+  }
+
+  .tableHeader,
+  .tableRow {
+    grid-template-columns: 1.3fr 0.6fr 1fr 0.8fr 0.7fr 0.6fr;
+    gap: 8px;
+  }
+
+  .tableRow {
+    padding: 16px;
+  }
+
+  /* Hide icon on iPad to save space */
+  .assignmentIcon {
+    display: none;
+  }
+
+  .assignmentInfo {
+    margin-left: 0;
+  }
+
+  .assignmentName {
+    font-size: 14px;
+  }
+
+  .statusBadge {
+    padding: 3px 8px;
+    font-size: 10px;
+  }
+
+  .aiGradingBadge {
+    padding: 3px 6px;
+    font-size: 9px;
+    gap: 3px;
+  }
+
+  .aiGradingBadge svg {
+    width: 10px;
+    height: 10px;
+  }
+
+  .aiGradingScore {
+    font-size: 10px;
+  }
+
+  .aiGradingScore strong {
+    font-size: 11px;
+  }
+
+  .aiGradingReadyButton {
+    padding: 4px 8px;
+    font-size: 9px;
+    gap: 3px;
+  }
+
+  .aiGradingReadyButton svg {
+    width: 11px;
+    height: 11px;
+  }
+
+  .submissionsText {
+    font-size: 12px;
+  }
+
+  .submissionsBar {
+    height: 4px;
+  }
+
+  .columnDate {
+    font-size: 12px;
+  }
+
+  .viewButton {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+/* Mobile devices (max 768px) */
 @media (max-width: 768px) {
   .pageContainer {
-    padding: 16px;
+    padding: 20px 16px;
   }
 
   .pageHeader {
     flex-direction: column;
+    align-items: stretch;
     gap: 16px;
   }
 
-  .statsBar {
-    grid-template-columns: 1fr;
+  .pageTitle {
+    font-size: 20px;
   }
 
-  .assignmentMeta {
+  .filterTabs {
     flex-wrap: wrap;
+    padding: 6px;
+  }
+
+  .filterTab {
+    flex: 1;
+    min-width: 100px;
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .filterTab svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .assignmentsTable {
+    border-radius: 8px;
+  }
+
+  .tableHeader {
+    display: none;
+  }
+
+  .tableRow {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 14px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    border: 1px solid #F0F0F0;
+  }
+
+  .tableRow:hover {
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .columnAssignment {
+    grid-column: 1;
+  }
+
+  /* Hide icon on mobile to save space */
+  .assignmentIcon {
+    display: none;
+  }
+
+  .assignmentInfo {
+    margin-left: 0;
+  }
+
+  .assignmentName {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .columnStatus,
+  .columnAiGrading,
+  .columnSubmissions,
+  .columnDate {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 6px 0;
+    gap: 12px;
+  }
+
+  .columnStatus::before {
+    content: 'Status:';
+    color: #8C8C8C;
+    font-size: 12px;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+
+  .columnAiGrading::before {
+    content: 'AI Grading:';
+    color: #8C8C8C;
+    font-size: 12px;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+
+  .columnSubmissions::before {
+    content: 'Submissions:';
+    color: #8C8C8C;
+    font-size: 12px;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+
+  .columnDate::before {
+    content: 'Due:';
+    color: #8C8C8C;
+    font-size: 12px;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+
+  .columnStatus,
+  .columnSubmissions,
+  .columnDate {
+    align-items: center;
+  }
+
+  .statusBadge {
+    padding: 3px 10px;
+    font-size: 11px;
+  }
+
+  .columnDetails {
+    justify-content: stretch;
+    padding-top: 8px;
+    margin-top: 4px;
+    border-top: 1px solid #F0F0F0;
+  }
+
+  .viewButton {
+    width: 100%;
+    padding: 10px;
+  }
+
+  /* AI Grading mobile styles */
+  .aiGradingCompleted {
+    width: 100%;
+    gap: 4px;
+  }
+
+  .aiGradingBadge {
+    padding: 3px 8px;
+    font-size: 10px;
+    gap: 4px;
+  }
+
+  .aiGradingBadge svg {
+    width: 11px;
+    height: 11px;
+  }
+
+  .aiGradingScore {
+    font-size: 12px;
+  }
+
+  .aiGradingScore strong {
+    font-size: 13px;
+  }
+
+  .aiGradingReadyButton {
+    width: 100%;
+    padding: 7px 12px;
+    font-size: 12px;
+    justify-content: center;
+  }
+
+  .aiGradingNotAvailable,
+  .aiGradingPending {
+    font-size: 13px;
+  }
+
+  /* Submissions mobile styles */
+  .submissionsWrapper {
+    flex: 1;
+    max-width: none;
+    width: 100%;
+  }
+
+  .submissionsText {
+    font-size: 13px;
+  }
+
+  .submissionsBar {
+    height: 5px;
   }
 }
 
+/* Extra small devices (max 480px) */
+@media (max-width: 480px) {
+  .pageContainer {
+    padding: 16px 12px;
+  }
+
+  .pageTitle {
+    font-size: 18px;
+  }
+
+  .filterTabs {
+    gap: 4px;
+  }
+
+  .filterTab {
+    padding: 7px 10px;
+    font-size: 12px;
+    gap: 5px;
+  }
+
+  .filterCount {
+    min-width: 20px;
+    height: 18px;
+    font-size: 11px;
+    padding: 0 5px;
+  }
+
+  .tableRow {
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .assignmentName {
+    font-size: 14px;
+  }
+
+  .columnStatus::before,
+  .columnAiGrading::before,
+  .columnSubmissions::before,
+  .columnDate::before {
+    font-size: 11px;
+  }
+
+  .statusBadge {
+    padding: 3px 8px;
+    font-size: 10px;
+  }
+
+  .aiGradingBadge {
+    padding: 3px 7px;
+    font-size: 9px;
+  }
+
+  .aiGradingBadge svg {
+    width: 10px;
+    height: 10px;
+  }
+
+  .aiGradingScore {
+    font-size: 11px;
+  }
+
+  .aiGradingScore strong {
+    font-size: 12px;
+  }
+
+  .aiGradingReadyButton {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .aiGradingReadyButton svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .submissionsText {
+    font-size: 12px;
+  }
+
+  .submissionsBar {
+    height: 4px;
+  }
+
+  .viewButton {
+    padding: 9px;
+    font-size: 13px;
+  }
+
+  .columnDate {
+    font-size: 12px;
+  }
+}
+
+/* 省略号菜单样式 */
+.menuWrapper {
+  position: relative;
+  display: inline-block;
+  margin-left: 8px;
+}
+
+.menuButton {
+  padding: 6px;
+  background: transparent;
+  border: 1px solid #E5E7EB;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #6B7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.menuButton:hover {
+  background-color: #F9FAFB;
+  border-color: #D1D5DB;
+  color: #374151;
+}
+
+.menuButton:active {
+  background-color: #F3F4F6;
+}
+
+.dropdownMenu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 4px);
+  min-width: 180px;
+  background: white;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  z-index: 50;
+  overflow: hidden;
+  animation: menuFadeIn 0.15s ease-out;
+}
+
+@keyframes menuFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.menuItem {
+  width: 100%;
+  padding: 10px 16px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  font-size: 14px;
+  color: #374151;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background-color 0.15s ease;
+}
+
+.menuItem:hover {
+  background-color: #F9FAFB;
+}
+
+.menuItem svg {
+  flex-shrink: 0;
+  color: #6B7280;
+}
+
+.menuItemDanger {
+  color: #DC2626;
+}
+
+.menuItemDanger svg {
+  color: #DC2626;
+}
+
+.menuItemDanger:hover {
+  background-color: #FEF2F2;
+}
+
+.menuDivider {
+  height: 1px;
+  background-color: #E5E7EB;
+  margin: 4px 0;
+}
+
+/* AI Grading In Progress 样式 */
+.aiGradingInProgress {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.aiGradingProgress {
+  font-size: 12px;
+  color: #722ED1;
+  font-weight: 500;
+}
+
+.spinIcon {
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

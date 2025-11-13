@@ -125,7 +125,7 @@ export default function PortalLoginPage() {
             </button>
 
             <div className={styles.signupLink}>
-              {t('login.newUser')} <a href="#">{t('login.createAccount')}</a>
+              {t('login.newUser')} <a href="/login/register">{t('login.createAccount')}</a>
             </div>
           </div>
         ) : (
@@ -179,7 +179,7 @@ export default function PortalLoginPage() {
             </button>
 
             <div className={styles.signupLink}>
-              {t('login.newUser')} <a href="#">{t('login.createAccount')}</a>
+              {t('login.newUser')} <a href="/login/register">{t('login.createAccount')}</a>
             </div>
           </form>
         )}

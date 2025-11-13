@@ -1,12 +1,15 @@
 'use client';
 
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import styles from './classes.module.css';
 
 const ClassesPage: React.FC = () => {
+  const router = useRouter();
+
   const mockClasses = [
     {
-      id: '10a',
+      id: 'class-001',
       name: 'Grade 10-A',
       subject: 'Mathematics',
       students: 28,
@@ -14,7 +17,7 @@ const ClassesPage: React.FC = () => {
       color: '#4F7FFF',
     },
     {
-      id: '11b',
+      id: 'class-002',
       name: 'Grade 11-B',
       subject: 'Mathematics',
       students: 32,
@@ -22,7 +25,7 @@ const ClassesPage: React.FC = () => {
       color: '#52C41A',
     },
     {
-      id: '9c',
+      id: 'class-003',
       name: 'Grade 9-C',
       subject: 'Mathematics',
       students: 25,
@@ -68,8 +71,18 @@ const ClassesPage: React.FC = () => {
               </div>
             </div>
             <div className={styles.classActions}>
-              <button className={styles.viewButton}>View Class</button>
-              <button className={styles.assignmentButton}>Assignments</button>
+              <button 
+                className={styles.viewButton}
+                onClick={() => router.push(`/teacher/class/${classItem.id}/overview`)}
+              >
+                View Class
+              </button>
+              <button 
+                className={styles.assignmentButton}
+                onClick={() => router.push(`/teacher/class/${classItem.id}/assignments`)}
+              >
+                Assignments
+              </button>
             </div>
           </div>
         ))}

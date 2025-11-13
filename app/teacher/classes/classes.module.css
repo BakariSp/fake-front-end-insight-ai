@@ -120,3 +120,167 @@
   background: #F5F9FF;
 }
 
+/* Responsive */
+
+/* iPad and tablets (768px - 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .container {
+    padding: 28px 24px;
+  }
+
+  .title {
+    font-size: 26px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+
+  .classList {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .classCard {
+    border-radius: 10px;
+  }
+
+  .classHeader {
+    padding: 18px;
+  }
+
+  .className {
+    font-size: 19px;
+  }
+
+  .classSubject {
+    font-size: 12px;
+  }
+
+  .classBody {
+    padding: 18px;
+    gap: 10px;
+  }
+
+  .statLabel {
+    font-size: 12px;
+  }
+
+  .statValue {
+    font-size: 15px;
+  }
+
+  .classActions {
+    padding: 14px 18px;
+    gap: 8px;
+  }
+
+  .viewButton,
+  .assignmentButton {
+    padding: 9px;
+    font-size: 13px;
+  }
+}
+
+/* Mobile devices (max 768px) */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 16px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+
+  .classList {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .classCard {
+    border-radius: 8px;
+  }
+
+  .classHeader {
+    padding: 16px;
+  }
+
+  .className {
+    font-size: 18px;
+  }
+
+  .classSubject {
+    font-size: 12px;
+  }
+
+  .classBody {
+    padding: 16px;
+  }
+
+  .classActions {
+    padding: 12px 16px;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .viewButton,
+  .assignmentButton {
+    width: 100%;
+    padding: 10px;
+  }
+}
+
+/* Extra small devices (max 480px) */
+@media (max-width: 480px) {
+  .container {
+    padding: 16px 12px;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .header {
+    margin-bottom: 24px;
+  }
+
+  .classList {
+    gap: 12px;
+  }
+
+  .classCard {
+    border-radius: 8px;
+  }
+
+  .classHeader {
+    padding: 14px;
+  }
+
+  .className {
+    font-size: 17px;
+  }
+
+  .classBody {
+    padding: 14px;
+  }
+
+  .statLabel,
+  .statValue {
+    font-size: 13px;
+  }
+
+  .classActions {
+    padding: 10px 14px;
+  }
+
+  .viewButton,
+  .assignmentButton {
+    padding: 9px;
+    font-size: 13px;
+  }
+}
+

@@ -4,10 +4,23 @@ export type Subject = 'chinese' | 'english' | 'math' | 'physics' | 'chem' | 'bio
 export type TaskType = 'quiz' | 'essay' | 'fill-blank' | 'scan' | 'audio' | 'video' | 'file' | 'group';
 export type SubmissionMethod = 'typein' | 'handwriting' | 'image' | 'audio' | 'video' | 'file';
 export type GradingMode = 'auto' | 'assist' | 'manual';
-export type AssignmentState = 'draft' | 'published' | 'archived';
+// 简化的四状态模型
+export type AssignmentState = 'draft' | 'published' | 'grading' | 'graded';
 export type OCRStatus = 'idle' | 'queued' | 'processing' | 'done' | 'error';
 export type LatePolicy = 'none' | 'penalty_10' | 'penalty_20';
 export type AudienceType = 'class' | 'group' | 'students';
+
+// 作业统计信息
+export interface AssignmentStats {
+  totalStudents: number;       // 总学生数
+  submittedCount: number;      // 已提交数量
+  gradedCount: number;         // 已批改数量
+  submissionRate: number;      // 提交率 0-100
+  gradingProgress: number;     // 批改进度 0-100
+  avgScore?: number;           // 平均分
+  maxScore?: number;           // 最高分
+  minScore?: number;           // 最低分
+}
 
 // 作业包
 export interface AssignmentPackage {
@@ -15,14 +28,17 @@ export interface AssignmentPackage {
   title: string;
   subject: Subject;
   topics: string[];
-  classIds: string[];          // 分发时再填
-  dueAt: string;               // ISO
-  totalPoints: number;
+  classIds: string[];          // 分发到的班级
+  dueAt: string;               // 截止时间 ISO
+  totalPoints: number;         // 总分
   taskIds: string[];
-  state: AssignmentState;
+  state: AssignmentState;      // 四个状态：draft, published, grading, graded
+  stats?: AssignmentStats;     // 统计信息
   ocrStatus?: OCRStatus;
   createdAt: string;
   updatedAt: string;
+  publishedAt?: string;        // 发布时间
+  gradedAt?: string;           // 批改完成时间
   version?: number;
   // 全局设置
   gradingMode: GradingMode;    // 全局批改模式

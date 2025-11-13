@@ -8,19 +8,19 @@ import {
   QuestionType,
 } from './types';
 
-// Mock 班级作业列表
+// Mock 班级作业列表 - 四个状态示例
 export const mockClassAssignments: ClassAssignment[] = [
-  // Draft 草稿
+  // 1. Draft 草稿 - 尚未发布
   {
     id: 'assignment-draft-001',
-    title: '第三单元语文综合测试',
+    title: '第三单元语文综合测试（草稿）',
     subject: '语文',
     classId: 'class-001',
     className: '高一（3）班',
     description: '包含古诗词鉴赏、现代文阅读和作文',
     dueDate: '2025-11-25 23:59',
     totalPoints: 100,
-    status: 'draft',
+    status: 'draft' as const,
     questions: [
       {
         id: 'q1',
@@ -75,7 +75,7 @@ export const mockClassAssignments: ClassAssignment[] = [
     }
   },
   
-  // Published but not due 已发布未到期
+  // 2. Published 已发布 - 收集中
   {
     id: 'assignment-published-001',
     title: '期中复习：现代文阅读理解',
@@ -83,10 +83,10 @@ export const mockClassAssignments: ClassAssignment[] = [
     classId: 'class-001',
     className: '高一（3）班',
     description: '包含现代文阅读、语言运用等内容',
-    dueDate: '2025-11-18 23:59',
+    dueDate: '2025-11-20 23:59',
     publishDate: '2025-11-10 08:00',
     totalPoints: 80,
-    status: 'published',
+    status: 'published' as const,
     questions: [
       {
         id: 'q1',
@@ -135,7 +135,55 @@ export const mockClassAssignments: ClassAssignment[] = [
     }
   },
   
-  // Published, passed due, and graded by AI 已发布已过期已AI评分
+  // 3. Grading 批改中 - 已截止，AI正在批改
+  {
+    id: 'assignment-grading-001',
+    title: '第四单元测试：议论文写作',
+    subject: '语文',
+    classId: 'class-001',
+    className: '高一（3）班',
+    description: '包含议论文阅读理解和写作',
+    dueDate: '2025-11-10 23:59',
+    publishDate: '2025-11-03 08:00',
+    totalPoints: 100,
+    status: 'grading' as const,
+    questions: [
+      {
+        id: 'q1',
+        type: 'choice',
+        order: 1,
+        content: '下列论证方法使用不当的一项是',
+        points: 5,
+        options: [
+          'A. 举例论证',
+          'B. 对比论证',
+          'C. 比喻论证',
+          'D. 类比论证'
+        ],
+        correctAnswer: 3,
+      },
+      {
+        id: 'q2',
+        type: 'essay',
+        order: 2,
+        content: '请以"坚持的力量"为题，写一篇议论文。要求：①观点明确；②论据充分；③不少于600字。',
+        points: 50,
+        rubric: '论点明确、论据充分、论证有力、语言流畅',
+        keywords: ['坚持', '毅力', '成功', '论据', '事例'],
+      }
+    ],
+    stats: {
+      totalStudents: 45,
+      submitted: 42,
+      notSubmitted: 3,
+      graded: 25,  // 部分已批改
+      avgScore: 76.8,
+      maxScore: 92,
+      minScore: 58,
+    }
+  },
+  
+  // 4. Graded 已完成 - 全部批改完成
   {
     id: 'assignment-graded-001',
     title: '第二单元综合测试：文言文与古诗词',
@@ -146,7 +194,7 @@ export const mockClassAssignments: ClassAssignment[] = [
     dueDate: '2025-11-08 23:59',
     publishDate: '2025-11-01 08:00',
     totalPoints: 100,
-    status: 'graded',
+    status: 'graded' as const,
     questions: [
       {
         id: 'q1',
@@ -593,8 +641,46 @@ export function getAssignmentById(id: string): ClassAssignment | undefined {
   return mockClassAssignments.find(a => a.id === id);
 }
 
+// Mock data for published assignment (not yet due)
+const mockPublishedSubmissions: StudentSubmission[] = [
+  {
+    id: 'sub-pub-001',
+    studentId: 'stu-001',
+    studentName: '张小明',
+    studentAvatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Zhang',
+    assignmentId: 'assignment-published-001',
+    submitTime: '2025-11-12 14:30',
+    status: 'submitted',
+    answers: [],
+  },
+  {
+    id: 'sub-pub-002',
+    studentId: 'stu-002',
+    studentName: '李小红',
+    studentAvatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Li',
+    assignmentId: 'assignment-published-001',
+    submitTime: '2025-11-12 16:20',
+    status: 'submitted',
+    answers: [],
+  },
+  // Add more students who haven't submitted yet (total 45, 28 submitted)
+  ...Array.from({ length: 26 }, (_, i) => ({
+    id: `sub-pub-${i + 3}`,
+    studentId: `stu-${i + 3}`,
+    studentName: `学生${i + 3}`,
+    studentAvatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=Student${i + 3}`,
+    assignmentId: 'assignment-published-001',
+    submitTime: i < 24 ? `2025-11-12 ${10 + i}:${20 + i}` : undefined,
+    status: (i < 24 ? 'submitted' : 'not_submitted') as 'submitted' | 'not_submitted',
+    answers: [],
+  })),
+];
+
 // 获取指定作业的学生提交数据
 export function getSubmissionsByAssignmentId(assignmentId: string): StudentSubmission[] {
+  if (assignmentId === 'assignment-published-001') {
+    return mockPublishedSubmissions;
+  }
   return mockStudentSubmissions.filter(s => s.assignmentId === assignmentId);
 }
 

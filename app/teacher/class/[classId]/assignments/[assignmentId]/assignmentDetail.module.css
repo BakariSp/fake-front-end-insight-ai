@@ -54,6 +54,11 @@
   color: var(--gray-400);
 }
 
+.pastDue {
+  color: var(--error-red);
+  font-weight: 600;
+}
+
 .headerRight {
   display: flex;
   gap: 12px;
@@ -62,6 +67,306 @@
 /* Content */
 .content {
   margin-top: 24px;
+}
+
+.aiGradingSection {
+  margin-bottom: 24px;
+}
+
+.actionsSection {
+  margin-bottom: 24px;
+}
+
+.previewSection {
+  margin-bottom: 24px;
+}
+
+.studentsSection {
+  margin-bottom: 24px;
+}
+
+.beforeDueSection {
+  margin-bottom: 24px;
+}
+
+/* Submission Indicator */
+.submissionIndicatorCard {
+  margin-bottom: 24px;
+}
+
+.submissionIndicator {
+  padding: 24px;
+}
+
+.indicatorHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.indicatorTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+.indicatorTitle svg {
+  color: var(--primary-blue);
+}
+
+.submissionCount {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.submissionCount .submitted {
+  color: var(--primary-blue);
+}
+
+.submissionCount .divider {
+  color: var(--gray-400);
+  font-size: 24px;
+}
+
+.submissionCount .total {
+  color: var(--gray-600);
+  font-size: 20px;
+}
+
+.progressBarContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.progressBar {
+  width: 100%;
+  height: 12px;
+  background: var(--gray-200);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-blue) 0%, #5b8fff 100%);
+  border-radius: 999px;
+  transition: width 0.5s ease;
+  position: relative;
+}
+
+.progressFill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.progressFill.complete {
+  background: linear-gradient(90deg, var(--success-green) 0%, #4ade80 100%);
+}
+
+.progressText {
+  font-size: 14px;
+  color: var(--gray-600);
+  font-weight: 500;
+}
+
+.incompleteWarning {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px;
+  background: #fef3c7;
+  border: 1px solid var(--warning-yellow);
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--gray-700);
+}
+
+.incompleteWarning svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--warning-orange);
+}
+
+.completeMessage {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: #d1fae5;
+  border: 1px solid var(--success-green-light);
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--success-green);
+  font-weight: 500;
+}
+
+.completeMessage svg {
+  flex-shrink: 0;
+}
+
+/* Assignment Preview */
+.assignmentPreviewCard {
+  margin-bottom: 24px;
+}
+
+.assignmentPreview {
+  padding: 24px;
+}
+
+.previewHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.previewTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin: 0;
+}
+
+.previewTitle svg {
+  color: var(--primary-blue);
+}
+
+.previewMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 16px;
+  background: var(--gray-50);
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.metaLabel {
+  font-size: 13px;
+  color: var(--gray-600);
+  font-weight: 500;
+}
+
+.metaValue {
+  font-size: 14px;
+  color: var(--gray-900);
+  font-weight: 600;
+}
+
+.previewDescription {
+  margin-bottom: 16px;
+}
+
+.previewDescription p {
+  font-size: 14px;
+  color: var(--gray-700);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.questionsList {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--gray-200);
+}
+
+.questionsTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin: 0 0 16px 0;
+}
+
+.questionItem {
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  transition: all 0.2s ease;
+}
+
+.questionItem:hover {
+  border-color: var(--primary-blue-light);
+  box-shadow: 0 2px 8px rgba(79, 127, 255, 0.08);
+}
+
+.questionHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.questionNumber {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary-blue);
+  background: var(--primary-blue-light);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.questionType {
+  font-size: 12px;
+  color: var(--gray-600);
+  background: var(--white);
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--gray-200);
+}
+
+.questionPoints {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-700);
+  margin-left: auto;
+}
+
+.questionContent {
+  font-size: 14px;
+  color: var(--gray-700);
+  line-height: 1.6;
+  white-space: pre-wrap;
 }
 
 .card {
@@ -91,12 +396,64 @@
   align-items: center;
   gap: 16px;
   transition: all 0.2s ease;
+  position: relative;
 }
 
 .statCard:hover {
   border-color: var(--primary-blue);
   box-shadow: 0 4px 12px rgba(79, 127, 255, 0.1);
   transform: translateY(-2px);
+}
+
+/* Clickable stat cards */
+.statCard.clickable {
+  cursor: pointer;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+}
+
+.statCard.clickable:hover {
+  border-color: var(--primary-blue);
+  box-shadow: 0 6px 16px rgba(79, 127, 255, 0.15);
+  transform: translateY(-3px);
+}
+
+.statCard.clickable:active {
+  transform: translateY(-1px);
+}
+
+.statCard.clickable.active {
+  border-color: var(--primary-blue);
+  background: linear-gradient(135deg, #f0f7ff 0%, #e3f2fd 100%);
+  box-shadow: 0 6px 20px rgba(79, 127, 255, 0.2);
+}
+
+.statCard.clickable:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.statCard.clickable:disabled:hover {
+  border-color: var(--gray-200);
+  box-shadow: none;
+  transform: none;
+}
+
+.statCard .clickHint {
+  font-size: 11px;
+  color: var(--primary-blue);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  margin-top: 8px;
+}
+
+.statCard.clickable:hover .clickHint {
+  opacity: 1;
+}
+
+.statCard.clickable:disabled .clickHint {
+  display: none;
 }
 
 .statIcon {
@@ -545,33 +902,741 @@
   color: var(--gray-400);
 }
 
-/* Responsive */
-@media (max-width: 1200px) {
-  .statsCards {
-    grid-template-columns: repeat(2, 1fr);
+/* Detail Cards */
+.detailCard {
+  margin-top: 24px;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
+.detailHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.detailTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin: 0;
+}
+
+.detailTitle svg {
+  color: var(--primary-blue);
+}
+
+/* Submission Tabs */
+.submissionTabs {
+  padding: 16px 24px 0;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.tabHeader {
+  display: flex;
+  gap: 8px;
+}
+
+.tab {
+  padding: 10px 16px;
+  border: none;
+  background: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray-600);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.tab:hover {
+  color: var(--primary-blue);
+}
+
+.tab.activeTab {
+  color: var(--primary-blue);
+  border-bottom-color: var(--primary-blue);
+}
+
+/* Student Table */
+.studentTable {
+  padding: 24px;
+}
+
+.tableHeader {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr 1fr 1fr;
+  gap: 16px;
+  padding: 12px 16px;
+  background: var(--gray-50);
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.tableBody {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tableRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr 1fr 1fr;
+  gap: 16px;
+  padding: 16px;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.tableRow:hover {
+  border-color: var(--primary-blue-light);
+  box-shadow: 0 2px 8px rgba(79, 127, 255, 0.08);
+}
+
+.tableRow.notSubmitted {
+  background: linear-gradient(90deg, #fef3c7 0%, #fef9e7 100%);
+  border-color: var(--warning-yellow);
+  border-left: 4px solid var(--warning-orange);
+}
+
+.tableRow.notSubmitted:hover {
+  border-color: var(--warning-orange);
+  box-shadow: 0 2px 8px rgba(249, 115, 22, 0.15);
+}
+
+.tableCol {
+  font-size: 14px;
+  color: var(--gray-700);
+  font-weight: 500;
+}
+
+.tableHeader .tableCol {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-600);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tableAvatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.tableRow .studentInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.scoreDisplay {
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+.emptyText {
+  color: var(--gray-400);
+}
+
+.disabledText {
+  color: var(--gray-300);
+}
+
+/* Stats Row */
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 24px;
+  background: var(--gray-50);
+  border-radius: 8px;
+  margin-top: 24px;
+}
+
+.statBox {
+  text-align: center;
+  padding: 16px;
+  background: var(--white);
+  border-radius: 8px;
+  border: 1px solid var(--gray-200);
+}
+
+.statBoxLabel {
+  font-size: 13px;
+  color: var(--gray-600);
+  margin-bottom: 8px;
+}
+
+.statBoxValue {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--primary-blue);
+}
+
+/* Top Students List */
+.topStudentsList {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rankCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.rankCard:hover {
+  border-color: var(--primary-blue);
+  box-shadow: 0 2px 8px rgba(79, 127, 255, 0.1);
+  transform: translateX(4px);
+}
+
+.rankBadge {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+  color: var(--gray-900);
+  flex-shrink: 0;
+}
+
+.rankBadge[data-rank="1"] {
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+.rankBadge[data-rank="2"] {
+  background: linear-gradient(135deg, #c0c0c0 0%, #e8e8e8 100%);
+  box-shadow: 0 4px 12px rgba(192, 192, 192, 0.3);
+}
+
+.rankBadge[data-rank="3"] {
+  background: linear-gradient(135deg, #cd7f32 0%, #e8a87c 100%);
+  box-shadow: 0 4px 12px rgba(205, 127, 50, 0.3);
+  color: var(--white);
+}
+
+.rankCard .studentInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.scoreInfo {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.scoreInfo .scoreValue {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--success-green);
+}
+
+.scoreInfo .scoreMax {
+  font-size: 14px;
+  color: var(--gray-600);
+}
+
+/* Bottom Students List */
+.bottomStudentsList {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.supportCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+  border: 1px solid var(--warning-orange);
+  border-left: 4px solid var(--error-red);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.supportCard:hover {
+  border-color: var(--error-red);
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.15);
+}
+
+.supportCard .studentInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.scoreWarning {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--gray-700);
+  margin-top: 4px;
+}
+
+.lowScoreBadge {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--error-red);
+  background: var(--white);
+  padding: 2px 8px;
+  border-radius: 12px;
+  border: 1px solid var(--error-red);
+}
+
+.submissionSection {
+  margin-bottom: 24px;
+}
+
+/* Responsive */
+
+/* iPad and tablets (768px - 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .pageContainer {
+    padding: 28px 24px;
+  }
+
+  .pageTitle {
+    font-size: 24px;
+  }
+
+  .headerMeta {
+    font-size: 13px;
+    gap: 10px;
+  }
+
+  .statsCards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .statCard {
+    padding: 18px;
+  }
+
+  .statIcon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .statValue {
+    font-size: 22px;
+  }
+
+  .statLabel {
+    font-size: 12px;
+  }
+
+  .chartSection {
+    padding: 20px;
+  }
+
+  .chartTitle {
+    font-size: 17px;
+  }
+
+  .barChart {
+    height: 260px;
+    gap: 12px;
+    padding: 0 16px;
+  }
+
+  .barWrapper {
+    height: 200px;
+  }
+
+  .barValue {
+    font-size: 13px;
+  }
+
+  .barLabel {
+    font-size: 12px;
+  }
+
+  .sectionTitle {
+    font-size: 17px;
+  }
+
+  .difficultySection,
+  .weakPointsSection,
+  .studentListSection {
+    padding: 20px;
+  }
+
+  .questionNumber {
+    font-size: 13px;
+    padding: 3px 9px;
+  }
+
+  .questionTitle {
+    font-size: 14px;
+  }
+
+  .difficultyStats {
+    gap: 20px;
+  }
+
+  .statItem {
+    font-size: 13px;
+  }
+
+  /* Submission Indicator */
+  .submissionIndicator {
+    padding: 20px;
+  }
+
+  .indicatorTitle {
+    font-size: 17px;
+  }
+
+  .submissionCount {
+    font-size: 26px;
+  }
+
+  .submissionCount .total {
+    font-size: 18px;
+  }
+
+  .progressBar {
+    height: 10px;
+  }
+
+  /* Assignment Preview */
+  .assignmentPreview {
+    padding: 20px;
+  }
+
+  .previewTitle {
+    font-size: 17px;
+  }
+
+  .previewMeta {
+    gap: 20px;
+    padding: 14px;
+  }
+
+  .metaLabel,
+  .metaValue {
+    font-size: 13px;
+  }
+
+  .questionItem {
+    padding: 14px;
+  }
+
+  .questionNumber {
+    font-size: 12px;
+    padding: 3px 8px;
+  }
+
+  .questionType {
+    font-size: 11px;
+  }
+
+  .questionPoints {
+    font-size: 12px;
+  }
+
+  .questionContent {
+    font-size: 13px;
+  }
+
+  /* New responsive styles for detail views */
+  .tableHeader,
+  .tableRow {
+    grid-template-columns: 2fr 1fr 1.2fr 0.8fr 0.8fr;
+    gap: 12px;
+  }
+
+  .tableCol {
+    font-size: 13px;
+  }
+
+  .detailHeader {
+    padding: 20px;
+  }
+
+  .detailTitle {
+    font-size: 18px;
+  }
+
+  .studentTable {
+    padding: 20px;
+  }
+
+  .topStudentsList,
+  .bottomStudentsList {
+    padding: 20px;
+  }
+
+  .rankBadge {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+
+  .scoreInfo .scoreValue {
+    font-size: 22px;
+  }
+
+  .statsRow {
+    padding: 20px;
+  }
+
+  .statBoxValue {
+    font-size: 24px;
+  }
+}
+
+/* Tablets (769px - 900px) - Optimized for iPad Mini */
+@media (max-width: 900px) and (min-width: 769px) {
+  .statsCards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .barChart {
+    height: 240px;
+    gap: 10px;
+  }
+  
+  .barWrapper {
+    height: 180px;
+  }
+}
+
+/* Mobile devices (max 768px) */
 @media (max-width: 768px) {
   .pageContainer {
     padding: 16px;
   }
 
+  .pageTitle {
+    font-size: 22px;
+  }
+
   .headerContent {
     flex-direction: column;
+    gap: 16px;
+  }
+
+  .headerMeta {
+    font-size: 12px;
+    gap: 8px;
+    flex-wrap: wrap;
   }
 
   .statsCards {
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .statCard {
+    padding: 16px;
+  }
+
+  .statIcon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .statValue {
+    font-size: 20px;
+  }
+
+  .statLabel {
+    font-size: 12px;
+  }
+
+  .chartSection {
+    padding: 16px;
+  }
+
+  .chartTitle {
+    font-size: 16px;
   }
 
   .barChart {
-    height: 240px;
+    height: 220px;
     gap: 8px;
+    padding: 0 10px;
   }
 
   .barWrapper {
-    height: 180px;
+    height: 160px;
+  }
+
+  .barValue {
+    font-size: 12px;
+  }
+
+  .barLabel,
+  .barPercentage {
+    font-size: 11px;
+  }
+
+  .sectionTitle {
+    font-size: 16px;
+  }
+
+  .difficultySection,
+  .weakPointsSection,
+  .studentListSection {
+    padding: 16px;
+  }
+
+  .submissionIndicator {
+    padding: 16px;
+  }
+
+  .indicatorTitle {
+    font-size: 16px;
+  }
+
+  .submissionCount {
+    font-size: 24px;
+  }
+
+  .progressBar {
+    height: 10px;
+  }
+
+  .assignmentPreview {
+    padding: 16px;
+  }
+
+  .previewTitle {
+    font-size: 16px;
+  }
+
+  .questionItem {
+    padding: 12px;
+  }
+
+  /* New responsive styles for mobile */
+  .statsCards {
+    grid-template-columns: 1fr;
+  }
+
+  .statCard .clickHint {
+    font-size: 10px;
+  }
+
+  /* Detail views on mobile */
+  .detailHeader {
+    padding: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .detailTitle {
+    font-size: 16px;
+  }
+
+  .studentTable {
+    padding: 16px;
+    overflow-x: auto;
+  }
+
+  .tableHeader,
+  .tableRow {
+    grid-template-columns: 1.5fr 0.8fr 1fr 0.8fr 0.8fr;
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .tableCol {
+    font-size: 12px;
+  }
+
+  .tableAvatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .tableRow .studentInfo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .submissionTabs {
+    padding: 12px 16px 0;
+  }
+
+  .tab {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  .topStudentsList,
+  .bottomStudentsList {
+    padding: 16px;
+  }
+
+  .rankCard,
+  .supportCard {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .rankBadge {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  .scoreInfo .scoreValue {
+    font-size: 20px;
+  }
+
+  .statsRow {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+
+  .statBoxValue {
+    font-size: 22px;
   }
 }
 

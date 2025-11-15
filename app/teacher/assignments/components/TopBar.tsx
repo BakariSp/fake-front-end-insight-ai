@@ -1,5 +1,7 @@
 'use client';
 
+import { useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { AssignmentPackage } from '../types';
 import { SUBJECTS, TOPIC_TAGS } from '../mockData';
 import styles from './TopBar.module.css';
@@ -21,6 +23,25 @@ export default function TopBar({
   onPublish,
   onPreview
 }: TopBarProps) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const fullscreenParam = searchParams.get('fullscreen');
+  const isFullscreen = fullscreenParam === null || fullscreenParam !== 'false';
+
+  // Set fullscreen on initial load if no parameter exists
+  useEffect(() => {
+    if (fullscreenParam === null) {
+      const currentPath = window.location.pathname;
+      router.replace(`${currentPath}?fullscreen=true`);
+    }
+  }, [fullscreenParam, router]);
+
+  const toggleFullscreen = () => {
+    const currentPath = window.location.pathname;
+    const newFullscreenState = !isFullscreen;
+    router.push(`${currentPath}?fullscreen=${newFullscreenState}`);
+  };
+
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onUpdate({ title: e.target.value });
   };
@@ -45,8 +66,39 @@ export default function TopBar({
   return (
     <div className={styles.topBar}>
       <div className={styles.leftSection}>
-        <button className={styles.backButton} onClick={() => window.history.back()}>
+        <button 
+          className={styles.backButton} 
+          onClick={() => {
+            if (window.history.length > 1) {
+              window.history.back();
+            } else {
+              window.location.href = '/teacher/assignments';
+            }
+          }}
+        >
           ← 返回
+        </button>
+
+        <button 
+          className={styles.fullscreenButton} 
+          onClick={toggleFullscreen}
+          title={isFullscreen ? '退出全屏' : '进入全屏'}
+        >
+          {isFullscreen ? (
+            <>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M6 2v4H2M10 14v-4h4M2 6h4V2M14 10h-4v4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              退出全屏
+            </>
+          ) : (
+            <>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M2 6V2h4M14 6V2h-4M2 10v4h4M14 10v4h-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              全屏
+            </>
+          )}
         </button>
         
         <div className={styles.inputGroup}>

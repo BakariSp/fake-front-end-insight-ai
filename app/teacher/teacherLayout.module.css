@@ -217,6 +217,7 @@
 .content {
   flex: 1;
   overflow-y: auto;
+  position: relative;
   /* padding: 32px 32px 48px 32px; */
 }
 

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback, useEffect, useRef } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { AssignmentPackage, Task, TaskType } from '../types';
 import { createDefaultTask, createEmptyAssignment } from '../mockData';
 import TopBar from './TopBar';
@@ -24,6 +25,10 @@ export default function AssignmentBuilder({
   initialTasks = [],
   mode
 }: AssignmentBuilderProps) {
+  const searchParams = useSearchParams();
+  const fullscreenParam = searchParams.get('fullscreen');
+  const isFullscreen = fullscreenParam === null || fullscreenParam !== 'false';
+
   // 状态管理
   const [assignment, setAssignment] = useState<AssignmentPackage>(
     initialAssignment || createEmptyAssignment()
@@ -149,7 +154,10 @@ export default function AssignmentBuilder({
   const selectedTask = tasks.find(t => t.id === selectedTaskId);
 
   return (
-    <div className={styles.builderContainer}>
+    <div 
+      className={styles.builderContainer}
+      style={{ top: isFullscreen ? '0' : '80px' }}
+    >
       <TopBar
         assignment={assignment}
         totalPoints={totalPoints}

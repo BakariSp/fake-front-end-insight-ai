@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import TeacherTopNav from './components/TeacherTopNav';
 import { NotificationProvider } from './components/notifications';
 import { BlueDotBadge, CountBadge } from './components/notifications';
@@ -10,8 +10,9 @@ import { getModuleUnreadCount } from './components/notifications/mockData';
 import { mockNotifications } from './components/notifications/mockData';
 import styles from './teacherLayout.module.css';
 
-export default function TeacherLayout({ children }: { children: React.ReactNode }) {
+function TeacherLayoutContent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [isClassOpen, setIsClassOpen] = useState(pathname?.startsWith('/teacher/classes') || pathname?.startsWith('/teacher/assignments') || pathname?.startsWith('/teacher/grades'));
   const [isSettingsOpen, setIsSettingsOpen] = useState(pathname?.startsWith('/teacher/settings'));
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -26,6 +27,14 @@ export default function TeacherLayout({ children }: { children: React.ReactNode 
       setIsSidebarCollapsed(false);
     }
   }, [pathname]);
+
+  // Check if we should hide the top nav (for full-screen pages)
+  const isAssignmentBuilder = pathname?.includes('/assignments/new') || 
+                              (pathname?.includes('/assignments/') && pathname?.includes('/edit'));
+  
+  // Check URL params for fullscreen mode (default to true for assignment builder)
+  const fullscreenParam = searchParams.get('fullscreen');
+  const shouldHideTopNav = isAssignmentBuilder && (fullscreenParam === null || fullscreenParam !== 'false');
 
   // Auto-expand menus based on current path
   useEffect(() => {
@@ -146,103 +155,111 @@ export default function TeacherLayout({ children }: { children: React.ReactNode 
   };
 
   return (
-    <NotificationProvider>
-      <div className={styles.layout}>
-        {/* Sidebar */}
-        <aside className={`${styles.sidebar} ${isSidebarCollapsed ? styles.sidebarCollapsed : ''}`}>
-        {/* Logo */}
-        <div className={styles.logo}>
-          <div className={styles.logoImage}>
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-              <rect width="40" height="40" rx="8" fill="#4F7FFF"/>
-              <path d="M20 10l8 6v14h-6v-8h-4v8h-6V16l8-6z" fill="white"/>
-            </svg>
-          </div>
+    <div className={styles.layout}>
+      {/* Sidebar */}
+      <aside className={`${styles.sidebar} ${isSidebarCollapsed ? styles.sidebarCollapsed : ''}`}>
+      {/* Logo */}
+      <div className={styles.logo}>
+        <div className={styles.logoImage}>
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <rect width="40" height="40" rx="8" fill="#4F7FFF"/>
+            <path d="M20 10l8 6v14h-6v-8h-4v8h-6V16l8-6z" fill="white"/>
+          </svg>
         </div>
+      </div>
 
-        {/* User Profile */}
-        <div className={styles.userProfile}>
-          <div className={styles.userAvatar}>
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-              <circle cx="20" cy="20" r="20" fill="#E8EEFF"/>
-              <circle cx="20" cy="15" r="6" fill="#4F7FFF"/>
-              <path d="M8 35c0-6.6 5.4-12 12-12s12 5.4 12 12" fill="#4F7FFF"/>
-            </svg>
-          </div>
-          <div className={styles.userInfo}>
-            <div className={styles.userName}>Jone Copper</div>
-            <div className={styles.userRole}>Math teacher</div>
-          </div>
+      {/* User Profile */}
+      <div className={styles.userProfile}>
+        <div className={styles.userAvatar}>
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <circle cx="20" cy="20" r="20" fill="#E8EEFF"/>
+            <circle cx="20" cy="15" r="6" fill="#4F7FFF"/>
+            <path d="M8 35c0-6.6 5.4-12 12-12s12 5.4 12 12" fill="#4F7FFF"/>
+          </svg>
         </div>
+        <div className={styles.userInfo}>
+          <div className={styles.userName}>Jone Copper</div>
+          <div className={styles.userRole}>Math teacher</div>
+        </div>
+      </div>
 
-        {/* Navigation */}
-        <nav className={styles.nav}>
-          {menuItems.map((item) => (
-            <div key={item.id} className={styles.navItemWrapper}>
-              {item.hasSubmenu ? (
-                <>
-                  <button
-                    className={`${styles.navItem} ${item.isOpen ? styles.navItemActive : ''}`}
-                    onClick={item.onToggle}
-                  >
-                    <span className={styles.navIcon}>{item.icon}</span>
-                    <span className={styles.navLabel}>{item.label}</span>
-                    <svg
-                      className={`${styles.navArrow} ${item.isOpen ? styles.navArrowOpen : ''}`}
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                    >
-                      <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                    </svg>
-                  </button>
-                  {item.isOpen && (
-                    <div className={styles.submenu}>
-                      {item.submenu?.map((subItem) => (
-                        <Link
-                          key={subItem.href}
-                          href={subItem.href}
-                          className={`${styles.submenuItem} ${
-                            pathname === subItem.href || pathname?.startsWith(subItem.href)
-                              ? styles.submenuItemActive
-                              : ''
-                          }`}
-                        >
-                          {subItem.label}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </>
-              ) : (
-                <Link
-                  href={item.href || '#'}
-                  className={`${styles.navItem} ${isActive(item.href || '') ? styles.navItemActive : ''} ${
-                    item.badge ? styles.navItemDisabled : ''
-                  }`}
+      {/* Navigation */}
+      <nav className={styles.nav}>
+        {menuItems.map((item) => (
+          <div key={item.id} className={styles.navItemWrapper}>
+            {item.hasSubmenu ? (
+              <>
+                <button
+                  className={`${styles.navItem} ${item.isOpen ? styles.navItemActive : ''}`}
+                  onClick={item.onToggle}
                 >
                   <span className={styles.navIcon}>{item.icon}</span>
                   <span className={styles.navLabel}>{item.label}</span>
-                  {item.badge && <span className={styles.navBadge}>{item.badge}</span>}
-                  {item.unreadCount !== undefined && item.unreadCount > 0 && (
-                    <CountBadge count={item.unreadCount} />
-                  )}
-                </Link>
-              )}
-            </div>
-          ))}
-        </nav>
-      </aside>
+                  <svg
+                    className={`${styles.navArrow} ${item.isOpen ? styles.navArrowOpen : ''}`}
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                  >
+                    <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                  </svg>
+                </button>
+                {item.isOpen && (
+                  <div className={styles.submenu}>
+                    {item.submenu?.map((subItem) => (
+                      <Link
+                        key={subItem.href}
+                        href={subItem.href}
+                        className={`${styles.submenuItem} ${
+                          pathname === subItem.href || pathname?.startsWith(subItem.href)
+                            ? styles.submenuItemActive
+                            : ''
+                        }`}
+                      >
+                        {subItem.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </>
+            ) : (
+              <Link
+                href={item.href || '#'}
+                className={`${styles.navItem} ${isActive(item.href || '') ? styles.navItemActive : ''} ${
+                  item.badge ? styles.navItemDisabled : ''
+                }`}
+              >
+                <span className={styles.navIcon}>{item.icon}</span>
+                <span className={styles.navLabel}>{item.label}</span>
+                {item.badge && <span className={styles.navBadge}>{item.badge}</span>}
+                {item.unreadCount !== undefined && item.unreadCount > 0 && (
+                  <CountBadge count={item.unreadCount} />
+                )}
+              </Link>
+            )}
+          </div>
+        ))}
+      </nav>
+    </aside>
 
-      {/* Main Content */}
-      <main className={`${styles.main} ${isSidebarCollapsed ? styles.mainExpanded : ''}`}>
-        <TeacherTopNav />
-        <div className={styles.content}>
-          {children}
-        </div>
-      </main>
+    {/* Main Content */}
+    <main className={`${styles.main} ${isSidebarCollapsed ? styles.mainExpanded : ''}`}>
+      {!shouldHideTopNav && <TeacherTopNav />}
+      <div className={styles.content}>
+        {children}
       </div>
+    </main>
+    </div>
+  );
+}
+
+export default function TeacherLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <NotificationProvider>
+      <Suspense fallback={<div>Loading...</div>}>
+        <TeacherLayoutContent>{children}</TeacherLayoutContent>
+      </Suspense>
     </NotificationProvider>
   );
 }

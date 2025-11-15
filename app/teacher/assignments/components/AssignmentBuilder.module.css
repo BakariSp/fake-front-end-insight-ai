@@ -1,9 +1,14 @@
 .builderContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   flex-direction: column;
-  height: 100vh;
   background-color: #fafafa;
   overflow: hidden;
+  z-index: 50;
 }
 
 .mainContent {
@@ -11,7 +16,9 @@
   flex: 1;
   gap: 16px;
   padding: 16px;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
 }
 
 /* 响应式设计 */
@@ -31,6 +38,10 @@
 }
 
 @media (max-width: 768px) {
+  .builderContainer {
+    top: 56px;
+  }
+  
   .mainContent {
     flex-direction: column;
     overflow-y: auto;

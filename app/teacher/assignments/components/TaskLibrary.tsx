@@ -2,6 +2,7 @@
 
 import { TaskType } from '../types';
 import { LIBRARY_ITEMS } from '../mockData';
+import { TaskIcon } from './TaskIcons';
 import styles from './TaskLibrary.module.css';
 
 interface TaskLibraryProps {
@@ -12,8 +13,8 @@ export default function TaskLibrary({ onAddTask }: TaskLibraryProps) {
   return (
     <div className={styles.library}>
       <div className={styles.header}>
-        <h3>任务库</h3>
-        <p className={styles.subtitle}>拖拽或点击添加任务</p>
+        <h3>任務庫</h3>
+        <p className={styles.subtitle}>拖拽或點擊新增任務</p>
       </div>
 
       <div className={styles.items}>
@@ -29,7 +30,9 @@ export default function TaskLibrary({ onAddTask }: TaskLibraryProps) {
             }}
             style={{ '--item-color': item.color } as React.CSSProperties}
           >
-            <div className={styles.itemIcon}>{item.icon}</div>
+            <div className={styles.itemIcon}>
+              <TaskIcon type={item.type} size={32} color={item.color} />
+            </div>
             <div className={styles.itemContent}>
               <div className={styles.itemLabel}>{item.label}</div>
               <div className={styles.itemDescription}>{item.description}</div>
@@ -40,7 +43,7 @@ export default function TaskLibrary({ onAddTask }: TaskLibraryProps) {
 
       <div className={styles.footer}>
         <div className={styles.tip}>
-          💡 <strong>提示：</strong>点击任务卡片快速添加
+          💡 <strong>提示：</strong>點擊任務卡片快速新增
         </div>
       </div>
     </div>

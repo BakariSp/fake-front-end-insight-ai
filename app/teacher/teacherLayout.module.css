@@ -17,6 +17,11 @@
   height: 100vh;
   overflow-y: auto;
   z-index: 100;
+  transition: transform 0.3s ease;
+}
+
+.sidebarCollapsed {
+  transform: translateX(-100%);
 }
 
 /* Logo */
@@ -202,6 +207,11 @@
   display: flex;
   flex-direction: column;
   background: var(--gray-50);
+  transition: margin-left 0.3s ease;
+}
+
+.mainExpanded {
+  margin-left: 0;
 }
 
 .content {

@@ -14,6 +14,18 @@ export default function TeacherLayout({ children }: { children: React.ReactNode 
   const pathname = usePathname();
   const [isClassOpen, setIsClassOpen] = useState(pathname?.startsWith('/teacher/classes') || pathname?.startsWith('/teacher/assignments') || pathname?.startsWith('/teacher/grades'));
   const [isSettingsOpen, setIsSettingsOpen] = useState(pathname?.startsWith('/teacher/settings'));
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+
+  // Auto-collapse sidebar on review page and assignment builder pages
+  useEffect(() => {
+    if (pathname?.includes('/review') || 
+        pathname?.includes('/assignments/new') || 
+        pathname?.includes('/assignments/') && pathname?.includes('/edit')) {
+      setIsSidebarCollapsed(true);
+    } else {
+      setIsSidebarCollapsed(false);
+    }
+  }, [pathname]);
 
   // Auto-expand menus based on current path
   useEffect(() => {
@@ -137,7 +149,7 @@ export default function TeacherLayout({ children }: { children: React.ReactNode 
     <NotificationProvider>
       <div className={styles.layout}>
         {/* Sidebar */}
-        <aside className={styles.sidebar}>
+        <aside className={`${styles.sidebar} ${isSidebarCollapsed ? styles.sidebarCollapsed : ''}`}>
         {/* Logo */}
         <div className={styles.logo}>
           <div className={styles.logoImage}>
@@ -224,7 +236,7 @@ export default function TeacherLayout({ children }: { children: React.ReactNode 
       </aside>
 
       {/* Main Content */}
-      <main className={styles.main}>
+      <main className={`${styles.main} ${isSidebarCollapsed ? styles.mainExpanded : ''}`}>
         <TeacherTopNav />
         <div className={styles.content}>
           {children}

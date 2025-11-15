@@ -61,7 +61,7 @@
 
 .settingsButton {
   padding: 8px 16px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #4f7fff;
   border: none;
   border-radius: 6px;
   font-size: 14px;
@@ -69,12 +69,13 @@
   color: white;
   cursor: pointer;
   transition: all 0.2s;
-  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 2px 4px rgba(79, 127, 255, 0.2);
 }
 
 .settingsButton:hover {
+  background: #3d6fe8;
   transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 8px rgba(79, 127, 255, 0.3);
 }
 
 .importButton {
@@ -175,6 +176,58 @@
   .taskList {
     padding: 12px;
     gap: 10px;
+  }
+}
+
+/* iPad 端优化 (1180x820 iPad Air) */
+@media (max-width: 1200px) {
+  .canvasHeader {
+    padding: 12px;
+  }
+
+  .headerLeft h3 {
+    font-size: 16px;
+  }
+
+  .taskCount {
+    padding: 3px 6px;
+    font-size: 11px;
+  }
+
+  .conflictBadge {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+
+  .headerRight {
+    gap: 6px;
+  }
+
+  .settingsButton,
+  .importButton {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  .taskList {
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .emptyState {
+    min-height: 300px;
+  }
+
+  .emptyIllustration {
+    font-size: 60px;
+  }
+
+  .emptyState h4 {
+    font-size: 16px;
+  }
+
+  .emptyState p {
+    font-size: 13px;
   }
 }
 

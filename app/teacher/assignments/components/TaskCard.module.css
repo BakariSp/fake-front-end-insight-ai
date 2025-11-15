@@ -347,7 +347,7 @@
 
 .insertBlankBtn {
   padding: 8px 14px;
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  background: #4f7fff;
   border: none;
   border-radius: 6px;
   color: white;
@@ -355,20 +355,20 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s;
-  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
+  box-shadow: 0 2px 4px rgba(79, 127, 255, 0.2);
   white-space: nowrap;
   flex-shrink: 0;
 }
 
 .insertBlankBtn:hover {
-  background: linear-gradient(135deg, #059669 0%, #047857 100%);
-  box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+  background: #3d6fe8;
+  box-shadow: 0 4px 8px rgba(79, 127, 255, 0.3);
   transform: translateY(-1px);
 }
 
 .insertBlankBtn:active {
   transform: translateY(0);
-  box-shadow: 0 1px 2px rgba(16, 185, 129, 0.2);
+  box-shadow: 0 1px 2px rgba(79, 127, 255, 0.2);
 }
 
 .blanksAnswers {
@@ -578,7 +578,7 @@
 
 .addSubQuestionBtn {
   padding: 8px 14px;
-  background: linear-gradient(135deg, #4285f4 0%, #1967d2 100%);
+  background: #4f7fff;
   border: none;
   border-radius: 6px;
   color: white;
@@ -586,18 +586,18 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s;
-  box-shadow: 0 2px 4px rgba(66, 133, 244, 0.2);
+  box-shadow: 0 2px 4px rgba(79, 127, 255, 0.2);
 }
 
 .addSubQuestionBtn:hover {
-  background: linear-gradient(135deg, #1967d2 0%, #174ea6 100%);
-  box-shadow: 0 4px 8px rgba(66, 133, 244, 0.3);
+  background: #3d6fe8;
+  box-shadow: 0 4px 8px rgba(79, 127, 255, 0.3);
   transform: translateY(-1px);
 }
 
 .addSubQuestionBtn:active {
   transform: translateY(0);
-  box-shadow: 0 1px 2px rgba(66, 133, 244, 0.2);
+  box-shadow: 0 1px 2px rgba(79, 127, 255, 0.2);
 }
 
 .subQuestionsList {
@@ -684,6 +684,246 @@
 }
 
 /* 响应式 */
+/* iPad 端优化 (1180x820 iPad Air) */
+@media (max-width: 1200px) {
+  .card {
+    margin-bottom: 12px;
+  }
+
+  .topBar {
+    padding: 10px 12px;
+  }
+
+  .leftSection,
+  .rightSection {
+    gap: 8px;
+  }
+
+  .taskIndex {
+    font-size: 14px;
+    min-width: 20px;
+  }
+
+  .typeChip {
+    padding: 3px 10px;
+    font-size: 12px;
+  }
+
+  .pointsDisplay {
+    padding: 3px 6px;
+  }
+
+  .pointsInput {
+    width: 45px;
+    padding: 3px 5px;
+    font-size: 13px;
+  }
+
+  .pointsDisplay span {
+    font-size: 12px;
+  }
+
+  .actionBtn {
+    padding: 5px 8px;
+    font-size: 16px;
+  }
+
+  .cardContent {
+    padding: 18px;
+  }
+
+  .titleInput {
+    padding: 10px 0;
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+
+  .instructionsInput {
+    padding: 6px 0;
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+
+  .quizSection,
+  .fillBlankSection {
+    gap: 12px;
+  }
+
+  .typeSelect {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
+  .optionsList {
+    gap: 10px;
+  }
+
+  .optionRow {
+    padding: 6px 10px;
+  }
+
+  .optionCheckbox {
+    width: 18px;
+    height: 18px;
+  }
+
+  .optionLabel {
+    font-size: 14px;
+    min-width: 20px;
+  }
+
+  .optionInput {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+
+  .removeBtn {
+    width: 28px;
+    height: 28px;
+    font-size: 20px;
+  }
+
+  .addOptionBtn {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .emptyOptions {
+    padding: 18px;
+  }
+
+  .emptyOptions p {
+    font-size: 13px;
+  }
+
+  .helpText {
+    font-size: 11px;
+    padding: 8px 12px;
+  }
+
+  .insertBlankBtn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .blanksAnswers {
+    margin-top: 12px;
+    padding: 12px;
+  }
+
+  .answersTitle {
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+
+  .blanksCount {
+    font-size: 11px;
+  }
+
+  .fillBlankInput {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .fillBlankPreview {
+    padding: 12px;
+    min-height: 80px;
+  }
+
+  .previewContent {
+    font-size: 14px;
+    min-height: 50px;
+  }
+
+  .previewBlankInput {
+    padding: 3px 10px;
+    font-size: 14px;
+    min-width: 70px;
+  }
+
+  .previewHint {
+    font-size: 11px;
+  }
+
+  .blankRow {
+    padding: 8px 10px;
+    margin-bottom: 6px;
+  }
+
+  .blankLabel {
+    font-size: 13px;
+    min-width: 60px;
+  }
+
+  .blankAnswerInput,
+  .blankInput {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
+  .blankPointsInput,
+  .subQuestionPoints {
+    width: 55px;
+    padding: 6px;
+    font-size: 13px;
+  }
+
+  .blankPointsLabel,
+  .subQuestionPointsLabel {
+    font-size: 12px;
+  }
+
+  .blankPoints {
+    font-size: 12px;
+    min-width: 35px;
+  }
+
+  .subQuestionsSection {
+    margin-top: 12px;
+    padding: 12px;
+  }
+
+  .subQuestionsTitle {
+    font-size: 13px;
+  }
+
+  .subQuestionsCount {
+    font-size: 11px;
+  }
+
+  .addSubQuestionBtn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .subQuestionsList {
+    gap: 8px;
+  }
+
+  .subQuestionItem {
+    padding: 10px;
+  }
+
+  .subQuestionTop {
+    gap: 8px;
+  }
+
+  .subQuestionNumber {
+    font-size: 13px;
+    min-width: 20px;
+  }
+
+  .subQuestionInput {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
+  .deleteSubQuestionBtn {
+    padding: 5px 8px;
+    font-size: 14px;
+  }
+}
+
 @media (max-width: 768px) {
   .topBar {
     flex-direction: column;

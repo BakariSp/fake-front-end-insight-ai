@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useRef, KeyboardEvent } from 'react';
-import { Task, SubmissionMethod, EssayConfig } from '../types';
+import { Task, SubmissionMethod, EssayConfig, RubricDimension } from '../types';
 import { TOPIC_TAGS, SUBJECTS } from '../mockData';
+import RubricEditor from './RubricEditor';
 import styles from './Inspector.module.css';
 
 interface InspectorProps {
@@ -25,6 +26,7 @@ const SUBMISSION_METHODS: { value: SubmissionMethod; label: string; icon: string
 export default function Inspector({ task, onUpdateTask, onClose }: InspectorProps) {
   const [activeTab, setActiveTab] = useState<TabType>('basics');
   const [topicInput, setTopicInput] = useState('');
+  const [customDimensions, setCustomDimensions] = useState<RubricDimension[] | undefined>();
   const topicInputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmissionMethodToggle = (method: SubmissionMethod) => {
@@ -132,6 +134,18 @@ export default function Inspector({ task, onUpdateTask, onClose }: InspectorProp
                 min="0"
               />
             </div>
+
+            {/* 评分标准选择器 - 仅对主观题显示 */}
+            {(task.type === 'essay' || task.type === 'scan' || task.type === 'audio' || 
+              task.type === 'video' || task.type === 'file') && (
+              <RubricEditor
+                selectedRubricId={task.rubricId}
+                onSelectRubric={(rubricId) => onUpdateTask({ rubricId })}
+                customDimensions={customDimensions}
+                onUpdateDimensions={setCustomDimensions}
+                showPromptEditor={true}
+              />
+            )}
 
             {/* 写作题详细编辑 */}
             {task.type === 'essay' && (

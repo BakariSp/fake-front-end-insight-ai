@@ -58,14 +58,20 @@
 }
 
 .itemIcon {
-  font-size: 28px;
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #f9fafb;
-  border-radius: 8px;
+  border-radius: 10px;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.libraryItem:hover .itemIcon {
+  background: #ffffff;
+  transform: scale(1.05);
 }
 
 .itemContent {
@@ -145,6 +151,56 @@
 
   .libraryItem {
     padding: 10px;
+  }
+}
+
+/* iPad 端优化 (1180x820 iPad Air) */
+@media (max-width: 1200px) {
+  .library {
+    width: 200px;
+  }
+
+  .header {
+    padding: 12px;
+  }
+
+  .header h3 {
+    font-size: 16px;
+  }
+
+  .subtitle {
+    font-size: 11px;
+  }
+
+  .items {
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .libraryItem {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .itemIcon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .itemLabel {
+    font-size: 13px;
+  }
+
+  .itemDescription {
+    font-size: 11px;
+  }
+
+  .footer {
+    padding: 12px;
+  }
+
+  .tip {
+    font-size: 11px;
   }
 }
 

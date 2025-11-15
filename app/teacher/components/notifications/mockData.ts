@@ -2,6 +2,28 @@ import { Notification } from './types';
 
 export const mockNotifications: Notification[] = [
   {
+    id: 'insight-tools-ready-001',
+    title: '🔧 Insight Tools Ready',
+    description: 'Explore powerful AI-powered teaching tools designed for Hong Kong\'s DSE curriculum. Access quiz builders, resource generators, and more.',
+    scope: 'personal',
+    module: 'tools',
+    urgency: 'normal',
+    status: 'inbox',
+    timestamp: new Date(Date.now() - 10 * 60 * 1000), // 10 minutes ago
+    isRead: false,
+    badge: {
+      type: 'ai',
+      label: 'New Tools',
+    },
+    action: {
+      type: 'view',
+      label: 'Explore Tools',
+      onClick: () => {
+        window.open('https://insighaifrontend.vercel.app/teacher/toolkits', '_blank');
+      }
+    },
+  },
+  {
     id: 'ai-grading-001',
     title: '✨ AI Grading Completed',
     description: 'AI has finished grading "第二单元综合测试：文言文与古诗词" for 高一（3）班. 43 out of 45 students submitted. Average score: 78.5/100. Click to review results and weak points analysis.',

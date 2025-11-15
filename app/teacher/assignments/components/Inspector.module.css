@@ -134,7 +134,7 @@
   align-items: center;
   gap: 6px;
   padding: 6px 10px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #4f7fff;
   color: white;
   border-radius: 6px;
   font-size: 13px;
@@ -143,8 +143,9 @@
 }
 
 .topicTag:hover {
+  background: #3d6fe8;
   transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 2px 8px rgba(79, 127, 255, 0.3);
 }
 
 .topicTag span {
@@ -192,7 +193,7 @@
 }
 
 .topicInput:focus {
-  border-color: #667eea;
+  border-color: #4f7fff;
 }
 
 .topicInput::placeholder {
@@ -201,7 +202,7 @@
 
 .addTopicBtn {
   padding: 8px 16px;
-  background: #667eea;
+  background: #4f7fff;
   color: white;
   border: none;
   border-radius: 6px;
@@ -256,8 +257,8 @@
 }
 
 .presetTopicBtn:hover {
-  border-color: #667eea;
-  color: #667eea;
+  border-color: #4f7fff;
+  color: #4f7fff;
   background: #f0f3ff;
   transform: translateY(-1px);
 }
@@ -530,6 +531,85 @@
 
   .methodGrid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* iPad 端优化 (1180x820 iPad Air) */
+@media (max-width: 1200px) {
+  .inspector {
+    width: 280px;
+  }
+
+  .header {
+    padding: 12px;
+  }
+
+  .header h3 {
+    font-size: 16px;
+  }
+
+  .content {
+    padding: 14px;
+  }
+
+  .section {
+    gap: 16px;
+  }
+
+  .formGroup {
+    gap: 6px;
+  }
+
+  .formGroup label {
+    font-size: 12px;
+  }
+
+  .formGroup input[type="text"],
+  .formGroup input[type="number"],
+  .formGroup textarea,
+  .formGroup select {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
+  .tab {
+    padding: 10px 6px;
+    font-size: 12px;
+  }
+
+  .methodGrid {
+    gap: 6px;
+  }
+
+  .methodCard {
+    padding: 10px;
+    gap: 4px;
+  }
+
+  .methodIcon {
+    font-size: 20px;
+  }
+
+  .methodLabel {
+    font-size: 11px;
+  }
+
+  .gradingCard {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .gradingLabel {
+    font-size: 13px;
+  }
+
+  .gradingDescription {
+    font-size: 11px;
+  }
+
+  .topicTag {
+    padding: 4px 8px;
+    font-size: 12px;
   }
 }
 

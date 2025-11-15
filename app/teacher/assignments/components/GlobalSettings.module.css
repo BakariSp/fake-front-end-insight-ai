@@ -205,6 +205,14 @@
   margin-top: 16px;
 }
 
+.rubricSection {
+  margin-top: 16px;
+  padding: 16px;
+  background: #fafafa;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
 .formGroup label {
   font-size: 13px;
   font-weight: 600;

@@ -1,7 +1,8 @@
 'use client';
 
-import { AssignmentPackage, GradingMode, LatePolicy } from '../types';
-import { RUBRIC_TEMPLATES } from '../mockData';
+import { useState } from 'react';
+import { AssignmentPackage, GradingMode, LatePolicy, RubricDimension } from '../types';
+import RubricEditor from './RubricEditor';
 import styles from './GlobalSettings.module.css';
 
 interface GlobalSettingsProps {
@@ -17,6 +18,13 @@ const GRADING_MODES: { value: GradingMode; label: string; description: string; i
 ];
 
 export default function GlobalSettings({ assignment, onUpdate, onClose }: GlobalSettingsProps) {
+  const [customDimensions, setCustomDimensions] = useState<RubricDimension[] | undefined>();
+
+  const handleUpdateDimensions = (dimensions: RubricDimension[]) => {
+    setCustomDimensions(dimensions);
+    // 可以在这里保存到 assignment 的自定义字段
+  };
+
   return (
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.panel} onClick={(e) => e.stopPropagation()}>
@@ -62,19 +70,14 @@ export default function GlobalSettings({ assignment, onUpdate, onClose }: Global
             </div>
 
             {assignment.gradingMode === 'assist' && (
-              <div className={styles.formGroup}>
-                <label>评分模板</label>
-                <select
-                  value={assignment.rubricId || ''}
-                  onChange={(e) => onUpdate({ rubricId: e.target.value || undefined })}
-                >
-                  <option value="">选择语文作文评分标准</option>
-                  {RUBRIC_TEMPLATES.map(rubric => (
-                    <option key={rubric.id} value={rubric.id}>
-                      {rubric.name}
-                    </option>
-                  ))}
-                </select>
+              <div className={styles.rubricSection}>
+                <RubricEditor
+                  selectedRubricId={assignment.rubricId}
+                  onSelectRubric={(rubricId) => onUpdate({ rubricId })}
+                  customDimensions={customDimensions}
+                  onUpdateDimensions={handleUpdateDimensions}
+                  showPromptEditor={true}
+                />
               </div>
             )}
           </div>

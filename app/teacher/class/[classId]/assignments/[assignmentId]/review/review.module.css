@@ -4,6 +4,8 @@
   position: relative;
   min-height: 100vh;
   background: var(--gray-50);
+  display: flex;
+  flex-direction: column;
 }
 
 .loading {
@@ -17,7 +19,7 @@
 
 /* Fixed Top Bar - 粘性顶部栏 */
 .fixedTopBar {
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -30,7 +32,6 @@
   gap: 24px;
   z-index: 100;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  margin-bottom: 0;
 }
 
 .backButton {
@@ -63,55 +64,17 @@
   font-weight: 500;
 }
 
-/* Compact Progress */
-.progressCompact {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-shrink: 0;
-}
-
-.progressText {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--gray-700);
-  min-width: 50px;
-}
-
-.progressBarMini {
-  width: 120px;
-  height: 6px;
-  background: var(--gray-200);
-  border-radius: 3px;
-  overflow: hidden;
-}
-
-.progressFillMini {
-  height: 100%;
-  background: linear-gradient(90deg, var(--primary-blue), var(--primary-blue-dark));
-  border-radius: 3px;
-  transition: width 0.3s ease;
-}
-
-.progressPercentage {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--primary-blue);
-  min-width: 45px;
-  text-align: right;
-}
 
 /* Content Wrapper */
 .contentWrapper {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 0;
+  display: flex;
+  margin-top: 72px;
   min-height: calc(100vh - 72px);
 }
 
 /* Sticky Sidebar - 粘性左侧边栏 */
 .sidebarFixed {
-  position: sticky;
+  position: fixed;
   top: 72px;
   left: 0;
   width: 280px;
@@ -120,48 +83,88 @@
   border-right: 2px solid var(--gray-200);
   display: flex;
   flex-direction: column;
-  padding: 24px 20px;
-  gap: 20px;
+  padding: 16px;
+  gap: 14px;
   overflow-y: auto;
-  align-self: flex-start;
+  z-index: 50;
 }
 
+/* Progress Section */
+.progressSection {
+  background: linear-gradient(135deg, #4F7FFF 0%, #3b66db 100%);
+  padding: 16px;
+  border-radius: 12px;
+  color: var(--white);
+  box-shadow: 0 4px 12px rgba(79, 127, 255, 0.2);
+}
+
+.progressHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.progressLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.progressCount {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.progressBar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--white);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+
+/* 隐藏滚动条但保持可滚动 */
 .sidebarFixed::-webkit-scrollbar {
-  width: 6px;
+  display: none;
 }
 
-.sidebarFixed::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.sidebarFixed::-webkit-scrollbar-thumb {
-  background: var(--gray-300);
-  border-radius: 3px;
-}
-
-.sidebarFixed::-webkit-scrollbar-thumb:hover {
-  background: var(--gray-400);
+.sidebarFixed {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
 }
 
 .studentInfoCard {
   background: var(--gray-50);
   border-radius: 12px;
-  padding: 20px;
+  padding: 14px;
   border: 2px solid var(--gray-200);
 }
 
 .studentHeader {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
   border-bottom: 1px solid var(--gray-200);
 }
 
 .studentAvatar {
-  width: 64px;
-  height: 64px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   overflow: hidden;
   border: 3px solid var(--primary-blue-light);
@@ -189,9 +192,9 @@
 .scoresSummary {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 16px;
-  padding-top: 16px;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
   border-top: 2px solid var(--gray-200);
 }
 
@@ -216,6 +219,132 @@
 .summaryDivider {
   height: 1px;
   background: var(--gray-200);
+}
+
+/* Filter Section */
+.filterSection {
+  background: var(--gray-50);
+  border-radius: 12px;
+  padding: 14px;
+  border: 2px solid var(--gray-200);
+}
+
+.filterHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.filterTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-700);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.filterCount {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary-blue);
+  background: var(--primary-blue-light);
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.filterOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filterChip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--white);
+  border: 2px solid var(--gray-300);
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-700);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  text-align: left;
+}
+
+.filterChip:hover {
+  border-color: var(--primary-blue);
+  background: var(--primary-blue-light);
+  color: var(--primary-blue-dark);
+}
+
+.filterChip svg {
+  flex-shrink: 0;
+}
+
+.filterChip span:first-of-type {
+  flex: 1;
+}
+
+.filterChipCount {
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--gray-200);
+  color: var(--gray-600);
+  padding: 2px 6px;
+  border-radius: 10px;
+  min-width: 20px;
+  text-align: center;
+}
+
+.filterChipActive {
+  background: var(--primary-blue);
+  border-color: var(--primary-blue);
+  color: var(--white);
+  font-weight: 600;
+}
+
+.filterChipActive:hover {
+  background: var(--primary-blue-dark);
+  border-color: var(--primary-blue-dark);
+  color: var(--white);
+}
+
+.filterChipActive .filterChipCount {
+  background: rgba(255, 255, 255, 0.25);
+  color: var(--white);
+}
+
+.filterResetBottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: transparent;
+  border: 1.5px dashed var(--gray-300);
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gray-600);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.filterResetBottom:hover {
+  border-color: var(--primary-blue);
+  background: var(--primary-blue-light);
+  color: var(--primary-blue);
+}
+
+.filterResetBottom svg {
+  flex-shrink: 0;
 }
 
 /* Navigation Buttons */
@@ -247,15 +376,17 @@
 /* Main Content - 主内容区域 */
 .mainContent {
   padding: 24px 32px;
-  min-height: calc(100vh - 72px);
   flex: 1;
   min-width: 0;
+  min-height: calc(100vh - 72px);
+  margin-left: 280px;
 }
 
 .questionsContainer {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  padding-bottom: 24px;
 }
 
 /* Question Card - Optimized with Collapse */
@@ -266,12 +397,16 @@
   border: 2px solid var(--gray-200);
 }
 
+/* 正确/优秀 - 绿色（柔和） */
 .questionCard.correctCard {
-  border-left: 4px solid var(--success-green);
+  border-left: 3px solid #10B981;
+  background: linear-gradient(to right, rgba(16, 185, 129, 0.015) 0%, transparent 100%);
 }
 
-.questionCard.incorrectCard {
-  border-left: 4px solid var(--error-red);
+/* 需要检查 - 红色（柔和） */
+.questionCard.needsReviewCard {
+  border-left: 3px solid #EF4444;
+  background: linear-gradient(to right, rgba(239, 68, 68, 0.02) 0%, transparent 100%);
 }
 
 .questionCard.collapsed {
@@ -279,8 +414,15 @@
 }
 
 .questionCard:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  border-color: var(--primary-blue-light);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.correctCard:hover {
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.15);
+}
+
+.needsReviewCard:hover {
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.15);
 }
 
 /* Question Number Header - Clickable */
@@ -295,6 +437,15 @@
 
 .questionNumberHeader:hover {
   background: linear-gradient(135deg, var(--primary-blue-dark) 0%, var(--primary-blue) 100%);
+}
+
+/* 不同状态的题目头部颜色 - 柔和版本 */
+.correctCard .questionNumberHeader {
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+}
+
+.needsReviewCard .questionNumberHeader {
+  background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
 }
 
 .headerLeft,
@@ -312,22 +463,46 @@
   min-width: 50px;
 }
 
+/* 正确/优秀徽章 - 柔和的绿色 */
 .correctBadge {
   display: flex;
   align-items: center;
   gap: 6px;
-  background: rgba(16, 185, 129, 0.15);
+  background: rgba(16, 185, 129, 0.2);
   color: var(--white);
   padding: 4px 12px;
   border-radius: 12px;
   font-size: 13px;
   font-weight: 600;
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .correctBadge svg {
   color: var(--white);
+  width: 16px;
+  height: 16px;
+}
+
+/* 需要检查徽章 - 柔和的红色 */
+.needsReviewBadge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(239, 68, 68, 0.2);
+  color: var(--white);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.needsReviewBadge svg {
+  color: var(--white);
+  width: 16px;
+  height: 16px;
 }
 
 .questionMeta {
@@ -883,16 +1058,61 @@
 
 /* Responsive Design - iPad & Tablet */
 @media (max-width: 1024px) {
-  .contentWrapper {
-    grid-template-columns: 240px 1fr;
+  .sidebarFixed {
+    width: 260px;
+    padding: 14px;
+    gap: 12px;
   }
 
-  .sidebarFixed {
-    width: 240px;
+  .progressSection {
+    padding: 12px;
+  }
+
+  .progressHeader {
+    margin-bottom: 8px;
+  }
+
+  .studentInfoCard {
+    padding: 12px;
+  }
+
+  .studentHeader {
+    gap: 10px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+  }
+
+  .studentAvatar {
+    width: 48px;
+    height: 48px;
+  }
+
+  .scoresSummary {
+    gap: 6px;
+    margin-top: 10px;
+    padding-top: 10px;
+  }
+
+  .filterSection {
+    padding: 12px;
+  }
+
+  .filterOptions {
+    gap: 6px;
+  }
+
+  .filterChip {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .navigationButtons {
+    gap: 8px;
   }
 
   .mainContent {
     padding: 20px 24px;
+    margin-left: 260px;
   }
 
   .fixedTopBar {
@@ -911,10 +1131,6 @@
 
 /* Mobile - 将侧边栏移到底部 */
 @media (max-width: 768px) {
-  .pageContainer {
-    padding-bottom: 200px;
-  }
-
   .fixedTopBar {
     height: 60px;
     padding: 0 12px;
@@ -935,35 +1151,54 @@
     font-size: 12px;
   }
 
-  .progressCompact {
-    gap: 8px;
-  }
-
-  .progressBarMini {
-    width: 80px;
-  }
-
   .contentWrapper {
-    grid-template-columns: 1fr;
+    margin-top: 60px;
+    min-height: calc(100vh - 60px);
   }
 
   .sidebarFixed {
-    position: sticky;
+    position: fixed;
     left: 0;
     right: 0;
     top: auto;
     bottom: 0;
     width: 100%;
     height: auto;
-    max-height: 200px;
-    padding: 16px;
+    max-height: 220px;
+    padding: 12px;
+    gap: 12px;
     border-right: none;
     border-top: 2px solid var(--gray-200);
     box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
   }
 
+  .progressSection {
+    padding: 12px;
+  }
+
+  .progressHeader {
+    margin-bottom: 8px;
+  }
+
+  .progressLabel {
+    font-size: 11px;
+  }
+
+  .progressCount {
+    font-size: 14px;
+  }
+
+  .progressBar {
+    height: 6px;
+  }
+
   .studentInfoCard {
     padding: 12px;
+    display: none; /* 在移动端隐藏学生信息卡片以节省空间 */
+  }
+
+  .filterSection {
+    display: none; /* 在移动端隐藏筛选以节省空间 */
   }
 
   .studentHeader {
@@ -1012,6 +1247,8 @@
 
   .mainContent {
     padding: 16px;
+    margin-left: 0;
+    padding-bottom: 240px;
   }
 
   .questionCard {

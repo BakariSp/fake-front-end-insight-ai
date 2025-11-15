@@ -10,94 +10,118 @@ import {
   AssignmentPackage
 } from './types';
 
-// 科目选项
+// 科目選項
 export const SUBJECTS: SubjectOption[] = [
-  { value: 'chinese', label: '语文' },
-  { value: 'english', label: '英语' },
-  { value: 'math', label: '数学' },
+  { value: 'chinese', label: '中文' },
+  { value: 'english', label: '英文' },
+  { value: 'math', label: '數學' },
   { value: 'physics', label: '物理' },
-  { value: 'chem', label: '化学' },
+  { value: 'chem', label: '化學' },
   { value: 'bio', label: '生物' },
-  { value: 'ls', label: '生命科学' },
+  { value: 'ls', label: '生命科學' },
   { value: 'other', label: '其他' },
 ];
 
-// 任务库项目
+// 任務庫項目
 export const LIBRARY_ITEMS: LibraryItem[] = [
   {
     type: 'quiz',
-    icon: '📝',
-    label: '选择题',
-    description: '单选、多选、判断题',
+    icon: '',
+    label: '選擇題',
+    description: '單選、多選、判斷題',
     color: '#4F7FFF'
   },
   {
     type: 'fill-blank',
-    icon: '✏️',
-    label: '填空题',
-    description: '单空、多空填空',
-    color: '#8B5CF6'
+    icon: '',
+    label: '填空題',
+    description: '單空、多空填空',
+    color: '#6B8AFF'
   },
   {
     type: 'essay',
-    icon: '✍️',
-    label: '写作题',
-    description: '简答、段落、作文',
-    color: '#9B59B6'
+    icon: '',
+    label: '寫作題',
+    description: '簡答、段落、作文',
+    color: '#3D6FE8'
   },
   {
     type: 'scan',
-    icon: '📷',
-    label: '扫描上传',
-    description: '手写作业拍照上传',
-    color: '#14B8A6'
+    icon: '',
+    label: '掃描上傳',
+    description: '手寫作業拍照上傳',
+    color: '#5A7DFF'
   },
   {
     type: 'audio',
-    icon: '🎤',
-    label: '音频录制',
-    description: '口语、朗读、发音',
-    color: '#F97316'
+    icon: '',
+    label: '錄音',
+    description: '口語、朗讀、發音',
+    color: '#7A9BFF'
   },
   {
     type: 'video',
-    icon: '🎥',
-    label: '视频录制',
-    description: '演示、讲解、实验',
-    color: '#EC4899'
+    icon: '',
+    label: '錄影',
+    description: '示範、講解、實驗',
+    color: '#2E5FDB'
   },
   {
     type: 'file',
-    icon: '📎',
-    label: '文件上传',
-    description: '文档、代码、作品',
+    icon: '',
+    label: '檔案上傳',
+    description: '文檔、代碼、作品',
     color: '#6B7280'
   }
 ];
 
-// 主题标签（示例）
+// 主題標籤（示例）
 export const TOPIC_TAGS: Record<Subject, string[]> = {
-  chinese: ['古诗词', '现代文阅读', '作文', '文言文', '语法'],
+  chinese: ['古詩詞', '現代文閱讀', '作文', '文言文', '語法'],
   english: ['Vocabulary', 'Grammar', 'Reading', 'Writing', 'Listening'],
-  math: ['代数', '几何', '函数', '概率统计', '微积分'],
-  physics: ['力学', '电磁学', '光学', '热学', '近代物理'],
-  chem: ['无机化学', '有机化学', '物理化学', '分析化学'],
-  bio: ['细胞生物学', '遗传学', '生态学', '进化论'],
-  ls: ['生命系统', '健康', '环境'],
-  other: ['综合', '项目', '实验']
+  math: ['代數', '幾何', '函數', '概率統計', '微積分'],
+  physics: ['力學', '電磁學', '光學', '熱學', '近代物理'],
+  chem: ['無機化學', '有機化學', '物理化學', '分析化學'],
+  bio: ['細胞生物學', '遺傳學', '生態學', '進化論'],
+  ls: ['生命系統', '健康', '環境'],
+  other: ['綜合', '項目', '實驗']
 };
 
 // Rubric 模板
 export const RUBRIC_TEMPLATES: RubricTemplate[] = [
   {
     id: 'rubric-chinese-essay',
-    name: '语文作文评分标准',
+    name: '中文作文評分標準',
     subject: 'chinese',
     dimensions: [
-      { name: '内容与主题', weight: 0.3, description: '主题鲜明，内容充实' },
-      { name: '结构与逻辑', weight: 0.2, description: '结构清晰，逻辑严密' },
-      { name: '语言表达', weight: 0.3, description: '语言流畅，用词准确' },
-      { name: '创新与亮点', weight: 0.2, description: '有独特见解或创新' }
+      { 
+        id: 'dim-1', 
+        name: '內容與主題', 
+        weight: 0.3, 
+        description: '主題鮮明，內容充實',
+        prompt: '評估文章主題是否明確，內容是否豐富、具體、有深度，是否緊扣主題展開論述。'
+      },
+      { 
+        id: 'dim-2', 
+        name: '結構與邏輯', 
+        weight: 0.2, 
+        description: '結構清晰，邏輯嚴密',
+        prompt: '檢查文章結構是否完整（開頭、正文、結尾），段落之間的銜接是否自然，論述邏輯是否清晰。'
+      },
+      { 
+        id: 'dim-3', 
+        name: '語言表達', 
+        weight: 0.3, 
+        description: '語言流暢，用詞準確',
+        prompt: '評價語言是否通順流暢，用詞是否準確恰當，句式是否多樣，有無錯別字和語法錯誤。'
+      },
+      { 
+        id: 'dim-4', 
+        name: '創新與亮點', 
+        weight: 0.2, 
+        description: '有獨特見解或創新',
+        prompt: '尋找文章中的亮點，如獨特的觀點、新穎的角度、精彩的表達、恰當的修辭手法等。'
+      }
     ]
   },
   {
@@ -105,21 +129,69 @@ export const RUBRIC_TEMPLATES: RubricTemplate[] = [
     name: 'English Writing Rubric',
     subject: 'english',
     dimensions: [
-      { name: 'Content', weight: 0.25, description: 'Relevant ideas and details' },
-      { name: 'Organization', weight: 0.25, description: 'Clear structure and flow' },
-      { name: 'Language Use', weight: 0.25, description: 'Grammar and vocabulary' },
-      { name: 'Mechanics', weight: 0.25, description: 'Spelling and punctuation' }
+      { 
+        id: 'dim-5', 
+        name: 'Content', 
+        weight: 0.25, 
+        description: 'Relevant ideas and details',
+        prompt: 'Assess if the content is relevant, well-developed with supporting details, and demonstrates understanding of the topic.'
+      },
+      { 
+        id: 'dim-6', 
+        name: 'Organization', 
+        weight: 0.25, 
+        description: 'Clear structure and flow',
+        prompt: 'Evaluate the logical flow of ideas, paragraph structure, transitions between paragraphs, and overall coherence.'
+      },
+      { 
+        id: 'dim-7', 
+        name: 'Language Use', 
+        weight: 0.25, 
+        description: 'Grammar and vocabulary',
+        prompt: 'Check grammar accuracy, sentence variety, vocabulary range and appropriateness, and word choice.'
+      },
+      { 
+        id: 'dim-8', 
+        name: 'Mechanics', 
+        weight: 0.25, 
+        description: 'Spelling and punctuation',
+        prompt: 'Review spelling accuracy, punctuation usage, capitalization, and formatting conventions.'
+      }
     ]
   },
   {
     id: 'rubric-math-problem',
-    name: '数学解题评分标准',
+    name: '數學解題評分標準',
     subject: 'math',
     dimensions: [
-      { name: '问题理解', weight: 0.2, description: '正确理解题意' },
-      { name: '解题思路', weight: 0.3, description: '思路清晰，方法恰当' },
-      { name: '计算准确性', weight: 0.3, description: '计算过程准确' },
-      { name: '答案完整性', weight: 0.2, description: '答案完整，有单位' }
+      { 
+        id: 'dim-9', 
+        name: '問題理解', 
+        weight: 0.2, 
+        description: '正確理解題意',
+        prompt: '檢查學生是否正確理解題目要求，是否明確已知條件和求解目標。'
+      },
+      { 
+        id: 'dim-10', 
+        name: '解題思路', 
+        weight: 0.3, 
+        description: '思路清晰，方法恰當',
+        prompt: '評估解題思路是否清晰合理，方法選擇是否恰當，步驟是否完整有邏輯。'
+      },
+      { 
+        id: 'dim-11', 
+        name: '計算準確性', 
+        weight: 0.3, 
+        description: '計算過程準確',
+        prompt: '檢查計算過程是否準確無誤，公式運用是否正確，有無計算錯誤。'
+      },
+      { 
+        id: 'dim-12', 
+        name: '答案完整性', 
+        weight: 0.2, 
+        description: '答案完整，有單位',
+        prompt: '確認最終答案是否完整，是否標註單位，表達是否規範。'
+      }
     ]
   }
 ];

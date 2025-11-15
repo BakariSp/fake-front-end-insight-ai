@@ -277,6 +277,77 @@
   }
 }
 
+/* iPad 端优化 (1180x820 iPad Air) */
+@media (max-width: 1200px) {
+  .topBar {
+    padding: 10px 12px;
+    gap: 10px;
+    min-height: auto;
+    flex-wrap: nowrap;
+  }
+
+  .leftSection {
+    gap: 8px;
+    flex-wrap: wrap;
+    min-width: 0;
+  }
+
+  .rightSection {
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .backButton {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
+  .inputGroup {
+    min-width: 0;
+  }
+
+  .inputGroup label {
+    font-size: 10px;
+  }
+
+  .titleInput {
+    min-width: 140px;
+    padding: 5px 8px;
+    font-size: 13px;
+  }
+
+  .select,
+  .dateInput {
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+
+  .dateInput {
+    min-width: 130px;
+  }
+
+  .topicButton {
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+
+  .pointsBadge {
+    padding: 4px 10px;
+    font-size: 12px;
+  }
+
+  .pointsBadge strong {
+    font-size: 13px;
+  }
+
+  .ghostButton,
+  .secondaryButton,
+  .primaryButton {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
 @media (max-width: 768px) {
   .topBar {
     flex-direction: column;

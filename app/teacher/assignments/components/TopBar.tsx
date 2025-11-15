@@ -53,7 +53,7 @@ export default function TopBar({
           <input
             type="text"
             className={styles.titleInput}
-            placeholder="作业标题"
+            placeholder="作業標題"
             value={assignment.title}
             onChange={handleTitleChange}
           />
@@ -75,7 +75,7 @@ export default function TopBar({
         </div>
 
         <div className={styles.inputGroup}>
-          <label>主题标签</label>
+          <label>主題標籤</label>
           <div className={styles.topicSelector}>
             <button
               className={styles.topicButton}
@@ -84,8 +84,8 @@ export default function TopBar({
               }}
             >
               {assignment.topics.length > 0
-                ? `${assignment.topics.length} 个标签`
-                : '选择标签'}
+                ? `${assignment.topics.length} 個標籤`
+                : '選擇標籤'}
             </button>
             <div className={styles.topicDropdown}>
               {availableTopics.map(topic => (
@@ -113,7 +113,7 @@ export default function TopBar({
         </div>
 
         <div className={styles.inputGroup}>
-          <label>截止时间</label>
+          <label>截止時間</label>
           <input
             type="datetime-local"
             className={styles.dateInput}
@@ -123,19 +123,19 @@ export default function TopBar({
         </div>
 
         <div className={styles.pointsBadge}>
-          总分: <strong>{totalPoints}</strong>
+          總分: <strong>{totalPoints}</strong>
         </div>
       </div>
 
       <div className={styles.rightSection}>
         <button className={styles.ghostButton} onClick={onPreview}>
-          预览
+          預覽
         </button>
         <button className={styles.secondaryButton} onClick={onSaveDraft}>
-          保存草稿
+          儲存草稿
         </button>
         <button className={styles.primaryButton} onClick={onPublish}>
-          发布作业
+          發佈作業
         </button>
       </div>
     </div>

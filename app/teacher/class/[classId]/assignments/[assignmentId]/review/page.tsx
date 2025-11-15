@@ -29,6 +29,13 @@ const ReviewPage = () => {
   const [editedSubmission, setEditedSubmission] = useState<StudentSubmission | null>(null);
   const [hasChanges, setHasChanges] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  
+  // 题型筛选状态
+  const [questionTypeFilters, setQuestionTypeFilters] = useState({
+    choice: true,
+    'fill-blank': true,
+    essay: true,
+  });
 
   // 删除作业
   const handleDeleteAssignment = () => {
@@ -575,9 +582,32 @@ const ReviewPage = () => {
     if (!question) return null;
 
     const finalScore = answer.teacherScore !== undefined ? answer.teacherScore : answer.aiScore;
+    
+    // 根据题目类型和得分情况确定卡片样式
+    const getCardClassName = () => {
+      // 选择题：根据是否正确判断
+      if (question.type === 'choice') {
+        return answer.isCorrect ? styles.correctCard : styles.needsReviewCard;
+      }
+      
+      // 填空题：检查所有空是否都正确
+      if (question.type === 'fill-blank') {
+        const blanks = answer.answer as any[];
+        const allCorrect = blanks && blanks.every((b: any) => b.isCorrect);
+        return allCorrect ? styles.correctCard : styles.needsReviewCard;
+      }
+      
+      // 问答题：根据得分率判断（80%以上为绿色，否则为红色需要检查）
+      if (question.type === 'essay') {
+        const scoreRate = (finalScore || 0) / question.points;
+        return scoreRate >= 0.8 ? styles.correctCard : styles.needsReviewCard;
+      }
+      
+      return styles.needsReviewCard;
+    };
 
     return (
-      <Card key={answer.questionId} className={`${styles.questionCard} ${answer.isCorrect ? styles.correctCard : styles.incorrectCard}`}>
+      <Card key={answer.questionId} className={`${styles.questionCard} ${getCardClassName()}`}>
         <div className={styles.questionNumberHeader}>
           <div className={styles.headerLeft}>
               <span className={styles.questionNumberLarge}>第 {index + 1} 题</span>
@@ -590,14 +620,38 @@ const ReviewPage = () => {
                  question.type === 'fill-blank' ? '填空题' : 
                  '问答题'}
             </Badge>
-            {answer.isCorrect && (
-              <div className={styles.correctBadge}>
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M13.333 4L6 11.333 2.667 8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-                  正确
-              </div>
-            )}
+            {/* 状态指示器 */}
+            {(() => {
+              // 判断是否正确/优秀
+              let isGood = false;
+              
+              if (question.type === 'choice') {
+                isGood = answer.isCorrect ?? false;
+              } else if (question.type === 'fill-blank') {
+                const blanks = answer.answer as any[];
+                isGood = blanks && blanks.every((b: any) => b.isCorrect);
+              } else if (question.type === 'essay') {
+                const scoreRate = (finalScore || 0) / question.points;
+                isGood = scoreRate >= 0.8;
+              }
+              
+              return isGood ? (
+                <div className={styles.correctBadge}>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M13.333 4L6 11.333 2.667 8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  {question.type === 'essay' ? '优秀' : '正确'}
+                </div>
+              ) : (
+                <div className={styles.needsReviewBadge}>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M8 4v4M8 10h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5"/>
+                  </svg>
+                  需要检查
+                </div>
+              );
+            })()}
           </div>
           <div className={styles.headerRight}>
             <span className={styles.pointsBadge}>
@@ -721,21 +775,6 @@ const ReviewPage = () => {
           </div>
 
           <div className={styles.topBarRight}>
-            <div className={styles.progressCompact}>
-              <span className={styles.progressText}>
-                {progress.current} / {progress.total}
-              </span>
-              <div className={styles.progressBarMini}>
-                <div 
-                  className={styles.progressFillMini}
-                  style={{ width: `${progress.percentage}%` }}
-                />
-              </div>
-              <span className={styles.progressPercentage}>
-                {progress.percentage.toFixed(0)}%
-              </span>
-            </div>
-
             {/* 省略号菜单 */}
             <div className={styles.menuWrapper}>
               <button 
@@ -787,6 +826,20 @@ const ReviewPage = () => {
       <div className={styles.contentWrapper}>
           {/* Fixed Left Sidebar */}
         <div className={styles.sidebarFixed}>
+          {/* Progress Section */}
+          <div className={styles.progressSection}>
+            <div className={styles.progressHeader}>
+              <span className={styles.progressLabel}>批改进度</span>
+              <span className={styles.progressCount}>{progress.current} / {progress.total}</span>
+            </div>
+            <div className={styles.progressBar}>
+              <div 
+                className={styles.progressFill}
+                style={{ width: `${progress.percentage}%` }}
+              />
+            </div>
+          </div>
+
           <div className={styles.studentInfoCard}>
             <div className={styles.studentHeader}>
               <img 
@@ -822,6 +875,70 @@ const ReviewPage = () => {
                 <span className={styles.summaryValue}>{assignment.totalPoints}</span>
                 </div>
             </div>
+          </div>
+
+          {/* Question Type Filter */}
+          <div className={styles.filterSection}>
+            <div className={styles.filterHeader}>
+              <span className={styles.filterTitle}>题型筛选</span>
+              <span className={styles.filterCount}>
+                {currentSubmission.answers.filter(answer => {
+                  const question = assignment.questions.find(q => q.id === answer.questionId);
+                  return question && questionTypeFilters[question.type as keyof typeof questionTypeFilters];
+                }).length} / {currentSubmission.answers.length}
+              </span>
+            </div>
+            <div className={styles.filterOptions}>
+              <button
+                className={`${styles.filterChip} ${questionTypeFilters.choice ? styles.filterChipActive : ''}`}
+                onClick={() => setQuestionTypeFilters(prev => ({ ...prev, choice: !prev.choice }))}
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.5"/>
+                  {questionTypeFilters.choice && <circle cx="8" cy="8" r="3" fill="currentColor"/>}
+                </svg>
+                <span>选择题</span>
+                <span className={styles.filterChipCount}>
+                  {assignment.questions.filter(q => q.type === 'choice').length}
+                </span>
+              </button>
+              <button
+                className={`${styles.filterChip} ${questionTypeFilters['fill-blank'] ? styles.filterChipActive : ''}`}
+                onClick={() => setQuestionTypeFilters(prev => ({ ...prev, 'fill-blank': !prev['fill-blank'] }))}
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <rect x="2" y="6" width="12" height="4" rx="1" stroke="currentColor" strokeWidth="1.5"/>
+                  {questionTypeFilters['fill-blank'] && <rect x="4" y="7.5" width="8" height="1" fill="currentColor"/>}
+                </svg>
+                <span>填空题</span>
+                <span className={styles.filterChipCount}>
+                  {assignment.questions.filter(q => q.type === 'fill-blank').length}
+                </span>
+              </button>
+              <button
+                className={`${styles.filterChip} ${questionTypeFilters.essay ? styles.filterChipActive : ''}`}
+                onClick={() => setQuestionTypeFilters(prev => ({ ...prev, essay: !prev.essay }))}
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M2 3h12M2 6h12M2 9h12M2 12h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                  {questionTypeFilters.essay && <circle cx="12" cy="12" r="2" fill="currentColor"/>}
+                </svg>
+                <span>问答题</span>
+                <span className={styles.filterChipCount}>
+                  {assignment.questions.filter(q => q.type === 'essay').length}
+                </span>
+              </button>
+            </div>
+            <button 
+              className={styles.filterResetBottom}
+              onClick={() => setQuestionTypeFilters({ choice: true, 'fill-blank': true, essay: true })}
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M12 5H6M12 5L9 2M12 5L9 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M2 9H8M2 9L5 6M2 9L5 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              重置筛选
+            </button>
           </div>
 
           {/* Navigation Buttons */}
@@ -867,9 +984,12 @@ const ReviewPage = () => {
         {/* Main Content */}
         <div className={styles.mainContent}>
           <div className={styles.questionsContainer}>
-              {currentSubmission.answers.map((answer, index) => 
-              renderQuestionCard(answer, index)
-            )}
+              {currentSubmission.answers
+                .map((answer, index) => ({ answer, index, question: assignment.questions.find(q => q.id === answer.questionId) }))
+                .filter(({ question }) => question && questionTypeFilters[question.type as keyof typeof questionTypeFilters])
+                .map(({ answer, index }) => 
+                  renderQuestionCard(answer, index)
+                )}
           </div>
         </div>
       </div>

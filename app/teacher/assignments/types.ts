@@ -163,11 +163,16 @@ export interface RubricTemplate {
   id: string;
   name: string;
   subject: Subject;
-  dimensions: {
-    name: string;
-    weight: number;
-    description: string;
-  }[];
+  dimensions: RubricDimension[];
+}
+
+// Rubric 维度
+export interface RubricDimension {
+  id: string;
+  name: string;
+  weight: number;
+  description: string;
+  prompt?: string; // AI 评分提示词
 }
 
 // 导入状态

@@ -20,13 +20,13 @@ interface TaskCardProps {
 
 const TYPE_COLORS: Record<TaskType, string> = {
   quiz: '#4f7fff',
-  'fill-blank': '#8b5cf6',
-  essay: '#9b59b6',
-  scan: '#14b8a6',
-  audio: '#f97316',
-  video: '#ec4899',
+  'fill-blank': '#6b8aff',
+  essay: '#3d6fe8',
+  scan: '#5a7dff',
+  audio: '#7a9bff',
+  video: '#2e5fdb',
   file: '#6b7280',
-  group: '#8b5cf6'
+  group: '#6b8aff'
 };
 
 export default function TaskCard({

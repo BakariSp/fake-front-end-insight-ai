@@ -12,139 +12,178 @@ interface Message {
   timestamp: Date;
 }
 
-interface TutoringMode {
+interface AIRole {
   id: string;
   name: string;
+  nameEn: string;
   icon: string;
+  subject: string;
   description: string;
-  placeholder: string;
+  systemPrompt: string;
 }
 
 interface ChatHistory {
   id: string;
   title: string;
   timestamp: Date;
-  mode: string;
+  roleId: string;
   messages: Message[];
 }
 
 export default function AITutorPage() {
-  const [selectedMode, setSelectedMode] = useState<string>('homework');
+  const [selectedRoleId, setSelectedRoleId] = useState<string>('general');
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [selectedChat, setSelectedChat] = useState<string>('current');
-  const [chatSessions, setChatSessions] = useState<Record<string, Message[]>>({});
+  const [showRoleSelector, setShowRoleSelector] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Mock chat history with messages
+  // AI Role Templates for HKDSE
+  const aiRoles: AIRole[] = [
+    {
+      id: 'general',
+      name: '通用学习导师',
+      nameEn: 'General Tutor',
+      icon: '🎓',
+      subject: '全科',
+      description: '友善耐心的通用导师，适合任何科目问题',
+      systemPrompt: '你是一位友善耐心的学习导师，可以帮助学生解答各种学科问题。',
+    },
+    {
+      id: 'math',
+      name: '数学导师',
+      nameEn: 'Math Tutor',
+      icon: '🔢',
+      subject: 'Mathematics',
+      description: '擅长步骤式讲解，强调数学逻辑与解题方法',
+      systemPrompt: '你是一位专业的HKDSE数学导师，擅长用清晰的步骤讲解数学问题。使用步骤式分解，强调数学概念和公式的应用。',
+    },
+    {
+      id: 'english',
+      name: '英语导师',
+      nameEn: 'English Tutor',
+      icon: '📝',
+      subject: 'English',
+      description: '注重语法、写作技巧、阅读理解分析',
+      systemPrompt: 'You are an experienced HKDSE English tutor. Focus on grammar, vocabulary, writing techniques, and reading comprehension strategies.',
+    },
+    {
+      id: 'chinese',
+      name: '中文导师',
+      nameEn: 'Chinese Tutor',
+      icon: '📖',
+      subject: '中文',
+      description: '专注文言文、写作、阅读理解与修辞手法',
+      systemPrompt: '你是一位专业的中文导师，专注于文言文、写作技巧、阅读理解和修辞手法的教学。',
+    },
+    {
+      id: 'science',
+      name: '科学导师',
+      nameEn: 'Science Tutor',
+      icon: '🧪',
+      subject: 'Science',
+      description: '用实验与生活例子解释科学概念',
+      systemPrompt: '你是一位科学导师，擅长用实验和生活例子解释物理、化学、生物等科学概念。',
+    },
+    {
+      id: 'humanities',
+      name: '文科导师',
+      nameEn: 'Humanities Tutor',
+      icon: '🏛️',
+      subject: 'Humanities',
+      description: '强调概念理解、案例分析、答题结构',
+      systemPrompt: '你是一位文科导师，专注于历史、地理、经济等科目，强调概念理解、案例分析和答题结构。',
+    },
+    {
+      id: 'exam',
+      name: '考试策略导师',
+      nameEn: 'Exam Strategy',
+      icon: '🎯',
+      subject: '应试技巧',
+      description: '专注HKDSE答题技巧、时间管理、考试策略',
+      systemPrompt: '你是HKDSE应试专家，专注于帮助学生提升考试表现，分析答题技巧、时间管理和Past Paper解题思路。',
+    },
+  ];
+
+  // Mock chat history with role IDs
   const [chatHistory, setChatHistory] = useState<ChatHistory[]>([
     { 
       id: '1', 
-      title: 'Math Homework Help', 
-      timestamp: new Date('2025-10-20 14:30'), 
-      mode: 'homework',
+      title: 'How to solve quadratic equations?', 
+      timestamp: new Date('2025-11-16 14:30'), 
+      roleId: 'math',
       messages: [
-        { id: '1-1', role: 'user', content: 'Can you help me solve this equation: 2x + 5 = 15?', timestamp: new Date('2025-10-20 14:30') },
-        { id: '1-2', role: 'assistant', content: "Of course! Let's solve this step by step:\n\n2x + 5 = 15\n\nStep 1: Subtract 5 from both sides\n2x = 10\n\nStep 2: Divide both sides by 2\nx = 5\n\nSo x = 5! Would you like to try a similar problem?", timestamp: new Date('2025-10-20 14:31') },
-        { id: '1-3', role: 'user', content: 'Yes please!', timestamp: new Date('2025-10-20 14:32') },
-        { id: '1-4', role: 'assistant', content: "Great! Try this one: 3x - 7 = 14\n\nTake your time and show me your work!", timestamp: new Date('2025-10-20 14:32') },
+        { id: '1-1', role: 'user', content: 'Can you help me solve this equation: 2x + 5 = 15?', timestamp: new Date('2025-11-16 14:30') },
+        { id: '1-2', role: 'assistant', content: "Of course! Let's solve this step by step:\n\n2x + 5 = 15\n\nStep 1: Subtract 5 from both sides\n2x = 10\n\nStep 2: Divide both sides by 2\nx = 5\n\nSo x = 5! Would you like to try a similar problem?", timestamp: new Date('2025-11-16 14:31') },
       ]
     },
     { 
       id: '2', 
-      title: 'Understanding Functions', 
-      timestamp: new Date('2025-10-19 16:45'), 
-      mode: 'concept',
+      title: 'English essay writing tips', 
+      timestamp: new Date('2025-11-15 16:45'), 
+      roleId: 'english',
       messages: [
-        { id: '2-1', role: 'user', content: 'What is a function in math?', timestamp: new Date('2025-10-19 16:45') },
-        { id: '2-2', role: 'assistant', content: "A function is like a machine that takes an input and gives you an output! Think of it like a vending machine:\n\n- You put in money (input)\n- The machine processes it\n- You get a snack (output)\n\nIn math, we write it as f(x) = y, where:\n- x is the input\n- f is the function (the rule)\n- y is the output\n\nFor example: f(x) = 2x + 1\nIf x = 3, then f(3) = 2(3) + 1 = 7\n\nDoes this make sense?", timestamp: new Date('2025-10-19 16:46') },
+        { id: '2-1', role: 'user', content: 'How can I improve my essay writing?', timestamp: new Date('2025-11-15 16:45') },
+        { id: '2-2', role: 'assistant', content: "Here are some key tips for better essay writing:\n\n1. Start with a clear thesis statement\n2. Use topic sentences for each paragraph\n3. Support your arguments with examples\n4. Use transition words to connect ideas\n5. Conclude by summarizing your main points\n\nWould you like me to elaborate on any of these?", timestamp: new Date('2025-11-15 16:46') },
       ]
     },
     { 
       id: '3', 
-      title: 'Algebra Practice Problems', 
-      timestamp: new Date('2025-10-19 10:20'), 
-      mode: 'practice',
-      messages: [
-        { id: '3-1', role: 'user', content: 'I need practice problems for algebra', timestamp: new Date('2025-10-19 10:20') },
-        { id: '3-2', role: 'assistant', content: "Here are 3 practice problems for you:\n\n1. Solve for x: 4x - 8 = 20\n2. Simplify: 3(x + 2) - 2(x - 1)\n3. Solve: 2x + 3 = x + 10\n\nTake your time and let me know your answers!", timestamp: new Date('2025-10-19 10:21') },
-      ]
+      title: '文言文理解问题', 
+      timestamp: new Date('2025-11-14 10:20'), 
+      roleId: 'chinese',
+      messages: []
     },
-    { id: '4', title: 'Chemistry Questions', timestamp: new Date('2025-10-18 15:10'), mode: 'ask', messages: [] },
-    { id: '5', title: 'English Grammar Help', timestamp: new Date('2025-10-18 09:30'), mode: 'homework', messages: [] },
-    { id: '6', title: 'Quadratic Equations Explained', timestamp: new Date('2025-10-17 14:00'), mode: 'concept', messages: [] },
-    { id: '7', title: 'Physics Problem Set', timestamp: new Date('2025-10-17 11:15'), mode: 'homework', messages: [] },
-    { id: '8', title: 'Fractions Practice', timestamp: new Date('2025-10-16 16:20'), mode: 'practice', messages: [] },
-    { id: '9', title: 'History Essay Tips', timestamp: new Date('2025-10-16 13:45'), mode: 'ask', messages: [] },
-    { id: '10', title: 'Geometry Proofs', timestamp: new Date('2025-10-15 15:30'), mode: 'concept', messages: [] },
-    { id: '11', title: 'Science Lab Report', timestamp: new Date('2025-10-15 10:00'), mode: 'homework', messages: [] },
-    { id: '12', title: 'Trigonometry Practice', timestamp: new Date('2025-10-14 14:25'), mode: 'practice', messages: [] },
-    { id: '13', title: 'Literature Analysis', timestamp: new Date('2025-10-14 09:15'), mode: 'ask', messages: [] },
-    { id: '14', title: 'Calculus Derivatives', timestamp: new Date('2025-10-13 16:40'), mode: 'concept', messages: [] },
-    { id: '15', title: 'Biology Homework', timestamp: new Date('2025-10-13 12:30'), mode: 'homework', messages: [] },
+    { id: '4', title: 'Chemistry atomic structure', timestamp: new Date('2025-11-13 15:10'), roleId: 'science', messages: [] },
+    { id: '5', title: 'HKDSE考试技巧', timestamp: new Date('2025-11-12 09:30'), roleId: 'exam', messages: [] },
   ]);
 
-  const tutoringModes: TutoringMode[] = [
-    {
-      id: 'homework',
-      name: 'Homework',
-      icon: '📝',
-      description: 'Get help with homework problems',
-      placeholder: 'Ask about your homework...',
-    },
-    {
-      id: 'concept',
-      name: 'Concepts',
-      icon: '💡',
-      description: 'Understand difficult concepts',
-      placeholder: 'What concept would you like to understand?',
-    },
-    {
-      id: 'practice',
-      name: 'Practice',
-      icon: '✍️',
-      description: 'Get practice problems',
-      placeholder: 'Request practice problems...',
-    },
-    {
-      id: 'ask',
-      name: 'Q&A',
-      icon: '❓',
-      description: 'Ask any study question',
-      placeholder: 'Ask me anything...',
-    },
-  ];
 
-
-  // Mock AI responses based on mode
-  const getAIResponse = (userMessage: string, mode: string): string => {
+  // Mock AI responses based on role
+  const getAIResponse = (userMessage: string, roleId: string): string => {
+    const role = aiRoles.find(r => r.id === roleId);
     const responses: Record<string, string[]> = {
-      homework: [
-        "I'd be happy to help you with your homework! Let's break this problem down step by step. First, let's identify what information we have...",
-        "Great question! To solve this problem, we need to think about the key concepts involved. Here's my approach...",
-        "Let me guide you through this. Can you tell me what you've tried so far? This will help me understand where you're stuck.",
+      general: [
+        "I'd be happy to help you with that! Let me break it down for you...",
+        "Great question! Let me explain this clearly...",
+        "Let me guide you through this step by step...",
       ],
-      concept: [
-        "Let me explain this concept in a simple way. Imagine you have... This is similar to when you...",
-        "This is an important concept! Here's how I like to think about it: Think of it like... Does that make sense?",
-        "Great topic! Let's break this down into smaller, easier-to-understand parts: 1) First... 2) Then... 3) Finally...",
+      math: [
+        "Let's solve this step by step:\n\nStep 1: First, we need to...\nStep 2: Then, we can...\nStep 3: Finally...",
+        "Great math question! Let me show you the approach:\n\n1) Identify what we know\n2) Apply the formula\n3) Solve for the unknown",
+        "I'll help you understand this mathematically. The key concept here is...",
       ],
-      practice: [
-        "Here's a practice problem for you:\n\nProblem: Calculate 15% of 80.\n\nTake your time and let me know your answer. I'll provide feedback!",
-        "Let's practice! Here's a problem:\n\nIf a train travels 60 km in 45 minutes, what is its speed in km/h?\n\nTry solving it step by step.",
-        "Practice problem:\n\nSolve for x: 2x + 5 = 13\n\nShow me your work and I'll check if you're on the right track!",
+      english: [
+        "Let me help you with that. Here's a clear explanation:\n\n- First point: ...\n- Second point: ...\n- Key takeaway: ...",
+        "Good question! In English, we need to consider the grammar rules and context...",
+        "Let me break down this concept for you with some examples...",
       ],
-      ask: [
-        "That's an interesting question! Here's what I know about that topic...",
-        "I'm here to help! Let me provide you with a comprehensive answer...",
-        "Great curiosity! This relates to several important concepts. Let me explain...",
+      chinese: [
+        "让我用简单的方式解释这个概念...\n\n首先，我们需要理解...\n其次...\n最后...",
+        "很好的问题！在中文里，这个概念是...",
+        "让我们一起分析这段文字的含义...",
+      ],
+      science: [
+        "Let me explain this scientific concept with an example:\n\nImagine you have... This is similar to...",
+        "Great science question! The key principle here is... Think of it like this experiment...",
+        "Let's explore this concept. In nature, we can observe...",
+      ],
+      humanities: [
+        "Let me provide a comprehensive analysis:\n\n1. Context: ...\n2. Key factors: ...\n3. Impact: ...",
+        "Good question! To understand this, we need to consider the historical/economic context...",
+        "Let's break down this concept with a real-world example...",
+      ],
+      exam: [
+        "Here's a useful exam strategy:\n\n✓ Time management: ...\n✓ Question analysis: ...\n✓ Answer structure: ...",
+        "For HKDSE, remember these tips: 1) Read the question carefully, 2) Plan your answer, 3) Check your work",
+        "Let me share an effective approach for this type of question...",
       ],
     };
 
-    const modeResponses = responses[mode] || responses.ask;
-    return modeResponses[Math.floor(Math.random() * modeResponses.length)];
+    const roleResponses = responses[roleId] || responses.general;
+    return roleResponses[Math.floor(Math.random() * roleResponses.length)];
   };
 
   const handleSendMessage = async () => {
@@ -166,7 +205,7 @@ export default function AITutorPage() {
       const aiMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: getAIResponse(inputValue, selectedMode),
+        content: getAIResponse(inputValue, selectedRoleId),
         timestamp: new Date(),
       };
 
@@ -175,48 +214,43 @@ export default function AITutorPage() {
     }, 1500);
   };
 
-  const handleModeChange = (modeId: string) => {
+  const handleNewChat = () => {
     // Save current chat if there are messages
-    if (messages.length > 1) { // More than just welcome message
-      const currentChatId = selectedChat === 'current' ? Date.now().toString() : selectedChat;
-      if (selectedChat === 'current') {
-        // Create new chat history entry
-        const newChat: ChatHistory = {
-          id: currentChatId,
-          title: messages[1]?.content.substring(0, 30) + '...' || 'New Chat',
-          timestamp: new Date(),
-          mode: selectedMode,
-          messages: [...messages],
-        };
-        setChatHistory(prev => [newChat, ...prev]);
-      }
-      
-      // Start fresh chat
-      setMessages([]);
-      setSelectedChat('current');
+    if (messages.length > 1 && selectedChat === 'current') {
+      const newChat: ChatHistory = {
+        id: Date.now().toString(),
+        title: messages[1]?.content.substring(0, 40) + '...' || 'New Chat',
+        timestamp: new Date(),
+        roleId: selectedRoleId,
+        messages: [...messages],
+      };
+      setChatHistory(prev => [newChat, ...prev]);
     }
     
-    setSelectedMode(modeId);
+    // Start fresh chat
+    setMessages([]);
+    setSelectedChat('current');
+    setSelectedRoleId('general');
+  };
+
+  const handleRoleChange = (roleId: string) => {
+    setSelectedRoleId(roleId);
+    setShowRoleSelector(false);
   };
 
   const handleChatSelect = (chatId: string) => {
     setSelectedChat(chatId);
     
     if (chatId === 'current') {
-      // Load welcome message
-      const welcomeMessage: Message = {
-        id: 'welcome',
-        role: 'assistant',
-        content: "Hello! I'm your AI Learning Tutor. Select a mode and ask me anything - I'm here to help you learn!",
-        timestamp: new Date(),
-      };
-      setMessages([welcomeMessage]);
+      // Start new chat
+      setMessages([]);
+      setSelectedRoleId('general');
     } else {
       // Load chat history
       const chat = chatHistory.find(c => c.id === chatId);
       if (chat) {
         setMessages(chat.messages);
-        setSelectedMode(chat.mode);
+        setSelectedRoleId(chat.roleId);
       }
     }
   };
@@ -226,13 +260,8 @@ export default function AITutorPage() {
     setChatHistory(prev => prev.filter(chat => chat.id !== chatId));
     if (selectedChat === chatId) {
       setSelectedChat('current');
-      const welcomeMessage: Message = {
-        id: 'welcome',
-        role: 'assistant',
-        content: "Hello! I'm your AI Learning Tutor. Select a mode and ask me anything - I'm here to help you learn!",
-        timestamp: new Date(),
-      };
-      setMessages([welcomeMessage]);
+      setMessages([]);
+      setSelectedRoleId('general');
     }
   };
 
@@ -270,20 +299,7 @@ export default function AITutorPage() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  // Initialize with welcome message
-  useEffect(() => {
-    if (messages.length === 0) {
-      const welcomeMessage: Message = {
-        id: 'welcome',
-        role: 'assistant',
-        content: "Hello! I'm your AI Learning Tutor. Select a mode and ask me anything - I'm here to help you learn!",
-        timestamp: new Date(),
-      };
-      setMessages([welcomeMessage]);
-    }
-  }, []);
-
-  const currentMode = tutoringModes.find(m => m.id === selectedMode) || tutoringModes[0];
+  const currentRole = aiRoles.find(r => r.id === selectedRoleId) || aiRoles[0];
 
   const formatTime = (date: Date) => {
     const now = new Date();
@@ -306,28 +322,46 @@ export default function AITutorPage() {
       <div className={styles.container}>
         {/* Chat Interface */}
         <div className={styles.chatWrapper}>
-          {/* Mode Selection Buttons */}
-          <div className={styles.modeButtons}>
-            {tutoringModes.map((mode) => (
-              <button
-                key={mode.id}
-                className={`${styles.modeButton} ${selectedMode === mode.id ? styles.active : ''}`}
-                onClick={() => handleModeChange(mode.id)}
-                title={mode.description}
-              >
-                <span className={styles.modeIcon}>{mode.icon}</span>
-                <span className={styles.modeName}>{mode.name}</span>
-              </button>
-            ))}
+          {/* Current Role Indicator */}
+          <div className={styles.roleIndicator}>
+            <button 
+              className={styles.roleSelector}
+              onClick={() => setShowRoleSelector(!showRoleSelector)}
+              title="Change AI tutor role"
+            >
+              <span className={styles.roleIcon}>{currentRole.icon}</span>
+              <span className={styles.roleName}>{currentRole.name}</span>
+              <span className={styles.roleSubject}>({currentRole.subject})</span>
+              <span className={styles.dropdownIcon}>▼</span>
+            </button>
+            
+            {showRoleSelector && (
+              <div className={styles.roleDropdown}>
+                {aiRoles.map((role) => (
+                  <button
+                    key={role.id}
+                    className={`${styles.roleOption} ${selectedRoleId === role.id ? styles.active : ''}`}
+                    onClick={() => handleRoleChange(role.id)}
+                  >
+                    <span className={styles.roleOptionIcon}>{role.icon}</span>
+                    <div className={styles.roleOptionInfo}>
+                      <div className={styles.roleOptionName}>{role.name}</div>
+                      <div className={styles.roleOptionDesc}>{role.description}</div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Messages Area */}
           <div className={styles.messagesArea}>
             {messages.length === 0 ? (
               <div className={styles.emptyState}>
-                <div className={styles.emptyIcon}>🤖</div>
+                <div className={styles.emptyIcon}>{currentRole.icon}</div>
                 <h2 className={styles.emptyTitle}>AI Learning Tutor</h2>
                 <p className={styles.emptyText}>How can I help you today?</p>
+                <p className={styles.emptyRole}>Currently: {currentRole.name}</p>
               </div>
             ) : (
               <>
@@ -384,7 +418,7 @@ export default function AITutorPage() {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-              placeholder={currentMode.placeholder}
+              placeholder="Ask AI Learning Tutor..."
               className={styles.input}
             />
             <Button
@@ -403,35 +437,37 @@ export default function AITutorPage() {
           <div className={styles.historyHeader}>
             <h3 className={styles.historyTitle}>Chat History</h3>
           </div>
-          <div className={styles.historyList}>
-            <div
-              className={`${styles.historyItem} ${selectedChat === 'current' ? styles.active : ''}`}
-              onClick={() => handleChatSelect('current')}
-            >
-              <div className={styles.historyItemContent}>
-                <div className={styles.historyItemTitle}>Current Chat</div>
-                <div className={styles.historyItemTime}>Now</div>
-              </div>
+          <button className={styles.newChatButton} onClick={handleNewChat}>
+            <span className={styles.newChatIcon}>+</span>
+            <div className={styles.newChatText}>
+              <div className={styles.newChatTitle}>New Chat</div>
+              <div className={styles.newChatSubtitle}>Start a new conversation again</div>
             </div>
-            {chatHistory.map((chat) => (
-              <div
-                key={chat.id}
-                className={`${styles.historyItem} ${selectedChat === chat.id ? styles.active : ''}`}
-                onClick={() => handleChatSelect(chat.id)}
-              >
-                <div className={styles.historyItemContent}>
-                  <div className={styles.historyItemTitle}>{chat.title}</div>
-                  <div className={styles.historyItemTime}>{formatTime(chat.timestamp)}</div>
-                </div>
-                <button
-                  className={styles.deleteButton}
-                  onClick={(e) => handleDeleteChat(chat.id, e)}
-                  title="Delete chat"
+          </button>
+          <div className={styles.historyList}>
+            {chatHistory.map((chat) => {
+              const chatRole = aiRoles.find(r => r.id === chat.roleId);
+              return (
+                <div
+                  key={chat.id}
+                  className={`${styles.historyItem} ${selectedChat === chat.id ? styles.active : ''}`}
+                  onClick={() => handleChatSelect(chat.id)}
                 >
-                  🗑️
-                </button>
-              </div>
-            ))}
+                  <span className={styles.historyRoleIcon}>{chatRole?.icon || '🎓'}</span>
+                  <div className={styles.historyItemContent}>
+                    <div className={styles.historyItemTitle}>{chat.title}</div>
+                    <div className={styles.historyItemTime}>{formatTime(chat.timestamp)}</div>
+                  </div>
+                  <button
+                    className={styles.deleteButton}
+                    onClick={(e) => handleDeleteChat(chat.id, e)}
+                    title="Delete chat"
+                  >
+                    🗑️
+                  </button>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

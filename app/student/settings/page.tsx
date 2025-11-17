@@ -3,623 +3,681 @@
 import React, { useState } from 'react';
 import { useLanguage } from '@/app/contexts/LanguageContext';
 import MainLayout from '@layout/MainLayout';
-import { Card, Button, Badge, Avatar } from '@ui';
-import { mockUserSettings, UserSettings } from '@data/mockData';
+import { Button, Avatar } from '@ui';
 import styles from './settings.module.css';
+
+// ==================== Data Types ====================
+
+interface StudentProfile {
+  studentId: string;
+  name: string;
+  email: string;
+  school: string;
+  grade: string;
+  profilePhoto?: string;
+}
+
+interface NotificationSettings {
+  assignmentUpdates: boolean;
+  gradingCompleted: boolean;
+  classAnnouncements: boolean;
+  systemNotifications: boolean;
+}
+
+interface UserPreferences {
+  language: 'en' | 'zh' | 'zh-TW';
+  dateFormat: 'MM/DD/YYYY' | 'DD/MM/YYYY' | 'YYYY-MM-DD';
+  timeZone: string;
+  defaultView: 'list' | 'grid';
+}
+
+// ==================== Toggle Component ====================
+
+interface ToggleSwitchProps {
+  checked: boolean;
+  onChange: (checked: boolean) => void;
+}
+
+const ToggleSwitch: React.FC<ToggleSwitchProps> = ({ checked, onChange }) => {
+  return (
+    <button
+      className={`${styles.toggle} ${checked ? styles.toggleOn : styles.toggleOff}`}
+      onClick={() => onChange(!checked)}
+      role="switch"
+      aria-checked={checked}
+    >
+      <span className={styles.toggleSlider} />
+    </button>
+  );
+};
+
+// ==================== Mock Data ====================
+
+const mockProfile: StudentProfile = {
+  studentId: 'S2024001',
+  name: 'Emma Wilson',
+  email: 'emma.wilson@school.edu.hk',
+  school: "St. Mary's College",
+  grade: 'Form 5A',
+  profilePhoto: undefined,
+};
+
+const mockNotifications: NotificationSettings = {
+  assignmentUpdates: true,
+  gradingCompleted: true,
+  classAnnouncements: true,
+  systemNotifications: false,
+};
+
+const mockPreferences: UserPreferences = {
+  language: 'en',
+  dateFormat: 'MM/DD/YYYY',
+  timeZone: 'GMT+8 Hong Kong',
+  defaultView: 'list',
+};
 
 const SettingsPage = () => {
   const { t, language, setLanguage } = useLanguage();
-  const [settings, setSettings] = useState<UserSettings>(mockUserSettings);
+  const [activeTab, setActiveTab] = useState<'account' | 'notifications' | 'preferences' | 'about'>('account');
+  const [profile, setProfile] = useState(mockProfile);
+  const [notifications, setNotifications] = useState(mockNotifications);
+  const [preferences, setPreferences] = useState(mockPreferences);
   const [hasChanges, setHasChanges] = useState(false);
-
-  const handleNotificationChange = (key: keyof UserSettings['notifications']) => {
-    setSettings(prev => ({
-      ...prev,
-      notifications: {
-        ...prev.notifications,
-        [key]: !prev.notifications[key],
-      },
-    }));
-    setHasChanges(true);
-  };
-
-  const handlePrivacyChange = (key: keyof UserSettings['privacy']) => {
-    setSettings(prev => ({
-      ...prev,
-      privacy: {
-        ...prev.privacy,
-        [key]: !prev.privacy[key],
-      },
-    }));
-    setHasChanges(true);
-  };
-
-  const handleLearningChange = (key: keyof UserSettings['learning'], value: any) => {
-    setSettings(prev => ({
-      ...prev,
-      learning: {
-        ...prev.learning,
-        [key]: value,
-      },
-    }));
-    setHasChanges(true);
-  };
-
-  const handleDisplayChange = (key: keyof UserSettings['display'], value: any) => {
-    setSettings(prev => ({
-      ...prev,
-      display: {
-        ...prev.display,
-        [key]: value,
-      },
-    }));
-    
-    // Apply language change immediately
-    if (key === 'language') {
-      setLanguage(value);
-    }
-    
-    setHasChanges(true);
-  };
+  const [showPasswordDialog, setShowPasswordDialog] = useState(false);
+  
+  // Password change form
+  const [passwordForm, setPasswordForm] = useState({
+    current: '',
+    new: '',
+    confirm: '',
+  });
 
   const handleSave = () => {
-    // In a real app, this would save to backend
-    console.log('Saving settings:', settings);
-    setHasChanges(false);
-    
-    // Show success message (you could use a toast notification here)
+    console.log('Saving settings:', { profile, notifications, preferences });
     alert('Settings saved successfully!');
+    setHasChanges(false);
   };
 
-  const handleReset = () => {
-    setSettings(mockUserSettings);
-    setHasChanges(false);
+  const handlePasswordChange = () => {
+    if (passwordForm.new !== passwordForm.confirm) {
+      alert('New passwords do not match!');
+      return;
+    }
+    if (passwordForm.new.length < 8) {
+      alert('Password must be at least 8 characters!');
+      return;
+    }
+    alert('Password changed successfully!');
+    setShowPasswordDialog(false);
+    setPasswordForm({ current: '', new: '', confirm: '' });
   };
+
+  const tabs = [
+    { id: 'account' as const, label: 'Account', icon: '👤' },
+    { id: 'notifications' as const, label: 'Notifications', icon: '🔔' },
+    { id: 'preferences' as const, label: 'Preferences', icon: '⚙️' },
+    { id: 'about' as const, label: 'About', icon: 'ℹ️' },
+  ];
 
   return (
     <MainLayout>
-      {/* Header */}
-      <div className={styles.header}>
-        <div className={styles.headerLeft}>
+      <div className={styles.container}>
+        {/* Header */}
+        <div className={styles.header}>
           <h1 className={styles.pageTitle}>
-            {t('settings.title') || 'Personal Settings'}
+            <span className={styles.titleIcon}>⚙️</span>
+            Settings
           </h1>
           <p className={styles.pageSubtitle}>
-            Manage your account, notifications, privacy, and learning preferences
+            Manage your account, notifications, and preferences
           </p>
         </div>
-        {hasChanges && (
-          <div className={styles.headerActions}>
-            <Button variant="secondary" onClick={handleReset}>
-              Cancel
-            </Button>
-            <Button variant="primary" onClick={handleSave}>
-              Save Changes
-            </Button>
-          </div>
-        )}
-      </div>
 
-      {/* Account Info Section */}
-      <section className={styles.section}>
-        <div className={styles.sectionHeader}>
-          <div className={styles.sectionIcon}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <circle cx="12" cy="8" r="4" stroke="currentColor" strokeWidth="2"/>
-              <path d="M4 20c0-4 3.5-7 8-7s8 3 8 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-            </svg>
-          </div>
-          <div>
-            <h2 className={styles.sectionTitle}>Account Information</h2>
-            <p className={styles.sectionDescription}>Your personal and academic information</p>
-          </div>
-        </div>
-
-        <Card className={styles.accountCard}>
-          <div className={styles.accountHeader}>
-            <Avatar size="large" name={settings.account.name} />
-            <div className={styles.accountInfo}>
-              <h3 className={styles.accountName}>{settings.account.name}</h3>
-              <Badge variant="primary">{settings.account.grade}</Badge>
-            </div>
-            <Button variant="secondary" size="small">
-              Edit Profile
-            </Button>
+        {/* Main Content */}
+        <div className={styles.mainContent}>
+          {/* Sidebar Tabs */}
+          <div className={styles.sidebar}>
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                className={`${styles.sidebarTab} ${activeTab === tab.id ? styles.sidebarTabActive : ''}`}
+                onClick={() => setActiveTab(tab.id)}
+              >
+                <span className={styles.tabIcon}>{tab.icon}</span>
+                {tab.label}
+              </button>
+            ))}
           </div>
 
-          <div className={styles.accountDetails}>
-            <div className={styles.detailRow}>
-              <div className={styles.detailLabel}>
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <path d="M3 3h12v10H3V3z" stroke="currentColor" strokeWidth="1.5"/>
-                  <path d="M3 6l6 4 6-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                </svg>
-                Student ID
-              </div>
-              <div className={styles.detailValue}>{settings.account.studentId}</div>
-            </div>
+          {/* Content Area */}
+          <div className={styles.contentArea}>
+            {/* Account Tab */}
+            {activeTab === 'account' && (
+              <div className={styles.tabContent}>
+                <h2 className={styles.contentTitle}>Account</h2>
+                <p className={styles.contentSubtitle}>
+                  Manage your profile information and account settings
+                </p>
+                
+                {/* Profile Information */}
+                <div className={styles.card}>
+                  <section className={styles.section}>
+                    <h3 className={styles.sectionTitle}>Profile Photo</h3>
+                    <div className={styles.profilePhotoWrapper}>
+                      <div className={styles.profilePhoto}>
+                        <Avatar size="large" name={profile.name} />
+                      </div>
+                      <div className={styles.profilePhotoActions}>
+                        <button className={styles.uploadButton}>
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M8 10V3M8 3L5.5 5.5M8 3l2.5 2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d="M3 10v2a1 1 0 001 1h8a1 1 0 001-1v-2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                          </svg>
+                          Upload Photo
+                        </button>
+                        <button className={styles.removeButton}>Remove</button>
+                        <p className={styles.photoHint}>JPG, PNG or GIF. Max size 5MB.</p>
+                      </div>
+                    </div>
+                  </section>
 
-            <div className={styles.detailRow}>
-              <div className={styles.detailLabel}>
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <rect x="3" y="4" width="12" height="10" rx="1" stroke="currentColor" strokeWidth="1.5"/>
-                  <path d="M3 7l6 4 6-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                </svg>
-                Email
-              </div>
-              <div className={styles.detailValue}>{settings.account.email}</div>
-            </div>
+                  <section className={styles.section}>
+                    <h3 className={styles.sectionTitle}>Basic Information</h3>
+                    <div className={styles.formGrid}>
+                      <div className={styles.formGroup}>
+                        <label className={styles.label}>Name</label>
+                        <input
+                          type="text"
+                          className={styles.input}
+                          value={profile.name}
+                          placeholder="Enter your name"
+                          onChange={(e) => {
+                            setProfile({ ...profile, name: e.target.value });
+                            setHasChanges(true);
+                          }}
+                        />
+                      </div>
+                      
+                      <div className={styles.formGroup}>
+                        <label className={styles.label}>Email Address</label>
+                        <input
+                          type="email"
+                          className={styles.input}
+                          value={profile.email}
+                          placeholder="Enter your email"
+                          onChange={(e) => {
+                            setProfile({ ...profile, email: e.target.value });
+                            setHasChanges(true);
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </section>
 
-            <div className={styles.detailRow}>
-              <div className={styles.detailLabel}>
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <rect x="3" y="3" width="5" height="8" rx="1" stroke="currentColor" strokeWidth="1.5"/>
-                  <path d="M5.5 1v2M5.5 11v2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                </svg>
-                Phone
-              </div>
-              <div className={styles.detailValue}>{settings.account.phone || 'Not set'}</div>
-            </div>
+                  <section className={styles.section}>
+                    <h3 className={styles.sectionTitle}>School & Academic Info</h3>
+                    <div className={styles.infoGrid}>
+                      <div className={styles.infoItem}>
+                        <label className={styles.infoLabel}>Student ID</label>
+                        <div className={styles.infoValue}>{profile.studentId}</div>
+                      </div>
+                      <div className={styles.infoItem}>
+                        <label className={styles.infoLabel}>School</label>
+                        <div className={styles.infoValue}>{profile.school}</div>
+                      </div>
+                      <div className={styles.infoItem}>
+                        <label className={styles.infoLabel}>Grade</label>
+                        <div className={styles.infoValue}>{profile.grade}</div>
+                      </div>
+                    </div>
+                    <p className={styles.infoNote}>
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5"/>
+                        <path d="M8 8v3M8 5.5v.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                      </svg>
+                      These fields are managed by your school and cannot be changed.
+                    </p>
+                  </section>
 
-            <div className={styles.detailRow}>
-              <div className={styles.detailLabel}>
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <rect x="3" y="4" width="12" height="10" rx="1" stroke="currentColor" strokeWidth="1.5"/>
-                  <path d="M6 8h6M6 11h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                </svg>
-                Enrolled Classes
-              </div>
-              <div className={styles.detailValue}>
-                <div className={styles.classesList}>
-                  {settings.account.classes.map((cls, index) => (
-                    <Badge key={index} variant="secondary">{cls}</Badge>
-                  ))}
+                  <section className={styles.section}>
+                    <h3 className={styles.sectionTitle}>Password</h3>
+                    <div className={styles.passwordSection}>
+                      <p className={styles.passwordText}>
+                        Keep your account secure by using a strong password
+                      </p>
+                      <button
+                        className={styles.changePasswordButton}
+                        onClick={() => setShowPasswordDialog(true)}
+                      >
+                        Change Password
+                      </button>
+                    </div>
+                  </section>
+
+                  {hasChanges && (
+                    <div className={styles.actions}>
+                      <button className={styles.cancelButton} onClick={() => {
+                        setProfile(mockProfile);
+                        setHasChanges(false);
+                      }}>
+                        Cancel
+                      </button>
+                      <button className={styles.saveButton} onClick={handleSave}>
+                        Save Changes
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
-            </div>
-          </div>
-        </Card>
-      </section>
+            )}
 
-      {/* Notification Settings */}
-      <section className={styles.section}>
-        <div className={styles.sectionHeader}>
-          <div className={styles.sectionIcon}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M10 5a2 2 0 114 0 7 7 0 014 6v3l2 2H4l2-2V11a7 7 0 014-6zM9 17v1a3 3 0 006 0v-1" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-            </svg>
-          </div>
-          <div>
-            <h2 className={styles.sectionTitle}>Notification Preferences</h2>
-            <p className={styles.sectionDescription}>Choose how you want to receive notifications</p>
+            {/* Notifications Tab */}
+            {activeTab === 'notifications' && (
+              <div className={styles.tabContent}>
+                <h2 className={styles.contentTitle}>Notifications</h2>
+                <p className={styles.contentSubtitle}>
+                  Manage how you receive notifications
+                </p>
+                
+                <div className={styles.card}>
+                  <section className={styles.section}>
+                    <h3 className={styles.sectionTitle}>📧 Email Notifications</h3>
+                    <p className={styles.sectionDescription}>
+                      All email notifications sent to: <strong>{profile.email}</strong>
+                    </p>
+                    
+                    <div className={styles.notificationsList}>
+                      <div className={styles.notificationItem}>
+                        <div className={styles.notificationInfo}>
+                          <div className={styles.notificationTitle}>Assignment Updates</div>
+                          <div className={styles.notificationDesc}>
+                            Notify me when new assignments are posted or deadlines are approaching
+                          </div>
+                        </div>
+                        <ToggleSwitch
+                          checked={notifications.assignmentUpdates}
+                          onChange={(checked) => {
+                            setNotifications({ ...notifications, assignmentUpdates: checked });
+                            setHasChanges(true);
+                          }}
+                        />
+                      </div>
+
+                      <div className={styles.notificationItem}>
+                        <div className={styles.notificationInfo}>
+                          <div className={styles.notificationTitle}>Grading Completed</div>
+                          <div className={styles.notificationDesc}>
+                            Notify me when my assignments have been graded
+                          </div>
+                        </div>
+                        <ToggleSwitch
+                          checked={notifications.gradingCompleted}
+                          onChange={(checked) => {
+                            setNotifications({ ...notifications, gradingCompleted: checked });
+                            setHasChanges(true);
+                          }}
+                        />
+                      </div>
+
+                      <div className={styles.notificationItem}>
+                        <div className={styles.notificationInfo}>
+                          <div className={styles.notificationTitle}>Class Announcements</div>
+                          <div className={styles.notificationDesc}>
+                            Notify me about class announcements and important updates
+                          </div>
+                        </div>
+                        <ToggleSwitch
+                          checked={notifications.classAnnouncements}
+                          onChange={(checked) => {
+                            setNotifications({ ...notifications, classAnnouncements: checked });
+                            setHasChanges(true);
+                          }}
+                        />
+                      </div>
+
+                      <div className={styles.notificationItem}>
+                        <div className={styles.notificationInfo}>
+                          <div className={styles.notificationTitle}>System Notifications</div>
+                          <div className={styles.notificationDesc}>
+                            Important system updates and maintenance notices
+                          </div>
+                        </div>
+                        <ToggleSwitch
+                          checked={notifications.systemNotifications}
+                          onChange={(checked) => {
+                            setNotifications({ ...notifications, systemNotifications: checked });
+                            setHasChanges(true);
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </section>
+
+                  {hasChanges && (
+                    <div className={styles.actions}>
+                      <button className={styles.cancelButton} onClick={() => {
+                        setNotifications(mockNotifications);
+                        setHasChanges(false);
+                      }}>
+                        Cancel
+                      </button>
+                      <button className={styles.saveButton} onClick={handleSave}>
+                        Save Changes
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Preferences Tab */}
+            {activeTab === 'preferences' && (
+              <div className={styles.tabContent}>
+                <h2 className={styles.contentTitle}>Preferences</h2>
+                <p className={styles.contentSubtitle}>
+                  Customize your experience and interface
+                </p>
+                
+                <div className={styles.card}>
+                  {/* Language & Display */}
+                  <section className={styles.section}>
+                    <h3 className={styles.sectionTitle}>🌐 Language & Display</h3>
+                    
+                    <div className={styles.formGrid}>
+                      <div className={styles.formGroup}>
+                        <label className={styles.label}>Language</label>
+                        <select
+                          className={styles.select}
+                          value={preferences.language}
+                          onChange={(e) => {
+                            const newLang = e.target.value as 'en' | 'zh' | 'zh-TW';
+                            setPreferences({ ...preferences, language: newLang });
+                            setLanguage(newLang);
+                            setHasChanges(true);
+                          }}
+                        >
+                          <option value="en">English</option>
+                          <option value="zh">简体中文</option>
+                          <option value="zh-TW">繁體中文</option>
+                        </select>
+                      </div>
+
+                      <div className={styles.formGroup}>
+                        <label className={styles.label}>Date Format</label>
+                        <select
+                          className={styles.select}
+                          value={preferences.dateFormat}
+                          onChange={(e) => {
+                            setPreferences({ ...preferences, dateFormat: e.target.value as any });
+                            setHasChanges(true);
+                          }}
+                        >
+                          <option value="MM/DD/YYYY">MM/DD/YYYY</option>
+                          <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+                          <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+                        </select>
+                      </div>
+
+                      <div className={styles.formGroup}>
+                        <label className={styles.label}>Time Zone</label>
+                        <select
+                          className={styles.select}
+                          value={preferences.timeZone}
+                          onChange={(e) => {
+                            setPreferences({ ...preferences, timeZone: e.target.value });
+                            setHasChanges(true);
+                          }}
+                        >
+                          <option value="GMT+8 Hong Kong">GMT+8 Hong Kong</option>
+                          <option value="GMT+8 Beijing">GMT+8 Beijing</option>
+                          <option value="GMT+0 London">GMT+0 London</option>
+                          <option value="GMT-5 New York">GMT-5 New York</option>
+                        </select>
+                      </div>
+                    </div>
+                  </section>
+
+                  {/* Interface */}
+                  <section className={styles.section}>
+                    <h3 className={styles.sectionTitle}>⚙️ Interface</h3>
+                    
+                    <div className={styles.formGroup}>
+                      <label className={styles.label}>Default Assignment View</label>
+                      <div className={styles.radioGroup}>
+                        <label className={styles.radioLabel}>
+                          <input
+                            type="radio"
+                            name="defaultView"
+                            value="list"
+                            checked={preferences.defaultView === 'list'}
+                            onChange={() => {
+                              setPreferences({ ...preferences, defaultView: 'list' });
+                              setHasChanges(true);
+                            }}
+                          />
+                          <span className={styles.radioText}>List View</span>
+                        </label>
+                        <label className={styles.radioLabel}>
+                          <input
+                            type="radio"
+                            name="defaultView"
+                            value="grid"
+                            checked={preferences.defaultView === 'grid'}
+                            onChange={() => {
+                              setPreferences({ ...preferences, defaultView: 'grid' });
+                              setHasChanges(true);
+                            }}
+                          />
+                          <span className={styles.radioText}>Grid View</span>
+                        </label>
+                      </div>
+                    </div>
+                  </section>
+
+                  {hasChanges && (
+                    <div className={styles.actions}>
+                      <button className={styles.cancelButton} onClick={() => {
+                        setPreferences(mockPreferences);
+                        setHasChanges(false);
+                      }}>
+                        Cancel
+                      </button>
+                      <button className={styles.saveButton} onClick={handleSave}>
+                        Save Changes
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* About Tab */}
+            {activeTab === 'about' && (
+              <div className={styles.tabContent}>
+                <h2 className={styles.contentTitle}>About Insight AI</h2>
+                <p className={styles.contentSubtitle}>
+                  System information and support resources
+                </p>
+                
+                {/* System Information */}
+                <div className={styles.card}>
+                  <section className={styles.section}>
+                    <h3 className={styles.sectionTitle}>ℹ️ System Information</h3>
+                    
+                    <div className={styles.infoList}>
+                      <div className={styles.infoItem}>
+                        <span className={styles.infoLabel}>Version</span>
+                        <span className={styles.infoValue}>v1.0.0 (MVP)</span>
+                      </div>
+                      <div className={styles.infoItem}>
+                        <span className={styles.infoLabel}>Last Updated</span>
+                        <span className={styles.infoValue}>November 2024</span>
+                      </div>
+                      <div className={styles.infoItem}>
+                        <span className={styles.infoLabel}>Platform</span>
+                        <span className={styles.infoValue}>Web Application</span>
+                      </div>
+                    </div>
+                  </section>
+
+                  {/* Support & Help */}
+                  <section className={styles.section}>
+                    <h3 className={styles.sectionTitle}>📚 Support & Help</h3>
+                    
+                    <div className={styles.linkList}>
+                      <a href="#" className={styles.linkItem}>
+                        <span>Help Center</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M7 10l5 5 5-5" strokeLinecap="round" transform="rotate(-90 10 10)" />
+                        </svg>
+                      </a>
+                      <a href="#" className={styles.linkItem}>
+                        <span>Report an Issue</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M7 10l5 5 5-5" strokeLinecap="round" transform="rotate(-90 10 10)" />
+                        </svg>
+                      </a>
+                      <a href="#" className={styles.linkItem}>
+                        <span>Send Feedback</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M7 10l5 5 5-5" strokeLinecap="round" transform="rotate(-90 10 10)" />
+                        </svg>
+                      </a>
+                    </div>
+                  </section>
+
+                  {/* Legal & Privacy */}
+                  <section className={styles.section}>
+                    <h3 className={styles.sectionTitle}>📄 Legal & Privacy</h3>
+                    
+                    <div className={styles.linkList}>
+                      <a href="#" className={styles.linkItem}>
+                        <span>Privacy Policy</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M7 10l5 5 5-5" strokeLinecap="round" transform="rotate(-90 10 10)" />
+                        </svg>
+                      </a>
+                      <a href="#" className={styles.linkItem}>
+                        <span>Terms of Service</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M7 10l5 5 5-5" strokeLinecap="round" transform="rotate(-90 10 10)" />
+                        </svg>
+                      </a>
+                    </div>
+                  </section>
+
+                  {/* About Project */}
+                  <section className={styles.section}>
+                    <h3 className={styles.sectionTitle}>💡 About This Project</h3>
+                    <p className={styles.aboutText}>
+                      Insight AI is an educational platform designed to help students and teachers 
+                      manage assignments and enhance learning with AI-powered tools.
+                    </p>
+                    <p className={styles.aboutFooter}>
+                      Built with ❤️ for educators and learners.
+                    </p>
+                  </section>
+                </div>
+              </div>
+            )}
           </div>
         </div>
+      </div>
 
-        <Card>
-          <div className={styles.settingsList}>
-            <div className={styles.settingItem}>
-              <div className={styles.settingInfo}>
-                <div className={styles.settingLabel}>System Notifications</div>
-                <div className={styles.settingDesc}>General system alerts and updates</div>
-              </div>
-              <label className={styles.toggle}>
-                <input
-                  type="checkbox"
-                  checked={settings.notifications.system}
-                  onChange={() => handleNotificationChange('system')}
-                />
-                <span className={styles.toggleSlider}></span>
-              </label>
-            </div>
-
-            <div className={styles.settingItem}>
-              <div className={styles.settingInfo}>
-                <div className={styles.settingLabel}>Email Notifications</div>
-                <div className={styles.settingDesc}>Receive notifications via email</div>
-              </div>
-              <label className={styles.toggle}>
-                <input
-                  type="checkbox"
-                  checked={settings.notifications.email}
-                  onChange={() => handleNotificationChange('email')}
-                />
-                <span className={styles.toggleSlider}></span>
-              </label>
-            </div>
-
-            <div className={styles.settingItem}>
-              <div className={styles.settingInfo}>
-                <div className={styles.settingLabel}>Push Notifications</div>
-                <div className={styles.settingDesc}>Receive push notifications on your device</div>
-              </div>
-              <label className={styles.toggle}>
-                <input
-                  type="checkbox"
-                  checked={settings.notifications.push}
-                  onChange={() => handleNotificationChange('push')}
-                />
-                <span className={styles.toggleSlider}></span>
-              </label>
-            </div>
-
-            <div className={styles.divider}></div>
-
-            <div className={styles.settingItem}>
-              <div className={styles.settingInfo}>
-                <div className={styles.settingLabel}>Assignment Updates</div>
-                <div className={styles.settingDesc}>New assignments and due date reminders</div>
-              </div>
-              <label className={styles.toggle}>
-                <input
-                  type="checkbox"
-                  checked={settings.notifications.assignments}
-                  onChange={() => handleNotificationChange('assignments')}
-                />
-                <span className={styles.toggleSlider}></span>
-              </label>
-            </div>
-
-            <div className={styles.settingItem}>
-              <div className={styles.settingInfo}>
-                <div className={styles.settingLabel}>Grade Updates</div>
-                <div className={styles.settingDesc}>When assignments are graded</div>
-              </div>
-              <label className={styles.toggle}>
-                <input
-                  type="checkbox"
-                  checked={settings.notifications.grades}
-                  onChange={() => handleNotificationChange('grades')}
-                />
-                <span className={styles.toggleSlider}></span>
-              </label>
-            </div>
-
-            <div className={styles.settingItem}>
-              <div className={styles.settingInfo}>
-                <div className={styles.settingLabel}>School Announcements</div>
-                <div className={styles.settingDesc}>Important school and class announcements</div>
-              </div>
-              <label className={styles.toggle}>
-                <input
-                  type="checkbox"
-                  checked={settings.notifications.announcements}
-                  onChange={() => handleNotificationChange('announcements')}
-                />
-                <span className={styles.toggleSlider}></span>
-              </label>
-            </div>
-
-            <div className={styles.settingItem}>
-              <div className={styles.settingInfo}>
-                <div className={styles.settingLabel}>Teacher Messages</div>
-                <div className={styles.settingDesc}>Messages from your teachers</div>
-              </div>
-              <label className={styles.toggle}>
-                <input
-                  type="checkbox"
-                  checked={settings.notifications.messages}
-                  onChange={() => handleNotificationChange('messages')}
-                />
-                <span className={styles.toggleSlider}></span>
-              </label>
-            </div>
-
-            <div className={styles.settingItem}>
-              <div className={styles.settingInfo}>
-                <div className={styles.settingLabel}>AI Recommendations</div>
-                <div className={styles.settingDesc}>Daily study suggestions and learning tips</div>
-              </div>
-              <label className={styles.toggle}>
-                <input
-                  type="checkbox"
-                  checked={settings.notifications.aiRecommendations}
-                  onChange={() => handleNotificationChange('aiRecommendations')}
-                />
-                <span className={styles.toggleSlider}></span>
-              </label>
-            </div>
-          </div>
-        </Card>
-      </section>
-
-      {/* Privacy & Security */}
-      <section className={styles.section}>
-        <div className={styles.sectionHeader}>
-          <div className={styles.sectionIcon}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <rect x="5" y="11" width="14" height="10" rx="1" stroke="currentColor" strokeWidth="2"/>
-              <path d="M8 11V7a4 4 0 118 0v4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-            </svg>
-          </div>
-          <div>
-            <h2 className={styles.sectionTitle}>Privacy & Security</h2>
-            <p className={styles.sectionDescription}>Control your privacy and data sharing preferences</p>
-          </div>
-        </div>
-
-        <Card>
-          <div className={styles.settingsList}>
-            <div className={styles.settingItem}>
-              <div className={styles.settingInfo}>
-                <div className={styles.settingLabel}>Show Achievements to Classmates</div>
-                <div className={styles.settingDesc}>Let classmates see your learning achievements</div>
-              </div>
-              <label className={styles.toggle}>
-                <input
-                  type="checkbox"
-                  checked={settings.privacy.showAchievementsToClassmates}
-                  onChange={() => handlePrivacyChange('showAchievementsToClassmates')}
-                />
-                <span className={styles.toggleSlider}></span>
-              </label>
-            </div>
-
-            <div className={styles.settingItem}>
-              <div className={styles.settingInfo}>
-                <div className={styles.settingLabel}>Show Grades to Classmates</div>
-                <div className={styles.settingDesc}>Allow classmates to view your grades</div>
-              </div>
-              <label className={styles.toggle}>
-                <input
-                  type="checkbox"
-                  checked={settings.privacy.showGradesToClassmates}
-                  onChange={() => handlePrivacyChange('showGradesToClassmates')}
-                />
-                <span className={styles.toggleSlider}></span>
-              </label>
-            </div>
-
-            <div className={styles.settingItem}>
-              <div className={styles.settingInfo}>
-                <div className={styles.settingLabel}>Teacher Progress Monitoring</div>
-                <div className={styles.settingDesc}>Allow teachers to view detailed learning progress</div>
-              </div>
-              <label className={styles.toggle}>
-                <input
-                  type="checkbox"
-                  checked={settings.privacy.allowTeacherViewProgress}
-                  onChange={() => handlePrivacyChange('allowTeacherViewProgress')}
-                />
-                <span className={styles.toggleSlider}></span>
-              </label>
-            </div>
-
-            <div className={styles.settingItem}>
-              <div className={styles.settingInfo}>
-                <div className={styles.settingLabel}>Parent Access</div>
-                <div className={styles.settingDesc}>Allow parents to access your academic information</div>
-              </div>
-              <label className={styles.toggle}>
-                <input
-                  type="checkbox"
-                  checked={settings.privacy.allowParentAccess}
-                  onChange={() => handlePrivacyChange('allowParentAccess')}
-                />
-                <span className={styles.toggleSlider}></span>
-              </label>
-            </div>
-
-            <div className={styles.settingItem}>
-              <div className={styles.settingInfo}>
-                <div className={styles.settingLabel}>Data Sharing for Research</div>
-                <div className={styles.settingDesc}>Share anonymized data for educational research</div>
-              </div>
-              <label className={styles.toggle}>
-                <input
-                  type="checkbox"
-                  checked={settings.privacy.dataSharing}
-                  onChange={() => handlePrivacyChange('dataSharing')}
-                />
-                <span className={styles.toggleSlider}></span>
-              </label>
-            </div>
-          </div>
-        </Card>
-      </section>
-
-      {/* Learning Preferences */}
-      <section className={styles.section}>
-        <div className={styles.sectionHeader}>
-          <div className={styles.sectionIcon}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M12 2l10 6-10 6L2 8l10-6z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
-              <path d="M2 14l10 6 10-6M2 20l10 6 10-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
-          <div>
-            <h2 className={styles.sectionTitle}>Learning Preferences</h2>
-            <p className={styles.sectionDescription}>Customize your learning experience</p>
-          </div>
-        </div>
-
-        <Card>
-          <div className={styles.settingsList}>
-            <div className={styles.settingItem}>
-              <div className={styles.settingInfo}>
-                <div className={styles.settingLabel}>Daily Learning Reminder</div>
-                <div className={styles.settingDesc}>Receive daily study reminders and motivation</div>
-              </div>
-              <label className={styles.toggle}>
-                <input
-                  type="checkbox"
-                  checked={settings.learning.dailyLearningReminder}
-                  onChange={() => handleLearningChange('dailyLearningReminder', !settings.learning.dailyLearningReminder)}
-                />
-                <span className={styles.toggleSlider}></span>
-              </label>
-            </div>
-
-            <div className={styles.settingItem}>
-              <div className={styles.settingInfo}>
-                <div className={styles.settingLabel}>AI Tutor</div>
-                <div className={styles.settingDesc}>Enable AI-powered learning assistance</div>
-              </div>
-              <label className={styles.toggle}>
-                <input
-                  type="checkbox"
-                  checked={settings.learning.aiTutorEnabled}
-                  onChange={() => handleLearningChange('aiTutorEnabled', !settings.learning.aiTutorEnabled)}
-                />
-                <span className={styles.toggleSlider}></span>
-              </label>
-            </div>
-
-            <div className={styles.settingItem}>
-              <div className={styles.settingInfo}>
-                <div className={styles.settingLabel}>Daily Study Goal</div>
-                <div className={styles.settingDesc}>Target study time per day (minutes)</div>
-              </div>
-              <div className={styles.inputGroup}>
-                <input
-                  type="number"
-                  className={styles.numberInput}
-                  value={settings.learning.studyGoal}
-                  onChange={(e) => handleLearningChange('studyGoal', parseInt(e.target.value))}
-                  min="30"
-                  max="480"
-                  step="30"
-                />
-                <span className={styles.inputSuffix}>minutes</span>
-              </div>
-            </div>
-
-            <div className={styles.settingItem}>
-              <div className={styles.settingInfo}>
-                <div className={styles.settingLabel}>Preferred Study Time</div>
-                <div className={styles.settingDesc}>When do you study most effectively?</div>
-              </div>
-              <select
-                className={styles.select}
-                value={settings.learning.preferredStudyTime}
-                onChange={(e) => handleLearningChange('preferredStudyTime', e.target.value)}
+      {/* Change Password Modal */}
+      {showPasswordDialog && (
+        <div className={styles.modal} onClick={() => setShowPasswordDialog(false)}>
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <div className={styles.modalHeader}>
+              <h2>Change Password</h2>
+              <button
+                className={styles.modalClose}
+                onClick={() => setShowPasswordDialog(false)}
               >
-                <option value="morning">Morning (6AM - 12PM)</option>
-                <option value="afternoon">Afternoon (12PM - 6PM)</option>
-                <option value="evening">Evening (6PM - 10PM)</option>
-                <option value="night">Night (10PM - 6AM)</option>
-              </select>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" />
+                </svg>
+              </button>
             </div>
-          </div>
-        </Card>
-      </section>
+            
+            <div className={styles.modalBody}>
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Current Password</label>
+                <input
+                  type="password"
+                  className={styles.input}
+                  value={passwordForm.current}
+                  placeholder="Enter current password"
+                  onChange={(e) => setPasswordForm({ ...passwordForm, current: e.target.value })}
+                />
+              </div>
 
-      {/* Language & Display */}
-      <section className={styles.section}>
-        <div className={styles.sectionHeader}>
-          <div className={styles.sectionIcon}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2"/>
-              <path d="M2 12h20M12 2a15 15 0 010 20 15 15 0 010-20" stroke="currentColor" strokeWidth="2"/>
-            </svg>
-          </div>
-          <div>
-            <h2 className={styles.sectionTitle}>Language & Display</h2>
-            <p className={styles.sectionDescription}>Customize your interface preferences</p>
+              <div className={styles.formGroup}>
+                <label className={styles.label}>New Password</label>
+                <input
+                  type="password"
+                  className={styles.input}
+                  value={passwordForm.new}
+                  placeholder="Enter new password"
+                  onChange={(e) => setPasswordForm({ ...passwordForm, new: e.target.value })}
+                />
+                {passwordForm.new && (
+                  <div className={styles.passwordStrength}>
+                    <div className={styles.strengthBar}>
+                      <div 
+                        className={styles.strengthFill} 
+                        style={{ 
+                          width: `${Math.min((passwordForm.new.length / 12) * 100, 100)}%`,
+                          backgroundColor: passwordForm.new.length < 8 ? '#EF4444' : passwordForm.new.length < 12 ? '#F59E0B' : '#10B981'
+                        }}
+                      />
+                    </div>
+                    <span 
+                      className={styles.strengthText}
+                      style={{ 
+                        color: passwordForm.new.length < 8 ? '#EF4444' : passwordForm.new.length < 12 ? '#F59E0B' : '#10B981'
+                      }}
+                    >
+                      {passwordForm.new.length < 8 ? 'Weak' : passwordForm.new.length < 12 ? 'Good' : 'Strong'}
+                    </span>
+                  </div>
+                )}
+                <p className={styles.hint}>
+                  Must be at least 8 characters with letters and numbers
+                </p>
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Confirm New Password</label>
+                <input
+                  type="password"
+                  className={styles.input}
+                  value={passwordForm.confirm}
+                  placeholder="Confirm new password"
+                  onChange={(e) => setPasswordForm({ ...passwordForm, confirm: e.target.value })}
+                />
+              </div>
+            </div>
+
+            <div className={styles.modalFooter}>
+              <button
+                className={styles.modalButton}
+                onClick={() => setShowPasswordDialog(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className={`${styles.modalButton} ${styles.modalButtonPrimary}`}
+                onClick={handlePasswordChange}
+              >
+                Update Password
+              </button>
+            </div>
           </div>
         </div>
-
-        <Card>
-          <div className={styles.settingsList}>
-            <div className={styles.settingItem}>
-              <div className={styles.settingInfo}>
-                <div className={styles.settingLabel}>Language</div>
-                <div className={styles.settingDesc}>Choose your preferred language</div>
-              </div>
-              <select
-                className={styles.select}
-                value={settings.display.language}
-                onChange={(e) => handleDisplayChange('language', e.target.value)}
-              >
-                <option value="en">English</option>
-                <option value="zh">中文 (Chinese)</option>
-                <option value="es">Español (Spanish)</option>
-              </select>
-            </div>
-
-            <div className={styles.settingItem}>
-              <div className={styles.settingInfo}>
-                <div className={styles.settingLabel}>Theme</div>
-                <div className={styles.settingDesc}>Choose your color theme</div>
-              </div>
-              <select
-                className={styles.select}
-                value={settings.display.theme}
-                onChange={(e) => handleDisplayChange('theme', e.target.value)}
-              >
-                <option value="light">Light</option>
-                <option value="dark">Dark</option>
-                <option value="auto">Auto (System)</option>
-              </select>
-            </div>
-
-            <div className={styles.settingItem}>
-              <div className={styles.settingInfo}>
-                <div className={styles.settingLabel}>Font Size</div>
-                <div className={styles.settingDesc}>Adjust text size for better readability</div>
-              </div>
-              <select
-                className={styles.select}
-                value={settings.display.fontSize}
-                onChange={(e) => handleDisplayChange('fontSize', e.target.value)}
-              >
-                <option value="small">Small</option>
-                <option value="medium">Medium</option>
-                <option value="large">Large</option>
-              </select>
-            </div>
-          </div>
-        </Card>
-      </section>
-
-      {/* Danger Zone */}
-      <section className={styles.section}>
-        <div className={styles.sectionHeader}>
-          <div className={styles.sectionIcon} style={{ color: 'var(--error-500)' }}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M12 9v4M12 17h.01M4 7l8-4 8 4v10l-8 4-8-4V7z" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-            </svg>
-          </div>
-          <div>
-            <h2 className={styles.sectionTitle}>Account Management</h2>
-            <p className={styles.sectionDescription}>Manage your account data and access</p>
-          </div>
-        </div>
-
-        <Card className={styles.dangerZone}>
-          <div className={styles.dangerActions}>
-            <div className={styles.dangerAction}>
-              <div className={styles.dangerInfo}>
-                <div className={styles.dangerLabel}>Change Password</div>
-                <div className={styles.dangerDesc}>Update your account password</div>
-              </div>
-              <Button variant="secondary">Change Password</Button>
-            </div>
-
-            <div className={styles.divider}></div>
-
-            <div className={styles.dangerAction}>
-              <div className={styles.dangerInfo}>
-                <div className={styles.dangerLabel}>Download My Data</div>
-                <div className={styles.dangerDesc}>Download a copy of your personal data</div>
-              </div>
-              <Button variant="secondary">Download Data</Button>
-            </div>
-
-            <div className={styles.divider}></div>
-
-            <div className={styles.dangerAction}>
-              <div className={styles.dangerInfo}>
-                <div className={styles.dangerLabel}>Delete Account</div>
-                <div className={styles.dangerDesc}>Permanently delete your account and all data</div>
-              </div>
-              <Button variant="danger">Delete Account</Button>
-            </div>
-          </div>
-        </Card>
-      </section>
+      )}
     </MainLayout>
   );
 };
 
 export default SettingsPage;
-

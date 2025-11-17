@@ -1,160 +1,261 @@
-## 一、结构
+# Settings - MVP 版本（学生端/教师端通用）
 
-| 层级 | 名称 | 用户心智 | 是否常用 |
-| --- | --- | --- | --- |
-| **基础层** | 账户与通知 | 用户身份、联系方式、通知方式 | ✅ 必须 |
-| **学习层（或教学层）** | 学习/教学偏好、语言显示 | 个性化体验相关 | ⚙️ 常用但非每天用 |
-| **安全层** | 安全、隐私、账户管理 | 安全保障与退出 | ⚠️ 低频但重要 |
+## 一、MVP简化结构
 
-**→ 左侧导航栏分为 3~4 个主标签：**
+**⚠️ MVP设计原则：**
+- 简单高效，只保留必要功能
+- 网页版限制，去除复杂通知渠道
+- 学生/教师共用相同结构
+
+**→ 左侧导航栏（4个主标签）：**
 
 ```
 Settings
  ├── Account
  ├── Notifications
  ├── Preferences
- ├── Privacy & Security
  └── About Insight AI
-
 ```
 
-> 学生端和教师端共用相同结构，只是内容不同。
-> 
+**移除项（MVP不包含）：**
+- ❌ Privacy & Security独立页（合并到Account）
+- ❌ 2FA双因素认证
+- ❌ Account删除/停用功能
+- ❌ Push通知和In-App通知（只保留Email）
+- ❌ 站内私信通知（Parents、教师留言等）
+- ❌ Learning Content Preference
 
 ---
 
-## 二、教师 / 学生共通框架
+## 二、教师/学生共通框架（MVP版本）
 
 ### ① Account（账户信息）
 
-保留必要字段，隐藏冗余统计。
+**包含字段：**
 
-| 保留项 | 说明 |
-| --- | --- |
-| Profile photo | 上传头像 |
-| Name / Username | 用户名或姓名 |
-| Email | 可修改或验证 |
-| Role / School | 自动显示（不可编辑） |
-| Password reset | 简化为“Change Password”弹窗 |
-| → 其余统计信息（登录时间、课程数等）建议移到 Dashboard 个人卡片显示 |  |
+| 字段 | 说明 | 可编辑 |
+| --- | --- | --- |
+| Profile Photo | 头像（圆形） | ✅ 可上传 |
+| Name | 姓名 | ✅ 可修改 |
+| Email | 邮箱 | ✅ 可修改 |
+| Student ID / Teacher ID | 学号/工号 | ❌ 只读 |
+| School | 学校名称 | ❌ 只读 |
+| Grade / Department | 年级/科组 | ❌ 只读 |
+| **Change Password** | 修改密码 | ✅ 弹窗表单 |
+
+**修改密码弹窗：**
+```
+┌─────────────────────────────┐
+│ Change Password         ✕  │
+├─────────────────────────────┤
+│ Current Password:           │
+│ [___________________]       │
+│                             │
+│ New Password:               │
+│ [___________________]       │
+│                             │
+│ Confirm Password:           │
+│ [___________________]       │
+│                             │
+│        [Cancel] [Update]    │
+└─────────────────────────────┘
+```
 
 ---
 
 ### ② Notifications（通知设置）
 
-重点在「层级化」和「渠道聚合」：
+**MVP简化版：只保留Email通知**
 
-- 先选通知渠道（Email / In-App / Push）
-- 再选类别（Class、Assignment、System）
-- 折叠非关键项（如 quiet hours、reminder 细节）
+**通知类别（Toggle开关）：**
 
-示例结构：
+| 通知类型 | 学生端 | 教师端 | 说明 |
+| --- | --- | --- | --- |
+| Assignment Updates | ✅ | ✅ | 新作业发布、截止提醒 |
+| Grading Completed | ✅ | ❌ | 作业批改完成通知 |
+| Class Announcements | ✅ | ✅ | 班级公告 |
+| System Notifications | ✅ | ✅ | 系统更新、维护通知 |
+
+**界面布局：**
 
 ```
 Notifications
- ├── Channels
- │    ├── Email / Push / In-app
- ├── Categories
- │    ├── Class Updates
- │    ├── Assignments
- │    ├── System Alerts
- └── Advanced (可折叠)
-      ├── Quiet hours
-      ├── Reminder timing
+─────────────────────────
+📧 Email Notifications
 
+☑ Assignment Updates
+   Notify me when new assignments are posted or due soon
+
+☑ Grading Completed
+   Notify me when my assignments are graded
+
+☑ Class Announcements
+   Notify me about class announcements and updates
+
+☑ System Notifications
+   Important system updates and maintenance notices
 ```
 
-> 可统一样式，例如各项右侧 toggle switch，简洁清晰。
-> 
-> 
-> 学生端与教师端唯一不同在「通知类型」上（如学生没有 grading completed）。
-> 
+**移除项：**
+- ❌ Push通知（移动端功能）
+- ❌ In-App通知（暂未实现）
+- ❌ Quiet Hours（复杂度高）
+- ❌ 站内私信通知（未实现）
 
 ---
 
-### ③ Preferences（学习或教学偏好）
+### ③ Preferences（偏好设置）
 
-这是当前版本最杂的部分，要合并同类项：
+**MVP简化版：**
 
-| 模块 | 含义 | 策略 |
+**包含内容：**
+
+| 设置项 | 说明 | 类型 |
 | --- | --- | --- |
-| Layout Density / View | 视觉布局偏好 | 保留（低频但实用） |
-| Default View / Sort | 默认作业视图 | 保留为 dropdown |
-| Content Preferences | 视频/文本/互动 | 保留（与AI推荐相关） |
-| Accessibility | 无障碍设置 | 折叠在“Advanced” |
-| Language & Display | 语言、时区、日期格式 | 独立 section 保留 |
+| Language | 界面语言（中文/English） | Dropdown |
+| Date Format | 日期格式（MM/DD/YYYY 或 DD/MM/YYYY） | Dropdown |
+| Time Zone | 时区设置 | Dropdown |
+| Default View | 默认作业视图（List/Grid） | Toggle |
 
----
-
-### ④ Privacy & Security（隐私与账户安全）
-
-只保留三个功能：
-
-1. Change password
-2. Two-factor authentication
-3. Profile visibility (Public / School / Class)
-
-将 **Deactivate / Delete Account** 独立放在最底部（Danger Zone）。
-
----
-
-## 🧱 三、层级与展示结构（推荐UI信息架构）
+**界面布局：**
 
 ```
-Settings
-│
-├── Account
-│     • Profile picture
-│     • Name / Email
-│     • School / Role
-│     • Change password
-│
-├── Notifications
-│     • Channels (Email, Push, In-App)
-│     • Categories (Assignments, Class, System)
-│     • Quiet Hours / Reminders (collapsible)
-│
-├── Preferences
-│     • Layout & View
-│     • Learning/Teaching formats (Video, Reading, Interactive)
-│     • Accessibility (Advanced)
-│     • Language & Display
-│
-├── Privacy & Security
-│     • Password & 2FA
-│     • Profile visibility
-│     • Account deactivation / deletion
-│
-└── About Insight AI
-      • Version information
-      • Help center & documentation
-      • Report issues & send feedback
-      • Privacy policy & terms of service
-      • Open source attribution
+Preferences
+─────────────────────────
+🌐 Language & Display
 
+Language:           [English        ▼]
+Date Format:        [MM/DD/YYYY     ▼]
+Time Zone:          [GMT+8 HK       ▼]
+
+⚙️ Interface
+
+Default Assignment View:  ○ List  ● Grid
 ```
+
+**移除项（MVP）：**
+- ❌ Layout Density（界面密度）
+- ❌ Content Preferences（学习内容偏好）
+- ❌ Accessibility（无障碍设置）
+- ❌ Theme（深色/浅色模式）
 
 ---
 
-## 🧩 四、后续可扩展设计
+### ④ About Insight AI（关于）
 
-| 功能模块 | 未来可以补充 |
+**包含内容：**
+
+| 项目 | 说明 |
 | --- | --- |
-| Notifications | 自定义规则（如“只通知重要更新”） |
-| Preferences | AI个性化推荐控制（数据开关） |
-| Privacy | 数据导出 / 下载日志 |
-| Account | 绑定第三方（Google / Microsoft / Apple） |
+| Version | 当前版本号（如 v1.0.0 MVP） |
+| Help Center | 链接到帮助文档 |
+| Report Issue | 问题反馈表单 |
+| Privacy Policy | 隐私政策 |
+| Terms of Service | 服务条款 |
+
+**界面布局：**
+
+```
+About Insight AI
+─────────────────────────
+ℹ️ System Information
+
+Version: v1.0.0 (MVP)
+Last Updated: Nov 2024
+
+📚 Support
+
+• Help Center
+• Report an Issue
+• Send Feedback
+
+📄 Legal
+
+• Privacy Policy
+• Terms of Service
+```
 
 ---
 
-## ✅ 教师端与学生端差异最小化建议
+## 三、MVP完整结构
 
-| 模块 | 教师端独有 | 学生端独有 |
+```
+Settings (学生端/教师端共用)
+│
+├── ① Account
+│     ✅ Profile photo
+│     ✅ Name / Email
+│     ✅ Student ID / School / Grade (只读)
+│     ✅ Change Password (弹窗)
+│
+├── ② Notifications
+│     ✅ Email Notifications Only
+│     ✅ Assignment Updates
+│     ✅ Grading Completed (学生端)
+│     ✅ Class Announcements
+│     ✅ System Notifications
+│
+├── ③ Preferences
+│     ✅ Language (中文/English)
+│     ✅ Date Format
+│     ✅ Time Zone
+│     ✅ Default View (List/Grid)
+│
+└── ④ About Insight AI
+      ✅ Version info
+      ✅ Help Center
+      ✅ Report Issue
+      ✅ Privacy Policy
+```
+
+**移除功能清单（MVP不包含）：**
+- ❌ Privacy & Security 独立页
+- ❌ Two-Factor Authentication (2FA)
+- ❌ Profile Visibility设置
+- ❌ Deactivate Account
+- ❌ Delete Account
+- ❌ Push / In-App通知
+- ❌ Quiet Hours
+- ❌ Learning Content Preference
+- ❌ Layout Density
+- ❌ Accessibility Settings
+- ❌ Theme (Dark Mode)
+
+---
+
+## 四、教师端与学生端差异
+
+**唯一差异：Notifications模块**
+
+| 通知类型 | 学生端 | 教师端 |
 | --- | --- | --- |
-| Notifications | Grading completed | Assignment feedback |
-| Preferences | Teaching formats | Learning formats |
-| Privacy | Class visibility | Study group visibility |
+| Assignment Updates | ✅ 新作业、截止提醒 | ✅ 学生提交通知 |
+| Grading Completed | ✅ 批改完成通知 | ❌ 无此项 |
+| Class Announcements | ✅ | ✅ |
+| System Notifications | ✅ | ✅ |
 
-两端共享统一 UI，只隐藏不同的行项（同一代码结构可通过 role 控制渲染）。
+**其他模块完全相同，通过role控制文字描述即可。**
+
+---
+
+## 五、MVP实施要点
+
+### **简化原则**
+1. **网页版限制** → 只保留Email通知
+2. **去除复杂功能** → 无2FA、无账户删除、无隐私设置页
+3. **保留核心功能** → 账户信息、通知开关、语言设置
+4. **统一体验** → 学生/教师共用UI，只改文字
+
+### **UI设计规范**
+- 左侧Tab导航（固定4个）
+- 右侧内容区（表单样式统一）
+- Toggle开关（统一样式）
+- Dropdown选择器（统一样式）
+- 弹窗（用于修改密码）
+
+### **数据持久化**
+- LocalStorage + 后端API
+- 实时保存或点击"Save Changes"
+- 多设备同步
 
 ---
